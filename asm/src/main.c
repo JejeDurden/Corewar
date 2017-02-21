@@ -6,14 +6,14 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:33:31 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/21 15:41:53 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/21 17:34:01 by jgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "../../ft_printf/libft/libft.h"
 
-static void	parser()
+static t_hash	*parser(char *av)
 {
 	int	fd;
 	int ret;
@@ -36,9 +36,10 @@ static void	parser()
 	close(fd);
 }
 
-int			main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	char	*ext;
+	t_hash	hashtable;
 
 	if (ac != 2)
 		ft_putstr_fd("Usage: ./asm <sourcefile.s>\n", 2);
@@ -50,8 +51,8 @@ int			main(int ac, char **av)
 			ft_putstr_fd("Error: Bad extension, need file[.s].\n", 2);
 			return (1);
 		}
-		*ext = '\0';
-		[...];
+		hashtable = parser(av[1]);
+		ft_asm(av[1], hashtable);
 	}
 	return (0);
 }
