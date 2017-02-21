@@ -112,23 +112,31 @@ SRCS = 	ft_atoi.c	 		\
 		ft_size_w_str.c		\
 		ft_size_w_char.c	\
 
-OBJ = $(SRCS:.c=.o)
+AR = ar rc
+OBJ_PATH = obj
+OBJ_NAME = $(SRCS:.c=.o)
+OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 CC = gcc
-OPTION = -c
 FLAGS  = -Wall -Werror -Wextra
 INCLUDE = -Iincludes
 
 all: $(NAME)
 	
-$(NAME):
-	@$(CC) $(FLAGS) $^  $(OPTION) $(SRCS) $(INCLUDE)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+$(NAME): $(OBJ)
+	@$(AR) $@ $^
 	@echo "\033[33;32m=== Compilation\t\t\tDONE"
+
+$(OBJ_PATH)/%.o: %.c
+	@mkdir -p $(OBJ_PATH) 2> /dev/null
+	@mkdir -p $(dir $(OBJ)) 2> /dev/null
+	@$(CC) $(FLAGS) $(INCLUDE) -o $@ -c $<
 	
 clean:
-	   @rm -f $(OBJ)
+	@rm -rf $(OBJ_PATH)
+	@echo "\033[33;12m=== clean\t\t\tDONE"
+
 fclean: clean
-	   @rm -f $(NAME)
+	@rm -f $(NAME)
 	@echo "\033[33;12m=== fclean\t\t\tDONE"
+
 re: fclean all
