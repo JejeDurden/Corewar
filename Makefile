@@ -1,40 +1,18 @@
-NAME = ft_ls
-
-SRCS = main.c
-
-OBJ_PATH = ./objs/
-
-OBJ_NAME = $(SRCS:.c=.o)
-
-OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
-
-CC = gcc
-
-LIB = ./ft_printf/libftprintf.a
-
-LIB_PATH = ./ft_printf/
-
-FLAGS = -Wall -Werror -Wextra
-
-all: $(NAME)
-
-$(NAME): $(OBJ)
+all:
 	@make -C ./ft_printf/
-	@echo "Creating $(NAME)"
-	@$(CC) $(FLAGS) $^ -L $(LIB_PATH) -lftprintf -o $@
-
-$(OBJ_PATH)%.o:%.c
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) $(FLAGS) -o $@ -c $<
+	@make -C ./asm/
+	@make -C ./corewar/
+	@mv ./asm/asm .
+#	@mv ./corewar/corewar .
 
 clean:
 	@make clean -C ./ft_printf/
-	@rm -f $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || true
+	@make clean -C ./asm/
+	@make clean -C ./corewar/
 
 fclean: clean
 	@make fclean -C ./ft_printf/
-	@rm -f $(NAME)
+	@rm -f asm
+	@rm -f corewar
 
 re: fclean all
-		@make re -C ./ft_printf/
