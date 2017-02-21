@@ -82,13 +82,12 @@ typedef struct	s_op
 {
 	char		*name;
 	int			nb_params;
-	int			param[3]; // maximum 3 dans op_tab
+	int			param[3];
 	int			opcode;
 	int			nb_cycles;
 	char		*def;
-	int			;
-	int			;	
-	// on dirait des flags ils ne sont que a 0 ou 1
+	int			flag_pc;
+	int			flag_idx;	
 }				t_op;
 
 #endif
