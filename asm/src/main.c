@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "asm.h"
-#include "../../ft_printf/libft/libft.h"
 
 static t_hash	*parser(char *av)
 {
