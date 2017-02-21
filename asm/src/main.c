@@ -6,11 +6,12 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:33:31 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/21 13:33:32 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/02/21 15:41:53 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+#include "../../ft_printf/libft/libft.h"
 
 static void	parser()
 {
@@ -37,15 +38,19 @@ static void	parser()
 
 int			main(int ac, char **av)
 {
+	char	*ext;
+
 	if (ac != 2)
 		ft_putstr_fd("Usage: ./asm <sourcefile.s>\n", 2);
 	else
 	{
-		if (!ft_check_extension(av[1], "s"))
+		ext = ft_strrchr(av[1], '.');
+		if (ext == NULL || ext[1] != 's')
 		{
 			ft_putstr_fd("Error: Bad extension, need file[.s].\n", 2);
 			return (1);
 		}
+		*ext = '\0';
 		[...];
 	}
 	return (0);
