@@ -33,7 +33,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@echo $(NAME) ": Sources compiling..."
 	@$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
-	@echo "Executable "$(NAME)" made"
+	@echo "\033[33;32m=== Compilation\t" $(NAME) "\t\tDONE"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p $(OBJ_PATH) 2> /dev/null || true
@@ -42,13 +42,12 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 
 clean:
 	@make fclean -C $(LIB)
-	@rm -f $(OBJ)
-	@rm -rf $(OBJ_PATH) || true
-	@echo $(OBJ_PATH)" supprimé !"
+	@rm -f $(OBJ) /dev/null || true
+	@rm -rf $(OBJ_PATH) 2> /dev/null || true
+	@echo "\033[33;12m=== clean\t" $(NAME) "\t\tDONE"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "Executable de "$(NAME)" supprimé !"
+	@echo "\033[33;12m=== fclean\t" $(NAME) "\t\tDONE"
 
 re: fclean all
-	@echo "Make re done !"

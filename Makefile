@@ -14,20 +14,21 @@
 
 all:
 	@make -C libft
-#	@make -C asm
+	@make -C assembleur
 #	@make -C corewar
-#	@mv ./asm/asm .
+	@mv ./assembleur/asm .
 #	@mv ./corewar/corewar .
 
 clean:
 	@make clean -C libft
-#	@make clean -C asm
+	@make clean -C assembleur
 #	@make clean -C corewar
 
 fclean: clean
 	@rm -f libft/libft.a
 	@echo "libft.a del"
-#	@rm -f asm
+	@rm -f asm
+	@echo "asm del"
 #	@rm -f corewar
 
 re: fclean all
