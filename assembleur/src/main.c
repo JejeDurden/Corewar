@@ -25,8 +25,6 @@ static int	parser(t_struct *env, char *file, int (*f)(t_struct *, char *))
 	}
 	while ((ret = get_next_line(fd, &line)) == 1)
 	{
-		ret = f(env, line);
-		ft_putnbr(ret);
 		if (f(env, line) < 0)
 		{
 			free(line);
@@ -43,9 +41,20 @@ static int	parser(t_struct *env, char *file, int (*f)(t_struct *, char *))
 	return (1);
 }
 
+static int		new_file_cor(char *file)
+{
+	char	*new_file;
+	char	*tmp;
+
+	new_file = ft_strchr(file, '.');
+	tmp = ft_strsub(file, 0, ft_strlen(file) - ft_strlen(new_file));
+	new_file = ft_strjoin(tmp, ".cor");
+	ft_strdel(&tmp);
+	return (open(new_file, O_CREAT));
+}
+
 int				main(int ac, char **av)
 {
-
 	char		*ext;
 	t_struct	*env;
 
@@ -55,12 +64,17 @@ int				main(int ac, char **av)
 	else
 	{
 		ext = ft_strrchr(av[1], '.');
-		if (ext == NULL || ft_strcmp(ext + 1, "s") != 0)
+		if (ext == NULL || ft_strcmp(ext, ".s") != 0)
 		{
 			ft_putstr_fd("Error: Bad extension, need file[.s].\n", 2);
 			return (1);
 		}
 		parser(env, av[1], parse_line);
+		if (fd_cor = new_file_cor(av[1]))
+		{
+			ft_putstr_fd("Error: Fail to creat new, file.\n", 2)
+			return (1);
+		}
 //		ft_asm(av[1], hashtable);
 	}
 	return (0);
