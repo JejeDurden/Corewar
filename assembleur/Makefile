@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rghirell <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/02/22 17:45:10 by rghirell          #+#    #+#              #
+#    Updated: 2017/02/22 18:20:39 by rghirell         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 .PHONY: all, clean, fclean, re
 
 NAME = asm
@@ -15,8 +27,9 @@ LDLIBS = -lft
 SRC_PATH = src
 
 SRC_NAME = main.c\
+		   parse_line.c\
 
-INC_LIB = -I$(LIB)/includes
+INC_LIB = -I$(LIB)/includes/
 
 INCLUDE = -Iinclude
 

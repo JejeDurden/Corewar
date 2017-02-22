@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 17:30:20 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/16 14:29:50 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/22 18:41:41 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <fcntl.h>
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
@@ -88,5 +89,7 @@ int					ft_count_size_octal(size_t n);
 int					ft_put_n_str(int a, char *str);
 int					ft_put_n_char(int a, char c);
 int					get_next_line(const int fd, char **line);
+int					ft_isspace(int c);
+char				*double_strchr(const char *s, int c, int d);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:41:37 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/21 13:41:44 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/02/22 10:25:38 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define REG_NUMBER				16
 
 # define CYCLE_TO_DIE			1536
-# define CYCLE_DELTA				50
+# define CYCLE_DELTA			50
 # define NBR_LIVE				21
 # define MAX_CHECKS				10
 
@@ -87,7 +87,7 @@ typedef struct	s_op
 	int			nb_cycles;
 	char		*def;
 	int			flag_pc;
-	int			flag_idx;	
+	int			flag_idx;
 }				t_op;
 
 #endif

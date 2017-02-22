@@ -8,6 +8,7 @@ SRCS = 	ft_atoi.c	 		\
 		ft_isascii.c		\
 		ft_isdigit.c		\
 		ft_isprint.c		\
+		ft_isspace.c		\
 		ft_itoa.c			\
 		ft_memalloc.c		\
 		ft_memccpy.c		\
@@ -111,6 +112,7 @@ SRCS = 	ft_atoi.c	 		\
 		ft_str_n_ls.c		\
 		ft_size_w_str.c		\
 		ft_size_w_char.c	\
+		get_next_line.c		\
 
 AR = ar rc
 OBJ_PATH = obj
