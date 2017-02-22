@@ -12,21 +12,26 @@
 
 #include "asm.h"
 
-// mettre le nom de la struct
-int	ft_asm(char *file, [struct])
+static void	write_hex_char(t_struct *env, char *str, int size)
 {
-	char	*new_file;
-	int		fd;
+	int i;
 
-	new_file = ft_strchr(file, '.');
-	new_file = ft_strsub(file, 0, ft_strlen(file) - ft_strlen(new_file));
-	new_file = ft_strjoin(new_file, ".cor");
-	// creation du new_file
-	if ((fd = open(new_file, O_CREAT)))
+	i = 0;
+	while (str[i++] && (i < (int)ft_strlen(str)))
+		ft_putchar_fd((int)str[i], env->fd_cor);
+	while (i++ < size)
+		ft_putchar_fd(0x00, env->fd_cor);
+}
+
+int			ft_asm(t_struct *env, char *line)
+{
+	if (ft_strstr(line, NAME_CMD_STRING))
 	{
-		ft_putstr_fd("Error: open fail.\n", 2);
-		exit(1);
+		ft_putchar_fd(COREWAR_EXEC_MAGIC / 256 / 256 / 256, env->fd_cor);
+		ft_putchar_fd(COREWAR_EXEC_MAGIC / 256 / 256 % 256, env->fd_cor);
+		ft_putchar_fd(COREWAR_EXEC_MAGIC / 256 % 256, env->fd_cor);
+		ft_putchar_fd(COREWAR_EXEC_MAGIC % 256, env->fd_cor);
+		write_hex_char(env, ft_strchr(line, '"') + 1, PROG_NAME_LENGTH);
 	}
-	// ...
-	close(fd);
+	return (1);
 }

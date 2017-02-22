@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-static int	parser(t_struct *env, char *file, int (*f)(t_struct *, char *))
+int	parser(t_struct *env, char *file, int (*f)(t_struct *, char *))
 {
 	int	fd;
 	int ret;
@@ -41,18 +41,6 @@ static int	parser(t_struct *env, char *file, int (*f)(t_struct *, char *))
 	return (1);
 }
 
-static int		new_file_cor(char *file)
-{
-	char	*new_file;
-	char	*tmp;
-
-	new_file = ft_strchr(file, '.');
-	tmp = ft_strsub(file, 0, ft_strlen(file) - ft_strlen(new_file));
-	new_file = ft_strjoin(tmp, ".cor");
-	ft_strdel(&tmp);
-	return (open(new_file, O_CREAT));
-}
-
 int				main(int ac, char **av)
 {
 	char		*ext;
@@ -69,13 +57,9 @@ int				main(int ac, char **av)
 			ft_putstr_fd("Error: Bad extension, need file[.s].\n", 2);
 			return (1);
 		}
-		parser(env, av[1], parse_line);
-		if (fd_cor = new_file_cor(av[1]))
-		{
-			ft_putstr_fd("Error: Fail to creat new, file.\n", 2)
+		//parser(env, av[1], parse_line);
+		if (create_cor(env, av[1]) <= 0)
 			return (1);
-		}
-//		ft_asm(av[1], hashtable);
 	}
 	return (0);
 }

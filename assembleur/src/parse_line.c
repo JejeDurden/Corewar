@@ -52,18 +52,19 @@ int		parse_instruction(t_struct *env, char *line)
 
 }*/
 
-
+/*
 int		parse_line(t_struct *env, char *line)
 {
-//	int i;
+	int i;
 	(void)env;
 	line = NULL;
 	ft_putstr("coucou");
-/*	if (ft_isspace(line[0]))
+	if (ft_isspace(line[0]))
 	{
 		if (parse_instruction(env, line) < 0)
 			return (-1);
 		return (1);
-	}*/
+	}
 	return (1);
 }
+*/
