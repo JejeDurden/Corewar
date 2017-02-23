@@ -45,7 +45,8 @@ static	int		ft_str_no_flag(t_list *env, char *temp)
 {
 	ft_put_n_char(env->width - ft_strlen(temp) + 1, ' ');
 	ft_putstr(temp);
-	return ((env->width >= (int)ft_strlen(temp)) ? env->width : ft_strlen(temp));
+	return ((env->width >= (int)ft_strlen(temp))
+		? env->width : ft_strlen(temp));
 }
 
 static	int		ft_put_s(t_list *env, char *temp)

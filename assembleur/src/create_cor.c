@@ -28,7 +28,7 @@ static int		new_file_cor(char *file)
 }
 
 /*
-	penser a enlever env->oct_size
+	penser a enlever env->oct_size = 0
 */
 
 static char		*create_buf(t_struct *env)

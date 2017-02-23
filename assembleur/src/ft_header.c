@@ -18,6 +18,7 @@ static void	put_hex_in_char(t_struct *env, int nbr, int i)
 	{
 		env->buf[i] = nbr % 256;
 		i--;
+		nbr /= 256;
 	}
 }
 
@@ -32,7 +33,7 @@ int	ft_header(t_struct *env, char *line)
 	}
 	if (env->flag_prog_len == 0)
 	{
-		put_hex_in_char(env, env->oct_size, PROG_NAME_LENGTH + 4 + 8)
+		put_hex_in_char(env, env->oct_size, PROG_NAME_LENGTH + 4 + 8);
 		env->flag_prog_len = 1;
 	}
 	if (ft_strstr(line, NAME_CMD_STRING) && env->name == 0)

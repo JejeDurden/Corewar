@@ -91,5 +91,6 @@ int					ft_put_n_char(int a, char c);
 int					get_next_line(const int fd, char **line);
 int					ft_isspace(int c);
 char				*double_strchr(const char *s, int c, int d);
+int					ft_check_extension(char *file, char *ext);
 
 #endif
