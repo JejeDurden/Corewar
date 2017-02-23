@@ -27,6 +27,9 @@ static int		new_file_cor(char *file)
 	return (-1);
 }
 
+/*
+	penser a enlever env->oct_size
+*/
 
 static char		*create_buf(t_struct *env)
 {
@@ -45,7 +48,7 @@ static char		*create_buf(t_struct *env)
 	}
 	env->oct_size = 0;
 	len += PROG_NAME_LENGTH + PROG_LENGTH_LENGTH + COMMENT_LENGTH + env->oct_size;
-	buf = ft_strnew(len);
+	buf = ft_memalloc(len);
 	ft_memset(buf, 0, len);
 	return (buf);
 }
@@ -61,8 +64,11 @@ static int		write_in_file(t_struct *env, char *file)
 		ft_putstr_fd("Error: Fail to create new file.cor .\n", 2);
 		return (0);
 	}
-	while (i++ < env->i)
+	while (i < env->i)
+	{
 		ft_putchar_fd((int)env->buf[i], fd);
+		i++;
+	}
 	close(fd);
 	return (1);
 }
@@ -79,6 +85,7 @@ int				create_cor(t_struct *env, char *file)
 	env->name = 0;
 	env->flag_prog_len = 0;
 	env->comment = 0;
+	env->i = PROG_NAME_LENGTH + 8 + 4 + COMMENT_LENGTH;
 	parser(env, file, ft_asm);
 	write_in_file(env, file);
 	return (1);
