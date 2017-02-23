@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:32:30 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/23 10:35:26 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/23 19:34:15 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ int		ft_asm(t_struct *env, char *line);
 int		create_cor(t_struct *env, char *file);
 void	free_struct(t_struct *env);
 int		ft_header(t_struct *env, char *line);
+int		ft_prog(t_struct *env, char *line);
+void	put_hex_in_char(t_struct *env, int nbr, int i);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 13:56:47 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/23 13:56:48 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/02/23 19:32:56 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void	put_hex_in_char(t_struct *env, int nbr, int i)
+void	put_hex_in_char(t_struct *env, int nbr, int i)
 {
 	while (nbr > 0)
 	{
@@ -22,7 +22,7 @@ static void	put_hex_in_char(t_struct *env, int nbr, int i)
 	}
 }
 
-int	ft_header(t_struct *env, char *line)
+int		ft_header(t_struct *env, char *line)
 {
 	char	*str;
 

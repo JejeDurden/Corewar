@@ -6,7 +6,7 @@
 #    By: rghirell <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/22 17:45:10 by rghirell          #+#    #+#              #
-#    Updated: 2017/02/22 18:20:39 by rghirell         ###   ########.fr        #
+#    Updated: 2017/02/23 19:32:14 by jdesmare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,9 @@ SRC_NAME = main.c\
 		   ft_asm.c\
 		   create_cor.c\
 		   free_struct.c\
-		   ft_header.c
+		   ft_header.c\
+		   ft_prog.c\
+		   op.c\
 
 INC_LIB = -I$(LIB)/includes/
 
