@@ -61,7 +61,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 
 clean:
 	@make fclean -C $(LIB)
-	@rm -f $(OBJ) /dev/null || true
+	@rm -f $(OBJ)
 	@rm -rf $(OBJ_PATH) 2> /dev/null || true
 	@echo "\033[33;12m=== clean\t" $(NAME) "\t\tDONE"
 
