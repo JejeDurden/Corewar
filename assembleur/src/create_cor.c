@@ -21,7 +21,7 @@ static int		new_file_cor(char *file)
 	tmp = ft_strsub(file, 0, ft_strlen(file) - ft_strlen(new_file));
 	new_file = ft_strjoin(tmp, ".cor");
 	ft_strdel(&tmp);
-	return (open(new_file, O_CREAT | O_WRONLY | O_TRUNC));
+	return (open(new_file, O_CREAT | O_WRONLY));
 }
 
 int				create_cor(t_struct *env, char *file)
