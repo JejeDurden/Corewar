@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/21 13:48:53 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/21 13:48:54 by jgoncalv         ###   ########.fr       */
+/*   Created: 2017/02/23 18:42:00 by jgoncalv          #+#    #+#             */
+/*   Updated: 2017/02/23 18:48:55 by jgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int main(int ac, char **av)
+int	parser(t_struct *env, int fd)
 {
-	int i;
+	int ret;
+	int	i;
+	char buf[1];
 
-	i = 1;
-	if (ac > 5)
-		ft_putstr_fd("Too many args.\n", 2);
-	else if (ac != 2)
-		ft_putstr_fd("Usage: ./corewar <champion1.cor> <...>\n", 2);
-	else
+	i = 0;
+	ret = 0;
+	(void)env;
+	while (i < 4)
 	{
-		while (i <= 5)
+		if ((ret = read(fd, buf, 1)) == 0)
 		{
-			if (!ft_check_extension(av[i], "cor"))
-			{
-				ft_putstr_fd("Error: Bad extension, need file[.cor].\n", 2);
-				return (1);
-			}
-			[...];
+			ft_putnbr(ret);
+			ft_putstr_fd("Error: File is too small to be a champion\n", 2);
+			exit(1);
 		}
+		else if (ret == -1)
+			break ;
 	}
-	return (0);
+	if (ret == -1)
+	{
+		ft_putstr_fd("Error: Fail to read\n", 2);
+		exit(1);
+	}
+	return (1);
 }

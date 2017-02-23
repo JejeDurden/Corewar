@@ -27,18 +27,12 @@ static int		new_file_cor(char *file)
 	return (-1);
 }
 
-/*
-	penser a enlever env->oct_size = 0
-*/
-
 static char		*create_buf(t_struct *env)
 {
 	char			*buf;
 	unsigned int	len;
 	int				nbr;
 
-	buf = NULL;
-	(void)env;
 	len = 1;
 	nbr = COREWAR_EXEC_MAGIC;
 	while (nbr > 0)
@@ -46,7 +40,6 @@ static char		*create_buf(t_struct *env)
 		len++;
 		nbr /= 256;
 	}
-	env->oct_size = 0;
 	len += PROG_NAME_LENGTH + PROG_LENGTH_LENGTH + COMMENT_LENGTH + env->oct_size;
 	buf = ft_memalloc(len);
 	ft_memset(buf, 0, len);
@@ -69,7 +62,11 @@ static int		write_in_file(t_struct *env, char *file)
 		ft_putchar_fd((int)env->buf[i], fd);
 		i++;
 	}
-	close(fd);
+	if (close(fd) == -1)
+	{
+		ft_putstr_fd("Error: Fail to close the file.\n", 2);
+		return (0);
+	}
 	return (1);
 }
 
@@ -87,6 +84,7 @@ int				create_cor(t_struct *env, char *file)
 	env->comment = 0;
 	env->i = PROG_NAME_LENGTH + 8 + 4 + COMMENT_LENGTH;
 	parser(env, file, ft_asm);
-	write_in_file(env, file);
+	if (!write_in_file(env, file))
+		exit(1);
 	return (1);
 }

@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rghirell <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/02/22 17:45:10 by rghirell          #+#    #+#              #
-#    Updated: 2017/02/22 18:20:39 by rghirell         ###   ########.fr        #
+#    Created: 2017/02/23 17:05:27 by jgoncalv          #+#    #+#              #
+#    Updated: 2017/02/23 17:05:28 by jgoncalv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all, clean, fclean, re
 
-NAME = asm
+NAME = corewar
 
 CC = gcc
 
@@ -27,11 +27,7 @@ LDLIBS = -lft
 SRC_PATH = src
 
 SRC_NAME = main.c\
-		   parse_line.c\
-		   ft_asm.c\
-		   create_cor.c\
-		   free_struct.c\
-		   ft_header.c
+			parser.c
 
 INC_LIB = -I$(LIB)/includes/
 
@@ -68,3 +64,4 @@ fclean: clean
 	@echo "\033[33;12m=== fclean\t" $(NAME) "\t\tDONE"
 
 re: fclean all
+
