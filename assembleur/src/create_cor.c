@@ -61,7 +61,7 @@ static int		write_in_file(t_struct *env, char *file)
 		ft_putstr_fd("Error: Fail to create new file.cor .\n", 2);
 		return (0);
 	}
-	while (env->buf[i])
+	while (i++ < env->i)
 		ft_putchar_fd((int)env->buf[i], fd);
 	close(fd);
 	return (1);
