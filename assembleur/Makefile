@@ -29,7 +29,9 @@ SRC_PATH = src
 SRC_NAME = main.c\
 		   parse_line.c\
 		   ft_asm.c\
-		   create_cor.c
+		   create_cor.c\
+		   free_struct.c\
+		   ft_header.c
 
 INC_LIB = -I$(LIB)/includes/
 

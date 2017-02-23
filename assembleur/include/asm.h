@@ -29,7 +29,12 @@ typedef	struct		s_struct
 {
 	t_link			*list;
 	int				oct_size;
-	int				fd_cor;
+	char			*buf;
+	unsigned int	i;
+	int				magic;
+	int				name;
+	int				flag_prog_len;
+	int				comment;
 }					t_struct;
 
 int		ft_check_extension(char *file, char *ext);
@@ -38,5 +43,6 @@ int		parse_line(t_struct *env, char *line);
 int		ft_asm(t_struct *env, char *line);
 int		create_cor(t_struct *env, char *file);
 void	free_struct(t_struct *env);
+int		ft_header(t_struct *env, char *line);
 
 #endif

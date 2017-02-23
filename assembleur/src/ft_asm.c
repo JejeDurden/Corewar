@@ -11,27 +11,31 @@
 /* ************************************************************************** */
 
 #include "asm.h"
-/*
-static void	write_hex_char(t_struct *env, char *str, int size)
+
+static int	is_a_comment(char *line)
 {
 	int i;
 
 	i = 0;
-	while (str[i++] && (i < (int)ft_strlen(str)))
-		ft_putchar_fd((int)str[i], env->fd_cor);
-	while (i++ < size)
-		ft_putchar_fd(0x00, env->fd_cor);
-}*/
+	while (line[i])
+	{
+		if (line[i] == '#' || line[i] == ';')
+			return (0);
+		else if (ft_isspace(line[i]))
+			i++;
+		else
+			return (1);
+	}
+	return (0);
+}
 
 int			ft_asm(t_struct *env, char *line)
 {
-	if (ft_strstr(line, NAME_CMD_STRING))
-	{
-		ft_putchar_fd(COREWAR_EXEC_MAGIC / 256 / 256 / 256, env->fd_cor);
-		ft_putchar_fd(COREWAR_EXEC_MAGIC / 256 / 256 % 256, env->fd_cor);
-		ft_putchar_fd(COREWAR_EXEC_MAGIC / 256 % 256, env->fd_cor);
-		ft_putchar_fd(COREWAR_EXEC_MAGIC % 256, env->fd_cor);
-		//write_hex_char(env, ft_strchr(line, '"') + 1, PROG_NAME_LENGTH);
-	}
+	if (!is_a_comment(line))
+		return (1);
+	else if (env->name == 0 || env->comment == 0)
+		ft_header(env, line);
+	/*else
+		ft_prog(env, line);*/
 	return (1);
 }

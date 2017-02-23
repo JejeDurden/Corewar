@@ -15,6 +15,7 @@
 static int		ft_gnl(t_struct *env, int fd, int (*f)(t_struct *, char *))
 {
 	char	*line;
+	int		ret;
 
 	while ((ret = get_next_line(fd, &line)) == 1)
 	{
@@ -25,6 +26,7 @@ static int		ft_gnl(t_struct *env, int fd, int (*f)(t_struct *, char *))
 		}
 		free(line);
 	}
+	return (ret);
 }
 
 int	parser(t_struct *env, char *file, int (*f)(t_struct *, char *))
@@ -70,10 +72,9 @@ int				main(int ac, char **av)
 			ft_putstr_fd("Error: Bad extension, need file[.s].\n", 2);
 			return (1);
 		}
-		parser(env, av[1], parse_line);
+		//parser(env, av[1], parse_line);
 		if (create_cor(env, av[1]) <= 0)
 			return (1);
-		parser(env, av[1], parse_line);
 	}
 	return (0);
 }
