@@ -6,23 +6,16 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:33:31 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/22 19:01:01 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/23 11:31:50 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int	parser(t_struct *env, char *file, int (*f)(t_struct *, char *))
+static int		ft_gnl(t_struct *env, int fd, int (*f)(t_struct *, char *))
 {
-	int	fd;
-	int ret;
-	char *line;
+	char	*line;
 
-	if ((fd = open(file, O_RDONLY)) == -1)
-	{
-		perror("Error: ");
-		exit(1);
-	}
 	while ((ret = get_next_line(fd, &line)) == 1)
 	{
 		if (f(env, line) < 0)
@@ -32,12 +25,32 @@ int	parser(t_struct *env, char *file, int (*f)(t_struct *, char *))
 		}
 		free(line);
 	}
-	if (ret == -1)
+}
+
+int	parser(t_struct *env, char *file, int (*f)(t_struct *, char *))
+{
+	int		fd;
+	int		ret;
+
+	if ((fd = open(file, O_RDONLY)) == -1)
 	{
-		ft_putstr_fd("Error: Fail gnl.", 2);
+		perror("Error: Open Failed\n");
+		free(env);
 		exit(1);
 	}
-	close(fd);
+	ret = ft_gnl(env, fd, f);
+	if (ret == -1)
+	{
+		ft_putstr_fd("Error: File Error\n.", 2);
+		free_struct(env);
+		exit(1);
+	}
+	if (close(fd) == -1)
+	{
+		ft_putstr_fd("Error: Close Failed\n", 2);
+		free_struct(env);
+		exit(1);
+	}
 	return (1);
 }
 
@@ -57,9 +70,10 @@ int				main(int ac, char **av)
 			ft_putstr_fd("Error: Bad extension, need file[.s].\n", 2);
 			return (1);
 		}
-		//parser(env, av[1], parse_line);
+		parser(env, av[1], parse_line);
 		if (create_cor(env, av[1]) <= 0)
 			return (1);
+		parser(env, av[1], parse_line);
 	}
 	return (0);
 }
