@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:33:31 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/23 10:13:03 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/23 11:31:50 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int		ft_gnl(t_struct *env, int fd, int (*f)(t_struct *, char *))
 	}
 }
 
-static int	parser(t_struct *env, char *file)
+static int	parser(t_struct *env, char *file, int (*f)(t_struct *, char *))
 {
 	int		fd;
 	int		ret;
@@ -38,7 +38,7 @@ static int	parser(t_struct *env, char *file)
 		free(env);
 		exit(1);
 	}
-	ret = ft_gnl(env, fd, parse_line);
+	ret = ft_gnl(env, fd, f);
 	if (ret == -1)
 	{
 		ft_putstr_fd("Error: File Error\n.", 2);
@@ -70,7 +70,7 @@ int				main(int ac, char **av)
 			ft_putstr_fd("Error: Bad extension, need file[.s].\n", 2);
 			return (1);
 		}
-		parser(env, av[1]);
+		parser(env, av[1], parse_line);
 //		ft_asm(env, av[1]);
 	}
 	return (0);
