@@ -30,6 +30,7 @@ SRC_NAME = main.c\
 		   parser.c\
 		   ft_read.c\
 		   parser_prog.c\
+		   op.c
 
 INC_LIB = -I$(LIB)/includes/
 

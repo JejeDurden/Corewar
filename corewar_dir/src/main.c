@@ -15,19 +15,20 @@
 int		ft_parser_open(char *file)
 {
 	int fd;
+	int ret;
 
 	if ((fd = open(file, O_RDONLY)) == -1)
 	{
 		ft_putstr_fd("Error: Fail to open the file.\n", 2);
 		exit(1);
 	}
-	parser(fd);
+	ret = parser(fd);
 	if (close(fd) == -1)
 	{
 		ft_putstr_fd("Error: Fail to close the file.\n", 2);
 		exit(1);
 	}
-	return (1);
+	return (ret);
 }
 
 int		main(int ac, char **av)
@@ -51,7 +52,8 @@ int		main(int ac, char **av)
 				ft_putstr_fd("Error: Bad extension, need file[.cor].\n", 2);
 				return (1);
 			}
-			ft_parser_open(av[i]);
+			if (ft_parser_open(av[i]) == 0)
+				return (1);
 			i++;
 		}
 		//get_info(av, env, ac);

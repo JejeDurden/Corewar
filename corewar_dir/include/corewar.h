@@ -28,14 +28,13 @@ typedef struct	s_struct
 {
 	int			nb_champ;
 	t_info		champ[MAX_PLAYERS];
-	
 }				t_struct;
 
 
 extern t_op op_tab[];
 
-void			parser(int fd);
+int				parser(int fd);
 char			*ft_read(int fd, int size);
-int				check_prog(int fd, int size);
+int				parser_prog(int fd, int size);
 
 #endif

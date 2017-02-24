@@ -20,17 +20,17 @@ char		*ft_read(int fd, int size)
 	if (!(buf = ft_strnew(size)))
 	{
 		ft_putstr_fd("Error: Fail to malloc\n", 2);
-		exit(1);
+		return (0);
 	}
 	if ((ret = read(fd, buf, size)) == -1)
 	{
 		ft_putstr_fd("Error: Fail to read\n", 2);
-		exit(1);
+		return (0);
 	}
 	else if (ret < size)
 	{
 		ft_putstr_fd("Error: File don't have the good size for read\n", 2);
-		exit(1);
+		return (0);
 	}
 	return (buf);
 }
