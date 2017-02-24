@@ -27,7 +27,9 @@ LDLIBS = -lft
 SRC_PATH = src
 
 SRC_NAME = main.c\
-		   parser.c
+		   parser.c\
+		   ft_read.c\
+		   parser_prog.c\
 
 INC_LIB = -I$(LIB)/includes/
 

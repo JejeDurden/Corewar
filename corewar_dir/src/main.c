@@ -12,8 +12,7 @@
 
 #include "corewar.h"
 
-
-int		ft_open(t_struct *env, char *file, int num)
+int		ft_parser_open(char *file)
 {
 	int fd;
 
@@ -22,7 +21,7 @@ int		ft_open(t_struct *env, char *file, int num)
 		ft_putstr_fd("Error: Fail to open the file.\n", 2);
 		exit(1);
 	}
-	parser(env->champ[num], fd);
+	parser(fd);
 	if (close(fd) == -1)
 	{
 		ft_putstr_fd("Error: Fail to close the file.\n", 2);
@@ -52,10 +51,11 @@ int		main(int ac, char **av)
 				ft_putstr_fd("Error: Bad extension, need file[.cor].\n", 2);
 				return (1);
 			}
-			ft_open(&env, av[i], i - 1);
+			ft_parser_open(av[i]);
 			env.nb_champ++;
 			i++;
 		}
+		//get_info(av, env, ac);
 	}
 	return (0);
 }

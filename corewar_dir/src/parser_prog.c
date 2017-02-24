@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   parser_prog.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/23 20:02:53 by jgoncalv         ###   ########.fr       */
+/*   Created: 2017/02/24 16:40:27 by jgoncalv          #+#    #+#             */
+/*   Updated: 2017/02/24 16:40:29 by jgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "corewar.h"
 
-# include "libft.h"
-# include "op.h"
-
-typedef struct	s_info
+int		check_prog(int fd, int size)
 {
-	char		*name;
-	char		*comment;
-	int			prog_len;
-	char		*prog;
-}				t_info;
+	char	*buf;
+	int		ret;
+	char	test[1];
 
-typedef struct	s_struct
-{
-	int			nb_champ;
-	t_info		champ[MAX_PLAYERS];
-	
-}				t_struct;
+	buf = ft_read(fd, size);
+	if ((ret = read(fd, test, 1)) > 0)
+	{
+		ft_strdel(&buf);
+		ft_putstr_fd("Error: Prog is bigger than the prog len\n", 2);
+		exit(1);
+	}
+	else if (ret == -1)
+	{
+		ft_strdel(&buf);
+		ft_putstr_fd("Error: Fail to read\n", 2);
+		exit(1);
+	}
 
-
-extern	op_tab[17];
-
-void			parser(int fd);
-char			*ft_read(int fd, int size);
-int				check_prog(int fd, int size);
-
-#endif
+	return (1);
+}

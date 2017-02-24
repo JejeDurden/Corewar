@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_read.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/23 20:02:53 by jgoncalv         ###   ########.fr       */
+/*   Created: 2017/02/24 16:56:01 by jgoncalv          #+#    #+#             */
+/*   Updated: 2017/02/24 16:56:02 by jgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "corewar.h"
 
-# include "libft.h"
-# include "op.h"
-
-typedef struct	s_info
+char		*ft_read(int fd, int size)
 {
-	char		*name;
-	char		*comment;
-	int			prog_len;
-	char		*prog;
-}				t_info;
+	int		ret;
+	char	*buf;
 
-typedef struct	s_struct
-{
-	int			nb_champ;
-	t_info		champ[MAX_PLAYERS];
-	
-}				t_struct;
-
-
-extern	op_tab[17];
-
-void			parser(int fd);
-char			*ft_read(int fd, int size);
-int				check_prog(int fd, int size);
-
-#endif
+	if (!(buf = ft_strnew(size)))
+	{
+		ft_putstr_fd("Error: Fail to malloc\n", 2);
+		exit(1);
+	}
+	if ((ret = read(fd, buf, size)) == -1)
+	{
+		ft_putstr_fd("Error: Fail to read\n", 2);
+		exit(1);
+	}
+	else if (ret < size)
+	{
+		ft_putstr_fd("Error: File don't have the good size for read\n", 2);
+		exit(1);
+	}
+	return (buf);
+}
