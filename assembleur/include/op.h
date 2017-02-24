@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:41:37 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/22 10:25:38 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/24 16:08:09 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,7 @@ typedef struct	s_op
 	int			flag_pc;
 	int			flag_idx;
 }				t_op;
+
+extern t_op op_tab[];
 
 #endif
