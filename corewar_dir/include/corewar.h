@@ -32,7 +32,7 @@ typedef struct	s_struct
 }				t_struct;
 
 
-extern	op_tab[17];
+extern t_op op_tab[];
 
 void			parser(int fd);
 char			*ft_read(int fd, int size);

@@ -52,7 +52,6 @@ int		main(int ac, char **av)
 				return (1);
 			}
 			ft_parser_open(av[i]);
-			ft_open(&env, av[i]);
 			i++;
 		}
 		//get_info(av, env, ac);
