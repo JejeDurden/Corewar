@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 20:38:48 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/22 20:38:49 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/02/24 16:15:48 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static char		*create_buf(t_struct *env)
 	int				nbr;
 
 	buf = NULL;
-	(void)env;
 	len = 1;
 	nbr = COREWAR_EXEC_MAGIC;
 	while (nbr > 0)
@@ -46,7 +45,7 @@ static char		*create_buf(t_struct *env)
 		len++;
 		nbr /= 256;
 	}
-	env->oct_size = 0;
+	env->oct_size = 600;
 	len += PROG_NAME_LENGTH + PROG_LENGTH_LENGTH + COMMENT_LENGTH + env->oct_size;
 	buf = ft_memalloc(len);
 	ft_memset(buf, 0, len);

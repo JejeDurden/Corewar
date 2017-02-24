@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 15:34:11 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/02/23 19:35:30 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/24 19:29:34 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ static void		write_octcode(t_struct *env, char *line)
 	count += get_code(line[i]);
 	while (line[i] != SEPARATOR_CHAR && line[i] != '\0')
 		i++;
-	while (ft_isspace(line[i]) && line[i] != '\0')
+	while ((line[i] == SEPARATOR_CHAR || ft_isspace(line[i])) && line[i] != '\0')
 		i++;
 	count = count << 2;
 	count += get_code(line[i]);
 	while (line[i] != SEPARATOR_CHAR && line[i] != '\0')
 		i++;
-	while (ft_isspace(line[i]) && line[i] != '\0')
+	while ((line[i] == SEPARATOR_CHAR || ft_isspace(line[i])) && line[i] != '\0')
 		i++;
 	count = count << 2;
 	count += get_code(line[i]);
@@ -61,10 +61,11 @@ static int		write_opcode(t_struct *env, char *line)
 	i = 0;
 	while (i < 17)
 	{
-		find = ft_strstr(line, op_tab[i]->name);
-		if (find != NULL)
+		find = ft_strstr(line, op_tab[i].name);
+		if (find != NULL && *(find - 2) != '%' &&
+				!ft_isalpha(find[ft_strlen(op_tab[i].name)]))
 		{
-			put_hex_in_char(env, op_tab[i]->opcode, env->i);
+			put_hex_in_char(env, op_tab[i].opcode, env->i);
 			env->i++;
 			return (1);
 		}
@@ -81,15 +82,16 @@ static char		*find_op(char *line)
 	i = 0;
 	while (i < 17)
 	{
-		find = ft_strstr(line, op_tab[i]->name);
-		if (find != NULL && find[ft_strlen(op_tab[i]->name) + 1] != ':')
+		find = ft_strstr(line, op_tab[i].name);
+		if (find != NULL && find[ft_strlen(op_tab[i].name)] != ':' &&
+				line[find - line - 2] != '%')
 			return (find);
-		else
+		else if (find != NULL && line[find - line - 2] != '%')
 		{
 			while (*find != ':')
 				find++;
 			line = find;
-			find = ft_strstr(line, op_tab[i]->name);
+			find = ft_strstr(line, op_tab[i].name);
 			if (find != NULL)
 				return (find);
 		}
