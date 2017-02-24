@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 17:33:22 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/21 17:33:37 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/02/24 16:17:23 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			ft_asm(t_struct *env, char *line)
 		return (1);
 	else if (env->name == 0 || env->comment == 0)
 		ft_header(env, line);
-	/*else
-		ft_prog(env, line);*/
+	else
+		ft_prog(env, line);
 	return (1);
 }
