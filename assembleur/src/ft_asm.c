@@ -19,7 +19,7 @@ static int	is_a_comment(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == '#' || line[i] == ';')
+		if (line[i] == COMMENT_CHAR || line[i] == ';')
 			return (0);
 		else if (ft_isspace(line[i]))
 			i++;

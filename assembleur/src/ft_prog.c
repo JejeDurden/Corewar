@@ -39,7 +39,7 @@ static char		*find_op(char *line)
 	char	*find;
 
 	i = 0;
-	while (i < 17)
+	while (op_tab[i].name)
 	{
 		find = ft_strstr(line, op_tab[i].name);
 		if (find != NULL && find[ft_strlen(op_tab[i].name)] != ':' &&
