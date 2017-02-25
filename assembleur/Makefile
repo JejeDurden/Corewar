@@ -6,7 +6,7 @@
 #    By: rghirell <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/22 17:45:10 by rghirell          #+#    #+#              #
-#    Updated: 2017/02/25 17:31:31 by rghirell         ###   ########.fr        #
+#    Updated: 2017/02/25 18:37:33 by jdesmare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ NAME = asm
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra 
-#-Werror  -g
+CFLAGS = -Wall -Wextra -Werror  -g
 
 LIB = ../libft
 
@@ -54,6 +53,7 @@ SRC_NAME = main.c\
 		   op.c\
 		   write_code.c\
 		   ft_clear_space.c\
+		   parse_2.c\
 
 INC_LIB = -I$(LIB)/includes/
 

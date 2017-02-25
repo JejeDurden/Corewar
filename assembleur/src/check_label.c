@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 13:34:06 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 17:33:39 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 18:09:14 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ static int		label_exist(t_struct *env, char *line, int i)
 	while (line[j] != '\0' && valid_char(line[j]) > 0)
 		j++;
 	tmp = ft_strsub(line + i, 0, j - i);
-	check_string(env, tmp, j - i);
+	ft_strjoin(tmp, ":");
+	check_string(env, tmp, j + 1 - i);
+	free(tmp);
 	return (j);
 }
 

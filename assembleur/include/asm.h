@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:32:30 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/25 17:54:08 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 18:15:34 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef	struct		s_struct
 
 int					ft_check_extension(char *file, char *ext);
 int					parser(t_struct *env, char *file);
+int					parser_2(t_struct *env, char *file, int (*f)(t_struct *, char *));
 int					ft_asm(t_struct *env, char *line);
 int					create_cor(t_struct *env, char *file);
 void				free_struct(t_struct *env);

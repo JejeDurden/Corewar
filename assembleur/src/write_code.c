@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 08:05:25 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/02/25 09:55:10 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/25 18:43:10 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,19 @@ static void		write_label_pos(t_struct *env, char *line, int current_pos)
 	link = env->list;
 	temp = ft_strdup(line);
 	cut = ft_strchr(temp, SEPARATOR_CHAR);
-	*cut = '\0';
+	if (cut != NULL)
+		*cut = '\0';
 	ft_clear_space(temp);
-	printf("temp = |%s|\n", temp);
 	temp += 2;
-	printf("temp = |%s|\n", temp);
 	while (link)
 	{
 		if (ft_strcmp(link->label, temp) == 0)
 		{
+			ft_printf("oct label = |%d|\n", link->pos_label);
 			put_hex_in_char(env, link->pos_label - current_pos, env->i);
 			break ;
 		}
 		link = link->next;
-		printf("link->label = |%s|\n", link->label);
 	}
 }
 
@@ -45,10 +44,13 @@ static void		write_params_code(t_struct *env, char *line, int current_pos)
 		put_hex_in_char(env, ft_atoi(&line[1]), env->i);
 		env->i++;
 	}
-	else if (ft_isdigit(line[0]))
+	else if (ft_isdigit(line[0]) || line[0] == ':')
 	{
 		env->i += IND_SIZE - 1;
-		put_hex_in_char(env, ft_atoi(&line[0]), env->i);
+		if (line[0] == ':')
+			write_label_pos(env, line, current_pos);
+		else
+			put_hex_in_char(env, ft_atoi(&line[0]), env->i);
 		env->i++;
 	}
 	else
