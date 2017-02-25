@@ -6,7 +6,7 @@
 #    By: rghirell <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/22 17:45:10 by rghirell          #+#    #+#              #
-#    Updated: 2017/02/22 18:20:39 by rghirell         ###   ########.fr        #
+#    Updated: 2017/02/25 16:19:50 by rghirell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ NAME = asm
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra 
+#-Werror  -g
 
 LIB = ../libft
 
@@ -26,8 +27,25 @@ LDLIBS = -lft
 
 SRC_PATH = src
 
-SRC_NAME = main.c\
+SRC_NAME = main2.c\
 		   parse_line.c\
+		   create_list.c\
+		   valid_line.c\
+		   get_header.c\
+		   instruction_live.c\
+		   instruction_load.c\
+		   instruction_store.c\
+		   check_end_line.c\
+		   register_number.c\
+		   instruction_op.c\
+		   instruction_binary.c\
+		   instruction_jump.c\
+		   instruction_load_index.c\
+		   instruction_stock_index.c\
+		   instruction_fork.c\
+		   instruction_aff.c\
+		   check_label.c	\
+		   check_indirect.c\
 
 INC_LIB = -I$(LIB)/includes/
 
