@@ -6,14 +6,14 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:33:31 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/25 17:08:13 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:52:44 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "parser.h"
 
-static int		ft_gnl(t_struct *env, int fd, int (*f)(t_struct *, char *))
+static int		ft_gnl(t_struct *env, int fd)
 {
 	int		ret;
 	int		i;
@@ -36,14 +36,14 @@ static int		ft_gnl(t_struct *env, int fd, int (*f)(t_struct *, char *))
 	env->size_max = i;
 	while (env->j < env->size_max)
 	{
-		if (f(env, "coucou") < 0)
+		if (parse_line(env) < 0)
 			return (-1);
 		env->j++;
 	}
 	return (ret);
 }
 
-int	parser(t_struct *env, char *file, int (*f)(t_struct *, char *))
+int	parser(t_struct *env, char *file)
 {
 	int		fd;
 	int		ret;
@@ -54,17 +54,17 @@ int	parser(t_struct *env, char *file, int (*f)(t_struct *, char *))
 		free(env);
 		exit(1);
 	}
-	ret = ft_gnl(env, fd, f);
+	ret = ft_gnl(env, fd);
 	if (ret == -1)
 	{
 		ft_putstr_fd("Error: File Error\n.", 2);
-		//free_struct(env);
+		free_struct(env);
 		exit(1);
 	}
 	if (close(fd) == -1)
 	{
 		ft_putstr_fd("Error: Close Failed\n", 2);
-	//	free_struct(env);
+		free_struct(env);
 		exit(1);
 	}
 	return (1);
@@ -88,9 +88,10 @@ int				main(int ac, char **av)
 			ft_putstr_fd("Error: Bad extension, need file[.s].\n", 2);
 			return (1);
 		}
-		parser(env, av[1], parse_line);
-//		if (create_cor(env, av[1]) <= 0)
-//			return (1);
+		parser(env, av[1]);
+		ft_putnbr(env->oct_size);
+		if (create_cor(env, av[1]) <= 0)
+			return (1);
 	}
 	return (0);
 }

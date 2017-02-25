@@ -6,27 +6,37 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 17:33:22 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/21 17:33:37 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:47:30 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-// mettre le nom de la struct
-int	ft_asm(char *file, [struct])
+static int	is_a_comment(char *line)
 {
-	char	*new_file;
-	int		fd;
+	int i;
 
-	new_file = ft_strchr(file, '.');
-	new_file = ft_strsub(file, 0, ft_strlen(file) - ft_strlen(new_file));
-	new_file = ft_strjoin(new_file, ".cor");
-	// creation du new_file
-	if ((fd = open(new_file, O_CREAT)))
+	i = 0;
+	while (line[i])
 	{
-		ft_putstr_fd("Error: open fail.\n", 2);
-		exit(1);
+		if (line[i] == COMMENT_CHAR || line[i] == ';')
+			return (0);
+		else if (ft_isspace(line[i]))
+			i++;
+		else
+			return (1);
 	}
-	// ...
-	close(fd);
+	return (0);
+}
+
+int			ft_asm(t_struct *env, char *line)
+{
+	ft_printf("line ======== %s\n", line);
+	if (!is_a_comment(line))
+		return (1);
+	else if (env->name == 0 || env->comment == 0)
+		ft_header(env, line);
+	else
+		ft_prog(env, line);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 14:29:41 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 16:53:01 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:37:24 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static	int		parse_second_param(t_struct *env, char *line, int i)
 	if (line[i] != ',')
 	{
 		ft_printf("Stock index : Second parameter is invalid\n");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	return (i);
@@ -69,7 +69,7 @@ static	 int		parse_first_param(t_struct *env, char *line, int i)
 	if (line[i] != ',')
 	{
 		ft_putstr("Stock index : First parameter has to be a register\n");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	return (i);
@@ -85,7 +85,7 @@ int			instruction_stock_index(t_struct *env, char *line)
 	if (line[i] != 'r')
 	{
 		ft_putstr("Stock index : First parameter has to be a register");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	i = parse_first_param(env, line, i);

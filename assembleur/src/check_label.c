@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 13:34:06 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 16:18:25 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:33:39 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static	int		check_string(t_struct *env, char *line , int i)
 		j++;
 	}
 	ft_printf("Unknown Label\n");
-	//free
+	free_struct(env);
 	exit(1);
 }
 
@@ -38,7 +38,7 @@ static int		label_exist(t_struct *env, char *line, int i)
 	if (line[i] == '\0' || ft_isspace(line[i]))
 	{
 		ft_printf("Invalid label\n");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	while (line[j] != '\0' && valid_char(line[j]) > 0)

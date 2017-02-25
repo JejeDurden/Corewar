@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 13:31:24 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 13:55:53 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:38:52 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			instruction_jump(t_struct *env, char *line)
 	if (line[i] != '%')
 	{
 		ft_putstr("Zjmp need a direct parameter\n");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	i = check_label(env, line, i);

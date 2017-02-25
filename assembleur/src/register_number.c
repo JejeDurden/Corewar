@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 10:06:24 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/24 14:58:46 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:38:23 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		register_number(t_struct *env, char *line, char *tmp, int i)
 	else
 	{
 		ft_printf("%s : Invalid register\n", tmp);
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	j = i;
@@ -30,7 +30,7 @@ int		register_number(t_struct *env, char *line, char *tmp, int i)
 	if (j - i >= 3)
 	{
 		ft_printf("%s : Invalid register\n", tmp);
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	env->oct_size += 1;

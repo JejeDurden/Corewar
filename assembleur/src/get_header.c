@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 14:33:39 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 15:05:33 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:38:45 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static	int		get_comment(t_struct *env, char *line)
 	if (line[i] != '"')
 	{
 		ft_putstr("Bad comment format");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	j = 0;
@@ -33,7 +33,7 @@ static	int		get_comment(t_struct *env, char *line)
 	{
 		(j > 2048) ? ft_printf("Comment has too many characters")
 			: ft_printf("Bad comment format");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	env->comment = 1;
@@ -51,7 +51,7 @@ static	int		get_name(t_struct *env, char *line)
 	if (line[i] != '"')
 	{
 		ft_putstr("Bad name format");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	j = 0;
@@ -59,7 +59,7 @@ static	int		get_name(t_struct *env, char *line)
 		j++;
 	if (j > 128 || line[i] != '"')
 	{
-		//free
+		free_struct(env);
 		(j > 128) ? ft_printf("Name has too many characters")
 			: ft_printf("Bad name format");
 		exit(1);
@@ -79,7 +79,7 @@ int				get_header(t_struct *env, char *line)
 		return (1);
 	if (line[i] != '.')
 	{
-		//free
+		free_struct(env);
 		ft_printf("Bad header format");
 		exit(1);
 	}
@@ -87,7 +87,7 @@ int				get_header(t_struct *env, char *line)
 		return (get_name(env, line + i + 5));
 	if (ft_strncmp(line + i + 1, "comment", 7) == 0 && env->comment == 0)
 		return (get_comment(env, line + i + 8));
-	//free_struct
+	free_struct(env);
 	ft_printf("Bad header format");
 	exit(1);
 }

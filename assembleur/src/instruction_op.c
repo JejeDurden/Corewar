@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 11:03:43 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/24 14:58:34 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:39:14 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static	 int		parse_second_param(t_struct *env, char *line, int i)
 	if (line[i] != ',')
 	{
 		ft_putstr("Operator : Second parameter has to be a register\n");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	return (i);
@@ -47,7 +47,7 @@ static	 int		parse_first_param(t_struct *env, char *line, int i)
 	if (line[i] != ',')
 	{
 		ft_putstr("Operator : First parameter has to be a register\n");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	return (i);
@@ -63,7 +63,7 @@ int			instruction_op(t_struct *env, char *line)
 	if (line[i] != 'r')
 	{
 		ft_putstr("Store : First parameter has to be a register");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	i = parse_first_param(env, line, i);

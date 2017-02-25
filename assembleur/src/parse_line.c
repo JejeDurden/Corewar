@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 12:55:57 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 17:06:42 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:56:11 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ int		check_if_label(t_struct *env, char *line, int *i)
 	return (1);
 }
 
-int		parse_line(t_struct *env, char *line)
+int		parse_line(t_struct *env)
 {
 	int i;
 
 	i = 0;
 	if (env->name == 0 || env->comment == 0)
 		return (get_header(env, env->check[env->j]));
-	if (line[0] == '#' || line[0] == ';')
+	if (env->check[env->j][0] == '#' || env->check[env->j][0] == ';')
 		return (1);
 	if (check_if_label(env, env->check[env->j], &i) < 0)
 		i = 0;
@@ -78,8 +78,9 @@ int		parse_line(t_struct *env, char *line)
 	if (parse_instruction(env, env->check[env->j], i) < 0)
 	{
 		ft_putstr("Unknown instruction\n");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	return (1);
 }
+

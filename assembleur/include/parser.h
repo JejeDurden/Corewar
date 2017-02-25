@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 11:47:43 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 16:20:17 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:53:59 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "asm.h"
 
 int			ft_check_extension(char *file, char *ext);
-int			parse_line(t_struct *env, char *line);
+int			parse_line(t_struct *env);
 int			parse_instruction(t_struct *env, char *line, int i);
 t_link		*create_list(t_struct *env, char *line, int i);
 int			valid_char(char c);

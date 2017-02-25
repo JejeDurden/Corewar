@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 09:01:17 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 16:21:43 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:37:34 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static	int			parse_second_param(t_struct *env, char *line, int i)
 		{
 			ft_putstr("Store : Second parameter has ");
 			ft_putstr("to be a register or indirect\n");
-			//free
+			free_struct(env);
 			exit(1);
 		}
 	}
@@ -43,7 +43,7 @@ static	 int		parse_first_param(t_struct *env, char *line, int i)
 	if (line[i] != ',')
 	{
 		ft_putstr("Store : First parameter has to be a register\n");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	return (i);
@@ -59,7 +59,7 @@ int					instruction_store(t_struct *env, char *line)
 	if (line[i] != 'r')
 	{
 		ft_putstr("Store : First parameter has to be a register");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	i = parse_first_param(env, line , i);

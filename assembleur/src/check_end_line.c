@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 10:11:12 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 14:37:41 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:32:14 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		check_end_line(t_struct *env, char *line, int i)
 		if (!(ft_isspace(line[i])))
 		{
 			ft_putstr("Bad parameters");
-			//free
+			free_struct(env);
 			exit(1);
 		}
 		i++;

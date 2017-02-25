@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 11:40:52 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 16:40:06 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:35:08 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static	int		parse_first_param(t_struct *env, char *line, char *tmp, int i)
 	if (line[i] != ',')
 	{
 		ft_printf("Binary : %s parameter is invalid\n", tmp);
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	return (i);
@@ -56,7 +56,7 @@ static	int		parse_second_param(t_struct *env, char *line, int i)
 			&& line[i] != 'r' && line[i] != '-' && line[i] != ':')
 	{
 		ft_putstr("Binary : Second parameter is invalid\n");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	i = parse_first_param(env, line, "Second", i);
@@ -71,7 +71,7 @@ int				instruction_binary(t_struct *env, char *line ,int i)
 			&& line[i] != 'r' && line[i] != '-' && line[i] != ':')
 	{
 		ft_putstr("Binary : First parameter is invalid\n");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	i = parse_first_param(env, line, "First", i);

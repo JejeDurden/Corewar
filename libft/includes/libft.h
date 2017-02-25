@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 17:30:20 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/24 16:51:38 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:20:42 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include "ft_printf.h"
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
@@ -92,5 +93,7 @@ int					get_next_line(const int fd, char **line);
 int					ft_isspace(int c);
 char				*double_strchr(const char *s, int c, int d);
 void				*ft_realloc(void *ptr, size_t size);
+int					ft_check_extension(char *file, char *ext);
+
 
 #endif

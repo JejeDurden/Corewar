@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 18:28:39 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 17:04:35 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:39:02 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int		parse_second_param(t_struct *env, char *line, int i)
 	if (line[i] != 'r' || !(ft_isdigit(line[i + 1])))
 	{
 		ft_putstr("Load : Second parameter has to be a register\n");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	i++;
@@ -33,7 +33,7 @@ static int		parse_second_param(t_struct *env, char *line, int i)
 	if (j - i >= 3)
 	{
 		ft_putstr("Load : Invalid register\n");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	check_end_line(env, line, j);
@@ -56,7 +56,7 @@ static int		parse_first_param(t_struct *env, char *line, int i)
 	if (line[i] != ',')
 	{
 		ft_putstr("Load : First parameter has to be direct or indirect\n");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	return (1);
@@ -73,7 +73,7 @@ int				instruction_load(t_struct *env, char *line)
 			&& line[i] != ':')
 	{
 		ft_putstr("Load : First parameter has to be direct or indirect\n");
-		//free
+		free_struct(env);
 		exit(1);
 	}
 	parse_first_param(env, line, i);
