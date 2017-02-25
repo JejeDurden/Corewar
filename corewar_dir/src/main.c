@@ -39,8 +39,8 @@ int		main(int ac, char **av)
 
 	i = 1;
 	if (ac > 5)
-		ft_putstr_fd("Too many args.\n", 2);
-	else if (ac != 2)
+		ft_putstr_fd("Error: Too many args.\n", 2);
+	else if (ac < 2)
 		ft_putstr_fd("Usage: ./corewar <champion1.cor> <...>\n", 2);
 	else
 	{
@@ -55,7 +55,8 @@ int		main(int ac, char **av)
 				return (1);
 			i++;
 		}
-		env = get_info(av, env, ac);
+		get_info(av, ac, &env);
+		create_map(&env);
 	}
 	return (0);
 }

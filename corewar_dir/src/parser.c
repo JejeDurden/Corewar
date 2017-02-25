@@ -25,7 +25,7 @@ static int	check_magic_code(char *buf)
 	return (1);
 }
 
-static int	check_prog_len(char *buf)
+int	check_prog_len(char *buf)
 {
 	int		i;
 	int		res;
@@ -37,7 +37,7 @@ static int	check_prog_len(char *buf)
 		res += (i != PROG_LENGTH_LENGTH - 1 ? buf[i] * 256 : buf[i]);
 		i++;
 	}
-	if (res > MEM_SIZE)
+	if (res > CHAMP_MAX_SIZE)
 	{
 		ft_putstr_fd("Error: Prog is too big\n", 2);
 		return (0);
@@ -98,9 +98,6 @@ int			parser(int fd)
 	}
 	ft_strdel(&buf);
 	if (!(parser_prog(fd, prog_len)))
-	{
-		ft_putstr_fd("Error: Not good command\n", 2);
 		return (0);
-	}
 	return (1);
 }

@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_prog.c                                      :+:      :+:    :+:   */
+/*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/24 16:40:27 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/24 16:40:29 by jgoncalv         ###   ########.fr       */
+/*   Created: 2017/02/25 20:25:34 by jgoncalv          #+#    #+#             */
+/*   Updated: 2017/02/25 20:25:35 by jgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		parser_prog(int fd, int size)
+int	create_map(t_struct *env)
 {
-	char	*buf;
-	int		ret;
-	char	test[1];
+	int		div_mem_size;
+	int		i;
+	int		start;
 
-	if (!(buf = ft_read(fd, size)))
-		return (0);
-	if ((ret = read(fd, test, 1)) > 0)
+	i = 0;
+	start = 0;
+	div_mem_size = MEM_SIZE / env->nb_champ;
+	ft_memset(env->map, 0, MEM_SIZE);
+	while (i < env->nb_champ)
 	{
-		ft_strdel(&buf);
-		ft_putstr_fd("Error: Prog is bigger than the prog len\n", 2);
-		return (0);
+		start = i * div_mem_size;
+		ft_memcpy(env->map + start, env->champ[i].prog, env->champ[i].prog_len);
+		i++;
 	}
-	else if (ret == -1)
+	i = 0;
+	while (i < MEM_SIZE)
 	{
-		ft_strdel(&buf);
-		ft_putstr_fd("Error: Fail to read\n", 2);
-		return (0);
+		ft_printf("%.2x", env->map[i] % 256);
+		i++;
+		if (i % 64 == 0)
+			ft_putchar('\n');
 	}
-	ft_strdel(&buf);
 	return (1);
 }

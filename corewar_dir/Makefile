@@ -30,7 +30,9 @@ SRC_NAME = main.c\
 		   parser.c\
 		   ft_read.c\
 		   parser_prog.c\
-		   op.c
+		   op.c\
+		   get_info.c\
+		   create_map.c
 
 INC_LIB = -I$(LIB)/includes/
 
@@ -57,7 +59,6 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@$(CC) $(CFLAGS) $(INCLUDE) $(INC_LIB) -o $@ -c $<
 
 clean:
-	@make fclean -C $(LIB)
 	@rm -f $(OBJ)
 	@rm -rf $(OBJ_PATH) 2> /dev/null || true
 	@echo "\033[33;12m=== clean\t" $(NAME) "\t\tDONE"

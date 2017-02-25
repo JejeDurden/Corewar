@@ -6,7 +6,7 @@
 #    By: rghirell <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/22 17:45:10 by rghirell          #+#    #+#              #
-#    Updated: 2017/02/25 09:41:33 by jdesmare         ###   ########.fr        #
+#    Updated: 2017/02/25 17:31:31 by rghirell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ NAME = asm
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra 
+#-Werror  -g
 
 LIB = ../libft
 
@@ -28,6 +29,23 @@ SRC_PATH = src
 
 SRC_NAME = main.c\
 		   parse_line.c\
+		   create_list.c\
+		   valid_line.c\
+		   get_header.c\
+		   instruction_live.c\
+		   instruction_load.c\
+		   instruction_store.c\
+		   check_end_line.c\
+		   register_number.c\
+		   instruction_op.c\
+		   instruction_binary.c\
+		   instruction_jump.c\
+		   instruction_load_index.c\
+		   instruction_stock_index.c\
+		   instruction_fork.c\
+		   instruction_aff.c\
+		   check_label.c	\
+		   check_indirect.c\
 		   ft_asm.c\
 		   create_cor.c\
 		   free_struct.c\
@@ -62,7 +80,6 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@$(CC) $(CFLAGS) $(INCLUDE) $(INC_LIB) -o $@ -c $<
 
 clean:
-	@make fclean -C $(LIB)
 	@rm -f $(OBJ)
 	@rm -rf $(OBJ_PATH) 2> /dev/null || true
 	@echo "\033[33;12m=== clean\t" $(NAME) "\t\tDONE"

@@ -6,30 +6,44 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:33:31 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/23 11:31:50 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:52:44 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+#include "parser.h"
 
-static int		ft_gnl(t_struct *env, int fd, int (*f)(t_struct *, char *))
+static int		ft_gnl(t_struct *env, int fd)
 {
-	char	*line;
 	int		ret;
+	int		i;
+	char *line;
 
+	i = 0;
+	if (!(env->check = (char**)malloc(sizeof(char*) * env->nb_realloc)))
+		return (-1);
 	while ((ret = get_next_line(fd, &line)) == 1)
 	{
-		if (f(env, line) < 0)
-		{
-			free(line);
-			return (-1);
+		if (i >= env->nb_realloc)
+		{ 
+			env->nb_realloc *= 2;
+			env->check = realloc(env->check, sizeof(env->check) * env->nb_realloc);
 		}
+		env->check[i] = ft_strdup(line);
 		free(line);
+		i++;
+	}
+	env->size_max = i;
+	while (env->j < env->size_max)
+	{
+		if (parse_line(env) < 0)
+			return (-1);
+		env->j++;
 	}
 	return (ret);
 }
 
-int	parser(t_struct *env, char *file, int (*f)(t_struct *, char *))
+int	parser(t_struct *env, char *file)
 {
 	int		fd;
 	int		ret;
@@ -40,7 +54,7 @@ int	parser(t_struct *env, char *file, int (*f)(t_struct *, char *))
 		free(env);
 		exit(1);
 	}
-	ret = ft_gnl(env, fd, f);
+	ret = ft_gnl(env, fd);
 	if (ret == -1)
 	{
 		ft_putstr_fd("Error: File Error\n.", 2);
@@ -62,6 +76,8 @@ int				main(int ac, char **av)
 	t_struct	*env;
 
 	env = ft_memalloc(sizeof(t_struct));
+	env->nb_realloc = 50;
+	env->j = 0;
 	if (ac != 2)
 		ft_putstr_fd("Usage: ./asm <sourcefile.s>\n", 2);
 	else
@@ -72,7 +88,8 @@ int				main(int ac, char **av)
 			ft_putstr_fd("Error: Bad extension, need file[.s].\n", 2);
 			return (1);
 		}
-		//parser(env, av[1], parse_line);
+		parser(env, av[1]);
+		ft_putnbr(env->oct_size);
 		if (create_cor(env, av[1]) <= 0)
 			return (1);
 	}

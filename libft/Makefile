@@ -113,7 +113,9 @@ SRCS = 	ft_atoi.c	 		\
 		ft_size_w_str.c		\
 		ft_size_w_char.c	\
 		get_next_line.c		\
+		ft_realloc.c		\
 		ft_check_extension.c\
+
 
 AR = ar rc
 OBJ_PATH = obj

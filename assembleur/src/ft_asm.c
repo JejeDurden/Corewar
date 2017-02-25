@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 17:33:22 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/24 16:17:23 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:47:30 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static int	is_a_comment(char *line)
 
 int			ft_asm(t_struct *env, char *line)
 {
+	ft_printf("line ======== %s\n", line);
 	if (!is_a_comment(line))
 		return (1);
 	else if (env->name == 0 || env->comment == 0)
