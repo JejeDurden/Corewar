@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 20:38:48 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/25 17:40:46 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/25 18:23:30 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int				create_cor(t_struct *env, char *file)
 	env->flag_prog_len = 0;
 	env->comment = 0;
 	env->i = PROG_NAME_LENGTH + 8 + 4 + COMMENT_LENGTH;
-	parser(env, file, ft_asm);
+	parser_2(env, file, ft_asm);
 	if (!write_in_file(env, file))
 		exit(1);
 	return (1);
