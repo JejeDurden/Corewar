@@ -44,7 +44,6 @@ int		main(int ac, char **av)
 		ft_putstr_fd("Usage: ./corewar <champion1.cor> <...>\n", 2);
 	else
 	{
-		env.nb_champ = ac - 1;
 		while (i < ac)
 		{
 			if (!(ext = ft_strrchr(av[1], '.')) || ft_strcmp(ext, ".cor") != 0)
@@ -56,7 +55,7 @@ int		main(int ac, char **av)
 				return (1);
 			i++;
 		}
-		//get_info(av, env, ac);
+		env = get_info(av, env, ac);
 	}
 	return (0);
 }
