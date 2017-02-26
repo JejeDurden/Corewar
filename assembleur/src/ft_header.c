@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 13:56:47 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/24 17:25:50 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/26 11:20:52 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,24 @@
 
 void	put_hex_in_char(t_struct *env, int nbr, int i)
 {
-	while (nbr > 0)
+	if (nbr >= 0)
 	{
-		env->buf[i] = nbr % 256;
-		i--;
-		nbr /= 256;
+		while (nbr > 0)
+		{
+			env->buf[i] = nbr % 256;
+			i--;
+			nbr /= 256;
+		}
+	}
+	else
+	{
+		nbr = USHRT_MAX + nbr;
+		while (nbr > 0)
+		{
+			env->buf[i] = nbr % 256;
+			i--;
+			nbr /= 256;
+		}
 	}
 }
 
@@ -46,7 +59,7 @@ int		ft_header(t_struct *env, char *line)
 	else if (ft_strstr(line, COMMENT_CMD_STRING) && env->comment == 0)
 	{
 		str = ft_strchr(line, '"') + 1;
-		ft_memcpy(env->buf + 4 + PROG_NAME_LENGTH + 7,
+		ft_memcpy(env->buf + 4 + PROG_NAME_LENGTH + 8,
 			str, ft_strlen(str) - ft_strlen(ft_strchr(str, '"')));
 		env->comment = 1;
 	}

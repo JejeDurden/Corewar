@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 15:34:11 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/02/25 18:34:27 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/26 11:22:10 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static char		*find_op(char *line)
 				!ft_isalpha(find[ft_strlen(op_tab[i].name)]) &&
 				line[find - line - 2] != '%')
 			return (find);
-		else if (find != NULL && line[find - line - 2] != '%')
+		else if (find != NULL && line[find - line - 2] != '%' &&
+				!ft_isalpha(find[ft_strlen(op_tab[i].name)]))
 		{
 			while (*find != ':')
 				find++;
@@ -55,6 +56,7 @@ static char		*find_op(char *line)
 			if (find != NULL)
 				return (find);
 		}
+		find = NULL;
 		i++;
 	}
 	return (find);
@@ -78,7 +80,8 @@ int				ft_prog(t_struct *env, char *line)
 {
 	int		current_pos;
 
-	current_pos = env->i;
+	current_pos = env->i - (PROG_NAME_LENGTH + PROG_LENGTH_LENGTH + 4 +
+		COMMENT_LENGTH + 8);
 	line = del_comments(line);
 	line = find_op(line);
 	if (line == NULL)

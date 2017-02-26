@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 08:05:25 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/02/25 18:43:10 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/26 11:41:22 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void		write_label_pos(t_struct *env, char *line, int current_pos)
 	{
 		if (ft_strcmp(link->label, temp) == 0)
 		{
-			ft_printf("oct label = |%d|\n", link->pos_label);
 			put_hex_in_char(env, link->pos_label - current_pos, env->i);
 			break ;
 		}
@@ -90,13 +89,13 @@ void			write_octcode(t_struct *env, char *line)
 	count += get_code(line[i]);
 	while (line[i] != SEPARATOR_CHAR && line[i] != '\0')
 		i++;
-	while ((line[i] == SEPARATOR_CHAR || ft_isspace(line[i])) && line[i] != '\0')
+	while ((line[i] == SEPARATOR_CHAR || ft_isspace(line[i])))
 		i++;
 	count = count << 2;
 	count += get_code(line[i]);
 	while (line[i] != SEPARATOR_CHAR && line[i] != '\0')
 		i++;
-	while ((line[i] == SEPARATOR_CHAR || ft_isspace(line[i])) && line[i] != '\0')
+	while ((line[i] == SEPARATOR_CHAR || ft_isspace(line[i])))
 		i++;
 	count = count << 2;
 	count += get_code(line[i]);
