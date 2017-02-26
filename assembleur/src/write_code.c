@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 08:05:25 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/02/26 11:41:22 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/26 17:12:40 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static void		write_label_pos(t_struct *env, char *line, int current_pos)
 	}
 }
 
-static void		write_params_code(t_struct *env, char *line, int current_pos)
+static void		write_params_code(t_struct *env, char *line, int current_pos,
+												char *op)
 {
 	if (line[0] == 'r')
 	{
@@ -54,7 +55,10 @@ static void		write_params_code(t_struct *env, char *line, int current_pos)
 	}
 	else
 	{
-		env->i += DIR_SIZE - 1;
+		if (ft_strcmp(op, "live") != 0 && ft_strcmp(op, "sti") != 0)
+			env->i += DIR_SIZE - 1;
+		else
+			env->i += IND_SIZE - 1;
 		if (line[1] == ':')
 			write_label_pos(env, line, current_pos);
 		else
@@ -104,13 +108,14 @@ void			write_octcode(t_struct *env, char *line)
 	env->i++;
 }
 
-void			write_params(t_struct *env, char *line, int current_pos)
+void			write_params(t_struct *env, char *line, int current_pos,
+																char *op)
 {
 	while (line != NULL)
 	{
 		while (ft_isspace(*line))
 			line++;
-		write_params_code(env, line, current_pos);
+		write_params_code(env, line, current_pos, op);
 		line = ft_strchr(line, SEPARATOR_CHAR);
 		if (line != NULL)
 			line++;

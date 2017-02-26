@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:32:30 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/25 18:15:34 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/26 17:09:35 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void				free_struct(t_struct *env);
 int					ft_header(t_struct *env, char *line);
 int					ft_prog(t_struct *env, char *line);
 void				put_hex_in_char(t_struct *env, int nbr, int i);
-void				write_params(t_struct *env, char *line, int current_pos);
+void				write_params(t_struct *env, char *line, int current_pos,
+													char *op);
 void				write_octcode(t_struct *env, char *line);
 char				*ft_clear_space(char *line);
 
