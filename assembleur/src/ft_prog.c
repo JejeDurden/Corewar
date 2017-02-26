@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 15:34:11 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/02/26 11:22:10 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/26 14:40:09 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int				ft_prog(t_struct *env, char *line)
 	int		current_pos;
 
 	current_pos = env->i - (PROG_NAME_LENGTH + PROG_LENGTH_LENGTH + 4 +
-		COMMENT_LENGTH + 8);
+		COMMENT_LENGTH + 4);
 	line = del_comments(line);
 	line = find_op(line);
 	if (line == NULL)
