@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:33:31 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/25 17:52:44 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/26 11:42:47 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ static int		ft_gnl(t_struct *env, int fd)
 			env->nb_realloc *= 2;
 			env->check = realloc(env->check, sizeof(env->check) * env->nb_realloc);
 		}
-		env->check[i] = ft_strdup(line);
+		env->check[i++] = ft_strdup(line);
 		free(line);
-		i++;
 	}
 	env->size_max = i;
 	while (env->j < env->size_max)
@@ -43,7 +42,7 @@ static int		ft_gnl(t_struct *env, int fd)
 	return (ret);
 }
 
-int	parser(t_struct *env, char *file)
+int				parser(t_struct *env, char *file)
 {
 	int		fd;
 	int		ret;
@@ -89,7 +88,6 @@ int				main(int ac, char **av)
 			return (1);
 		}
 		parser(env, av[1]);
-		ft_putnbr(env->oct_size);
 		if (create_cor(env, av[1]) <= 0)
 			return (1);
 	}

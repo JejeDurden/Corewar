@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 20:38:48 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/25 18:23:30 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/26 15:42:23 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static int		new_file_cor(char *file)
 	new_file = ft_strchr(file, '.');
 	*new_file = '\0';
 	new_file = ft_strjoin(file, ".cor");
-	if ((fd = open(new_file, O_CREAT | O_EXCL | O_WRONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) != -1)
+	if ((fd = open(new_file, O_CREAT | O_EXCL | O_WRONLY, S_IRUSR
+					| S_IWUSR | S_IRGRP | S_IROTH)) != -1)
 		return (fd);
 	else if ((fd = open(new_file, O_TRUNC | O_WRONLY)) >= 0)
 		return (fd);
@@ -41,7 +42,8 @@ static char		*create_buf(t_struct *env)
 		len++;
 		nbr /= 256;
 	}
-	len += PROG_NAME_LENGTH + PROG_LENGTH_LENGTH + COMMENT_LENGTH + env->oct_size;
+	len += PROG_NAME_LENGTH + 8 + PROG_LENGTH_LENGTH + COMMENT_LENGTH
+		+ env->oct_size;
 	buf = ft_memalloc(len);
 	ft_memset(buf, 0, len);
 	return (buf);
@@ -68,6 +70,7 @@ static int		write_in_file(t_struct *env, char *file)
 		ft_putstr_fd("Error: Fail to close the file.\n", 2);
 		return (0);
 	}
+	ft_printf("Writing output program to %s.cor\n", file);
 	return (1);
 }
 
@@ -83,7 +86,7 @@ int				create_cor(t_struct *env, char *file)
 	env->name = 0;
 	env->flag_prog_len = 0;
 	env->comment = 0;
-	env->i = PROG_NAME_LENGTH + 8 + 4 + COMMENT_LENGTH;
+	env->i = PROG_NAME_LENGTH + PROG_LENGTH_LENGTH + 4 + COMMENT_LENGTH + 8;
 	parser_2(env, file, ft_asm);
 	if (!write_in_file(env, file))
 		exit(1);

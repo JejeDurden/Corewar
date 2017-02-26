@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 15:34:11 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/02/25 18:34:27 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/26 17:15:09 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static char		*find_op(char *line)
 				!ft_isalpha(find[ft_strlen(op_tab[i].name)]) &&
 				line[find - line - 2] != '%')
 			return (find);
-		else if (find != NULL && line[find - line - 2] != '%')
+		else if (find != NULL && line[find - line - 2] != '%' &&
+				!ft_isalpha(find[ft_strlen(op_tab[i].name)]))
 		{
 			while (*find != ':')
 				find++;
@@ -55,6 +56,7 @@ static char		*find_op(char *line)
 			if (find != NULL)
 				return (find);
 		}
+		find = NULL;
 		i++;
 	}
 	return (find);
@@ -77,8 +79,13 @@ static char		*del_comments(char *line)
 int				ft_prog(t_struct *env, char *line)
 {
 	int		current_pos;
+	char	*op;
+	int		i;
 
-	current_pos = env->i;
+	i = 0;
+	op = ft_memalloc(sizeof(char) * 5);
+	current_pos = env->i - (PROG_NAME_LENGTH + PROG_LENGTH_LENGTH + 4 +
+		COMMENT_LENGTH + 8);
 	line = del_comments(line);
 	line = find_op(line);
 	if (line == NULL)
@@ -88,9 +95,12 @@ int				ft_prog(t_struct *env, char *line)
 		ft_strncmp("zjmp", line, 4) != 0 && ft_strncmp("live", line, 4) != 0)
 		write_octcode(env, line);
 	while (!ft_isspace(*line) && *line != DIRECT_CHAR && *line != '\0')
+	{
+		op[i++] = *line;
 		line++;
+	}
 	while (ft_isspace(*line) && *line !='\0')
 		line++;
-	write_params(env, line, current_pos);
+	write_params(env, line, current_pos, op);
 	return (1);
 }
