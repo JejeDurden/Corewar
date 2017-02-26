@@ -31,7 +31,7 @@ int	create_map(t_struct *env)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		ft_printf("%.2x", env->map[i] % 256);
+		ft_printf("%.3x ", env->map[i] % 256);
 		i++;
 		if (i % 64 == 0)
 			ft_putchar('\n');

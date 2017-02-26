@@ -18,10 +18,10 @@
 
 typedef struct	s_info
 {
-	char		*name;
-	char		*comment;
+	char		name[PROG_NAME_LENGTH + 4];
+	char		comment[COMMENT_LENGTH + 4];
 	int			prog_len;
-	char		*prog;
+	char		prog[CHAMP_MAX_SIZE];
 }				t_info;
 
 typedef struct	s_struct

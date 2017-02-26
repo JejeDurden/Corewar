@@ -69,7 +69,8 @@ typedef char	t_arg_type;
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
-# define PROG_LENGTH_LENGTH		8
+# define PROG_LENGTH_LENGTH		4
+# define HEADER_LENGTH			(COMMENT_LENGTH + PROG_NAME_LENGTH + 8 + PROG_LENGTH_LENGTH + 4)
 
 typedef struct		header_s
 {

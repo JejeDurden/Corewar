@@ -69,7 +69,7 @@ int			parser(int fd)
 	int		prog_len;
 	char	*buf;
 
-	if (!(buf = ft_read(fd, 4 + PROG_LENGTH_LENGTH + COMMENT_LENGTH + PROG_NAME_LENGTH)))
+	if (!(buf = ft_read(fd, 4 + PROG_LENGTH_LENGTH + COMMENT_LENGTH + PROG_NAME_LENGTH + 8)))
 	{
 		ft_strdel(&buf);
 		return (0);
@@ -79,18 +79,18 @@ int			parser(int fd)
 		ft_strdel(&buf);
 		return (0);
 	}
-	if (!(check_str(buf + 4, PROG_NAME_LENGTH)))
+	if (!(check_str(buf + 4, PROG_NAME_LENGTH + 4)))
 	{
 		ft_strdel(&buf);
 		ft_putstr_fd("Error: No CHAMP NAME found\n", 2);
 		return (0);
 	}
-	if (!(prog_len = check_prog_len(buf + 4 + PROG_NAME_LENGTH)))
+	if ((prog_len = check_prog_len(buf + 4 + 4 + PROG_NAME_LENGTH)) == 0)
 	{
 		ft_strdel(&buf);
 		return (0);
 	}
-	if (!(check_str(buf + 4 + PROG_NAME_LENGTH + PROG_LENGTH_LENGTH, COMMENT_LENGTH)))
+	if (!(check_str(buf + 4 + 4 + PROG_NAME_LENGTH + PROG_LENGTH_LENGTH, COMMENT_LENGTH + 4)))
 	{
 		ft_putstr_fd("Error: No CHAMP COMMENT found\n", 2);
 		ft_strdel(&buf);
