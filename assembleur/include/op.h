@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:41:37 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/27 14:04:08 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 15:20:31 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef char					t_arg_type;
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
 # define PROG_LENGTH_LENGTH		4
+# define HEADER_L				(PROG_NAME_LENGTH + PROG_LENGTH_LENGTH)
+# define HEADER_LENGTH			(HEADER_L + COMMENT_LENGTH + 8 + 4)
 
 typedef struct					s_header
 {

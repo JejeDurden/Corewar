@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 15:34:11 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/02/27 14:41:07 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 15:21:40 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static int		write_opcode(t_struct *env, char *line)
 	while (!ft_isspace(op[i]))
 		i++;
 	op[i] = '\0';
-	ft_printf("op = |%s|\n", op);
 	i = 0;
 	while (g_op_tab[i].name)
 	{
@@ -78,8 +77,7 @@ int				ft_prog(t_struct *env, char *line)
 
 	i = 0;
 	op = ft_memalloc(sizeof(char) * 5);
-	current_pos = env->i - (PROG_NAME_LENGTH + PROG_LENGTH_LENGTH + 4 +
-		COMMENT_LENGTH + 8);
+	current_pos = env->i - HEADER_LENGTH;
 	line = del_comments(line);
 	line = find_op(line);
 	if (line == NULL)
@@ -96,5 +94,6 @@ int				ft_prog(t_struct *env, char *line)
 	while (ft_isspace(*line) && *line != '\0')
 		line++;
 	write_params(env, line, current_pos, op);
+	free(op);
 	return (1);
 }
