@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 10:06:24 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 17:38:23 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/27 13:41:14 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		register_number(t_struct *env, char *line, char *tmp, int i)
 {
 	int j;
-	
+
 	if (line[i] == 'r' && ft_isdigit(line[i + 1]))
 		i++;
 	else

@@ -6,13 +6,13 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 13:34:06 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/27 13:26:03 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/27 13:33:58 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static	int		check_string(t_struct *env, char *line , int i)
+static	int		check_string(t_struct *env, char *line, int i)
 {
 	int j;
 
@@ -34,7 +34,6 @@ static int		label_exist(t_struct *env, char *line, int i)
 	char	*tmp;
 
 	j = i;
-
 	if (line[i] == '\0' || ft_isspace(line[i]))
 	{
 		ft_printf("Invalid label\n");

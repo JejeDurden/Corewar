@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 12:55:57 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 17:56:11 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/27 13:40:36 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		ft_list_add_last(t_link **save, t_link *elem)
 	list->next = elem;
 }
 
-int		parse_instruction(t_struct *env, char *line, int i)
+int				parse_instruction(t_struct *env, char *line, int i)
 {
 	int		j;
 
@@ -43,7 +43,7 @@ int		parse_instruction(t_struct *env, char *line, int i)
 	return (1);
 }
 
-int		check_if_label(t_struct *env, char *line, int *i)
+int				check_if_label(t_struct *env, char *line, int *i)
 {
 	t_link *list;
 
@@ -62,7 +62,7 @@ int		check_if_label(t_struct *env, char *line, int *i)
 	return (1);
 }
 
-int		parse_line(t_struct *env)
+int				parse_line(t_struct *env)
 {
 	int i;
 
@@ -83,4 +83,3 @@ int		parse_line(t_struct *env)
 	}
 	return (1);
 }
-

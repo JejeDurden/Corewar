@@ -6,13 +6,13 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 13:56:47 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/27 10:58:10 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 13:37:11 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	put_hex_in_char(t_struct *env, int nbr, int i, int dir)
+void			put_hex_in_char(t_struct *env, int nbr, int i, int dir)
 {
 	unsigned int nb;
 
@@ -27,7 +27,7 @@ void	put_hex_in_char(t_struct *env, int nbr, int i, int dir)
 	}
 	else
 	{
-		nb = (dir == 1) ? UINT_MAX + nbr + 1 : USHRT_MAX + nbr + 1 ;
+		nb = (dir == 1) ? UINT_MAX + nbr + 1 : USHRT_MAX + nbr + 1;
 		while (nb > 0)
 		{
 			env->buf[i] = nb % 256;
@@ -37,7 +37,15 @@ void	put_hex_in_char(t_struct *env, int nbr, int i, int dir)
 	}
 }
 
-int		ft_header(t_struct *env, char *line)
+static void		write_comment(t_struct *env, char *line)
+{
+	str = ft_strchr(line, '"') + 1;
+	ft_memcpy(env->buf + 4 + PROG_NAME_LENGTH + 8,
+		str, ft_strlen(str) - ft_strlen(ft_strchr(str, '"')));
+	env->comment = 1;
+}
+
+int				ft_header(t_struct *env, char *line)
 {
 	char	*str;
 
@@ -59,11 +67,6 @@ int		ft_header(t_struct *env, char *line)
 		env->name = 1;
 	}
 	else if (ft_strstr(line, COMMENT_CMD_STRING) && env->comment == 0)
-	{
-		str = ft_strchr(line, '"') + 1;
-		ft_memcpy(env->buf + 4 + PROG_NAME_LENGTH + 8,
-			str, ft_strlen(str) - ft_strlen(ft_strchr(str, '"')));
-		env->comment = 1;
-	}
+		write_comment(env, line);
 	return (1);
 }

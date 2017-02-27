@@ -6,28 +6,27 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:33:31 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/26 11:42:47 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 14:12:42 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "parser.h"
 
-static int		ft_gnl(t_struct *env, int fd)
+static int		ft_gnl(t_struct *env, int fd, int i)
 {
 	int		ret;
-	int		i;
-	char *line;
+	char	*line;
 
-	i = 0;
 	if (!(env->check = (char**)malloc(sizeof(char*) * env->nb_realloc)))
 		return (-1);
 	while ((ret = get_next_line(fd, &line)) == 1)
 	{
 		if (i >= env->nb_realloc)
-		{ 
+		{
 			env->nb_realloc *= 2;
-			env->check = realloc(env->check, sizeof(env->check) * env->nb_realloc);
+			env->check = realloc(env->check, sizeof(env->check) * 
+					env->nb_realloc);
 		}
 		env->check[i++] = ft_strdup(line);
 		free(line);
@@ -53,7 +52,7 @@ int				parser(t_struct *env, char *file)
 		free(env);
 		exit(1);
 	}
-	ret = ft_gnl(env, fd);
+	ret = ft_gnl(env, fd, 0);
 	if (ret == -1)
 	{
 		ft_putstr_fd("Error: File Error\n.", 2);
