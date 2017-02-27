@@ -24,6 +24,9 @@ typedef struct	s_info
 	char		comment[COMMENT_LENGTH + 4];
 	int			prog_len;
 	char		prog[CHAMP_MAX_SIZE];
+	char		map[MEM_SIZE];
+	int			*pc;
+	int			reg[REG_NUMBER];
 }				t_info;
 
 typedef struct	s_struct
