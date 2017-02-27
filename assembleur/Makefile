@@ -6,7 +6,7 @@
 #    By: rghirell <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/22 17:45:10 by rghirell          #+#    #+#              #
-#    Updated: 2017/02/25 18:37:33 by jdesmare         ###   ########.fr        #
+#    Updated: 2017/02/27 11:08:13 by jdesmare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRC_NAME = main.c\
 		   ft_prog.c\
 		   op.c\
 		   write_code.c\
+		   write_labels.c\
 		   ft_clear_space.c\
 		   parse_2.c\
 

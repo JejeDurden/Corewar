@@ -6,14 +6,16 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 13:56:47 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/26 11:20:52 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 10:58:10 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	put_hex_in_char(t_struct *env, int nbr, int i)
+void	put_hex_in_char(t_struct *env, int nbr, int i, int dir)
 {
+	unsigned int nb;
+
 	if (nbr >= 0)
 	{
 		while (nbr > 0)
@@ -25,12 +27,12 @@ void	put_hex_in_char(t_struct *env, int nbr, int i)
 	}
 	else
 	{
-		nbr = USHRT_MAX + nbr;
-		while (nbr > 0)
+		nb = (dir == 1) ? UINT_MAX + nbr + 1 : USHRT_MAX + nbr + 1 ;
+		while (nb > 0)
 		{
-			env->buf[i] = nbr % 256;
+			env->buf[i] = nb % 256;
 			i--;
-			nbr /= 256;
+			nb /= 256;
 		}
 	}
 }
@@ -41,12 +43,12 @@ int		ft_header(t_struct *env, char *line)
 
 	if (env->magic == 0)
 	{
-		put_hex_in_char(env, COREWAR_EXEC_MAGIC, 3);
+		put_hex_in_char(env, COREWAR_EXEC_MAGIC, 3, 1);
 		env->magic = 1;
 	}
 	if (env->flag_prog_len == 0)
 	{
-		put_hex_in_char(env, env->oct_size, PROG_NAME_LENGTH + 4 + 7);
+		put_hex_in_char(env, env->oct_size, PROG_NAME_LENGTH + 4 + 7, 1);
 		env->flag_prog_len = 1;
 	}
 	if (ft_strstr(line, NAME_CMD_STRING) && env->name == 0)
