@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 08:05:25 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/02/26 17:12:40 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 08:59:55 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void		write_params_code(t_struct *env, char *line, int current_pos,
 	}
 	else
 	{
-		if (ft_strcmp(op, "live") != 0 && ft_strcmp(op, "sti") != 0)
+		if (ft_strcmp(op, "zjmp") != 0 && ft_strcmp(op, "sti") != 0)
 			env->i += DIR_SIZE - 1;
 		else
 			env->i += IND_SIZE - 1;
