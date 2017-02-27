@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 11:34:54 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 17:38:36 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/27 13:39:48 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int		valid_instruction(t_struct *env, char *line, int j)
 	if (ft_strncmp(line, "sti", j) == 0)
 		return (instruction_stock_index(env, line));
 	if (ft_strncmp(line, "lfork", j) == 0 || ft_strncmp(line, "fork", j) == 0)
-		return(instruction_fork(env, line));
+		return (instruction_fork(env, line));
 	if (ft_strncmp(line, "aff", j) == 0)
-		return (instruction_aff(env ,line));
+		return (instruction_aff(env, line));
 	return (-1);
 }
 

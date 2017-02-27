@@ -6,19 +6,19 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 14:05:27 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 17:39:07 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/27 13:38:21 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static	 int		parse_last_param(t_struct *env, char *line, int i)
+static	int		parse_last_param(t_struct *env, char *line, int i)
 {
 	i++;
 	while (line[i] && ft_isspace(line[i]))
 		i++;
 	i = register_number(env, line, "Binary", i);
-	check_end_line(env, line , i);
+	check_end_line(env, line, i);
 	return (1);
 }
 
@@ -61,7 +61,8 @@ static	int		parse_second_param(t_struct *env, char *line, int i)
 	i = parse_first_param(env, line, "Second", i);
 	return (i);
 }
-int			instruction_load_index(t_struct *env, char *line)
+
+int				instruction_load_index(t_struct *env, char *line)
 {
 	int i;
 

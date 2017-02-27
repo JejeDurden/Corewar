@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:33:31 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/26 11:42:47 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 13:43:30 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		ft_gnl(t_struct *env, int fd)
 {
 	int		ret;
 	int		i;
-	char *line;
+	char	*line;
 
 	i = 0;
 	if (!(env->check = (char**)malloc(sizeof(char*) * env->nb_realloc)))
@@ -25,7 +25,7 @@ static int		ft_gnl(t_struct *env, int fd)
 	while ((ret = get_next_line(fd, &line)) == 1)
 	{
 		if (i >= env->nb_realloc)
-		{ 
+		{
 			env->nb_realloc *= 2;
 			env->check = realloc(env->check, sizeof(env->check) * env->nb_realloc);
 		}
