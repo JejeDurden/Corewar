@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 15:34:11 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/02/27 11:48:54 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 13:48:23 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static int		write_opcode(t_struct *env, char *line)
 	char	*find;
 
 	i = 0;
-	while (op_tab[i].name)
+	while (g_op_tab[i].name)
 	{
-		find = ft_strstr(line, op_tab[i].name);
+		find = ft_strstr(line, g_op_tab[i].name);
 		if (find != NULL && *(find - 2) != '%' &&
-				!ft_isalpha(find[ft_strlen(op_tab[i].name)]))
+				!ft_isalpha(find[ft_strlen(g_op_tab[i].name)]))
 		{
-			put_hex_in_char(env, op_tab[i].opcode, env->i, 1);
+			put_hex_in_char(env, g_op_tab[i].opcode, env->i, 1);
 			env->i++;
 			return (1);
 		}
@@ -45,21 +45,20 @@ static char		*find_op(char *line)
 	if (line[i] == LABEL_CHAR)
 		line += i + 1;
 	i = -1;
-	while (op_tab[++i].name)
+	while (g_op_tab[++i].name)
 	{
-		find = ft_strstr(line, op_tab[i].name);
-		if (find != NULL && !ft_isalpha(find[ft_strlen(op_tab[i].name)]) &&
+		find = ft_strstr(line, g_op_tab[i].name);
+		if (find != NULL && !ft_isalpha(find[ft_strlen(g_op_tab[i].name)]) &&
 				line[find - line - 2] != '%')
 			return (find);
 		else if (find != NULL && line[find - line - 2] != '%' &&
-				!ft_isalpha(find[ft_strlen(op_tab[i].name)]))
+				!ft_isalpha(find[ft_strlen(g_op_tab[i].name)]))
 		{
 			line = find;
 			find = find_op(find + 1);
 			if (find != NULL)
 				return (find);
 		}
-		find = NULL;
 	}
 	return (find);
 }
@@ -101,7 +100,7 @@ int				ft_prog(t_struct *env, char *line)
 		op[i++] = *line;
 		line++;
 	}
-	while (ft_isspace(*line) && *line !='\0')
+	while (ft_isspace(*line) && *line != '\0')
 		line++;
 	write_params(env, line, current_pos, op);
 	return (1);

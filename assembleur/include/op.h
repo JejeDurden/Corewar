@@ -6,27 +6,20 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:41:37 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/26 15:35:08 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 14:04:08 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OP_H
 # define OP_H
 
-/*
-** Toutes les tailles sont en octets.
-** On part du principe qu'un int fait 32 bits. Est-ce vrai chez vous ?
-*/
-
 # define IND_SIZE				2
 # define REG_SIZE				4
 # define DIR_SIZE				REG_SIZE
 
-
 # define REG_CODE				1
 # define DIR_CODE				2
 # define IND_CODE				3
-
 
 # define MAX_ARGS_NUMBER		4
 # define MAX_PLAYERS			4
@@ -51,46 +44,38 @@
 # define NBR_LIVE				21
 # define MAX_CHECKS				10
 
-/*
-**
-*/
-
-typedef char	t_arg_type;
+typedef char					t_arg_type;
 
 # define T_REG					1
 # define T_DIR					2
 # define T_IND					4
 # define T_LAB					8
 
-/*
-**
-*/
-
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
 # define PROG_LENGTH_LENGTH		4
 
-typedef struct		header_s
+typedef struct					s_header
 {
-  unsigned int		magic;
-  char				prog_name[PROG_NAME_LENGTH + 1];
-  unsigned int		prog_size;
-  char				comment[COMMENT_LENGTH + 1];
-}					header_t;
+	unsigned int				magic;
+	char						prog_name[PROG_NAME_LENGTH + 1];
+	unsigned int				prog_size;
+	char						comment[COMMENT_LENGTH + 1];
+}								t_header;
 
-typedef struct	s_op
+typedef struct					s_op
 {
-	char		*name;
-	int			nb_params;
-	int			param[3];
-	int			opcode;
-	int			nb_cycles;
-	char		*def;
-	int			flag_pc;
-	int			flag_idx;
-}				t_op;
+	char						*name;
+	int							nb_params;
+	int							param[3];
+	int							opcode;
+	int							nb_cycles;
+	char						*def;
+	int							flag_pc;
+	int							flag_idx;
+}								t_op;
 
-extern t_op op_tab[];
+extern t_op						g_op_tab[];
 
 #endif

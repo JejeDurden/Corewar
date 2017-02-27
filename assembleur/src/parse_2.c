@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:33:31 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/26 10:52:14 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 13:55:16 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static int		ft_gnl(t_struct *env, int fd, int (*f)(t_struct *, char *))
 	return (ret);
 }
 
-int				parser_2(t_struct *env, char *file, int (*f)(t_struct *, char *))
+int				parser_2(t_struct *env, char *file, int (*f)(t_struct *,
+																char *))
 {
 	int		fd;
 	int		ret;

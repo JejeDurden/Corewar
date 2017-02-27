@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:32:30 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/27 11:15:08 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 14:04:30 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft.h"
 # include "op.h"
-
 
 typedef	struct		s_link
 {

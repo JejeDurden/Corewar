@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 11:47:43 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 17:53:59 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/27 14:01:13 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			instruction_load(t_struct *env, char *line);
 int			instruction_store(t_struct *env, char *line);
 int			register_number(t_struct *env, char *line, char *tmp, int i);
 int			instruction_op(t_struct *env, char *line);
-int			instruction_binary(t_struct *env, char *line ,int i);
+int			instruction_binary(t_struct *env, char *line, int i);
 int			instruction_jump(t_struct *env, char *line);
 int			instruction_load_index(t_struct *env, char *line);
 int			instruction_stock_index(t_struct *env, char *line);

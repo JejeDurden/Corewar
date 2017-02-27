@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:33:31 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/27 13:43:30 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/27 13:54:36 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static int		ft_gnl(t_struct *env, int fd)
 		if (i >= env->nb_realloc)
 		{
 			env->nb_realloc *= 2;
-			env->check = realloc(env->check, sizeof(env->check) * env->nb_realloc);
+			env->check = realloc(env->check, sizeof(env->check) *
+					env->nb_realloc);
 		}
 		env->check[i++] = ft_strdup(line);
 		free(line);
