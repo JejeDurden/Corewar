@@ -25,7 +25,7 @@ static int	check_magic_code(char *buf)
 	return (1);
 }
 
-int	check_prog_len(char *buf)
+static int	check_prog_len(char *buf)
 {
 	int		i;
 	int		res;
@@ -39,7 +39,7 @@ int	check_prog_len(char *buf)
 	}
 	if (res > CHAMP_MAX_SIZE)
 	{
-		ft_putstr_fd("Error: Prog is too big\n", 2);
+		ft_putstr_fd("Error: Prog don't have the good size\n", 2);
 		return (0);
 	}
 	else if (res == 0)
@@ -50,7 +50,7 @@ int	check_prog_len(char *buf)
 	return (res);
 }
 
-static int	check_str(char *buf, int size)
+static int	str_chr(char *buf, int size)
 {
 	int		i;
 
@@ -61,6 +61,7 @@ static int	check_str(char *buf, int size)
 			return (1);
 		i++;
 	}
+	ft_putstr_fd("Error: No NAME or COMMENT found\n", 2);
 	return (0);
 }
 
@@ -69,30 +70,12 @@ int			parser(int fd)
 	int		prog_len;
 	char	*buf;
 
-	if (!(buf = ft_read(fd, 4 + PROG_LENGTH_LENGTH + COMMENT_LENGTH + PROG_NAME_LENGTH + 8)))
+	if (!(buf = ft_read(fd, HEADER_LENGTH)) ||
+		!check_magic_code(buf) ||
+		!str_chr(buf + 4, PROG_NAME_LENGTH + 4) ||
+		(prog_len = check_prog_len(buf + 4 + 4 + PROG_NAME_LENGTH)) == 0 ||
+		!str_chr(buf + HEADER_LENGTH - COMMENT_LENGTH - 4, COMMENT_LENGTH + 4))
 	{
-		ft_strdel(&buf);
-		return (0);
-	}
-	if (!check_magic_code(buf))
-	{
-		ft_strdel(&buf);
-		return (0);
-	}
-	if (!(check_str(buf + 4, PROG_NAME_LENGTH + 4)))
-	{
-		ft_strdel(&buf);
-		ft_putstr_fd("Error: No CHAMP NAME found\n", 2);
-		return (0);
-	}
-	if ((prog_len = check_prog_len(buf + 4 + 4 + PROG_NAME_LENGTH)) == 0)
-	{
-		ft_strdel(&buf);
-		return (0);
-	}
-	if (!(check_str(buf + 4 + 4 + PROG_NAME_LENGTH + PROG_LENGTH_LENGTH, COMMENT_LENGTH + 4)))
-	{
-		ft_putstr_fd("Error: No CHAMP COMMENT found\n", 2);
 		ft_strdel(&buf);
 		return (0);
 	}

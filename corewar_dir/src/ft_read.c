@@ -29,7 +29,7 @@ char		*ft_read(int fd, int size)
 	}
 	else if (ret < size)
 	{
-		ft_putstr_fd("Error: File don't have the good size for read\n", 2);
+		ft_putstr_fd("Error: File don't have the good size\n", 2);
 		return (0);
 	}
 	return (buf);

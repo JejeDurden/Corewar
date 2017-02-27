@@ -12,10 +12,10 @@
 
 #include "corewar.h"
 
-int		ft_parser_open(char *file)
+static int	ft_parser_open(char *file)
 {
-	int fd;
-	int ret;
+	int	fd;
+	int	ret;
 
 	if ((fd = open(file, O_RDONLY)) == -1)
 	{
@@ -31,31 +31,39 @@ int		ft_parser_open(char *file)
 	return (ret);
 }
 
-int		main(int ac, char **av)
+static int	parsing(int ac, char **av)
 {
-	int			i;
-	char		*ext;
-	t_struct	env;
+	char	*ext;
+	int		i;
 
 	i = 1;
+	while (i < ac)
+	{
+		if (!(ext = ft_strrchr(av[1], '.')) || ft_strcmp(ext, ".cor") != 0)
+		{
+			ft_putstr_fd("Error: Bad extension, need file[.cor].\n", 2);
+			return (0);
+		}
+		if (ft_parser_open(av[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int			main(int ac, char **av)
+{
+	t_struct	env;
+
 	if (ac > 5)
 		ft_putstr_fd("Error: Too many args.\n", 2);
 	else if (ac < 2)
 		ft_putstr_fd("Usage: ./corewar <champion1.cor> <...>\n", 2);
 	else
 	{
-		while (i < ac)
-		{
-			if (!(ext = ft_strrchr(av[1], '.')) || ft_strcmp(ext, ".cor") != 0)
-			{
-				ft_putstr_fd("Error: Bad extension, need file[.cor].\n", 2);
-				return (1);
-			}
-			if (ft_parser_open(av[i]) == 0)
-				return (1);
-			i++;
-		}
-		get_info(av, ac, &env);
+		if (parsing(ac, av) == 0)
+			return (1);
+		get_info(av + 1, ac - 1, &env);
 		create_map(&env);
 	}
 	return (0);

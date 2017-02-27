@@ -16,6 +16,8 @@
 # include "libft.h"
 # include "op.h"
 
+extern t_op		g_op_tab[];
+
 typedef struct	s_info
 {
 	char		name[PROG_NAME_LENGTH + 4];
@@ -31,13 +33,9 @@ typedef struct	s_struct
 	char		map[MEM_SIZE];
 }				t_struct;
 
-
-extern t_op op_tab[];
-
 int				parser(int fd);
 char			*ft_read(int fd, int size);
 int				parser_prog(int fd, int size);
-int				check_prog_len(char *buf);
 void			get_info(char **tab, int ac, t_struct *env);
 int				create_map(t_struct *env);
 

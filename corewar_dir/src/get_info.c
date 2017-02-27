@@ -33,7 +33,8 @@ static int	get_champ_info(int fd, t_info *champ)
 			champ->prog_len += buf[i + 4 + PROG_NAME_LENGTH + 4];
 		i++;
 	}
-	ft_memcpy(champ->comment, buf + (HEADER_LENGTH - (COMMENT_LENGTH + 4)), COMMENT_LENGTH + 4);
+	ft_memcpy(champ->comment, buf + (HEADER_LENGTH -
+		(COMMENT_LENGTH + 4)), COMMENT_LENGTH + 4);
 	ft_memcpy(champ->prog, buf + HEADER_LENGTH, champ->prog_len);
 	return (1);
 }
@@ -41,12 +42,10 @@ static int	get_champ_info(int fd, t_info *champ)
 void		get_info(char **tab, int ac, t_struct *env)
 {
 	int			i;
-	int			j;
 	int			fd;
 
-	i = 1;
-	j = 0;
-	env->nb_champ = ac - 1;
+	i = 0;
+	env->nb_champ = ac;
 	while (i < ac)
 	{
 		if ((fd = open(tab[i], O_RDONLY)) == -1)
@@ -54,7 +53,7 @@ void		get_info(char **tab, int ac, t_struct *env)
 			ft_putstr_fd("Error: Fail to open the file.\n", 2);
 			exit(1);
 		}
-		if (get_champ_info(fd, &env->champ[j]) == 0)
+		if (get_champ_info(fd, &env->champ[i]) == 0)
 		{
 			close(fd);
 			exit(1);
@@ -65,6 +64,5 @@ void		get_info(char **tab, int ac, t_struct *env)
 			exit(1);
 		}
 		i++;
-		j++;
 	}
 }
