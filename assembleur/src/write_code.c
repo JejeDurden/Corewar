@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 08:05:25 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/02/27 13:50:28 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 15:07:21 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void			write_label_pos(t_struct *env, char *line, int current_pos,
 	char	*temp;
 	char	*cut;
 	t_link	*link;
+	char	*temp2;
 
 	link = env->list;
 	temp = ft_strdup(line);
@@ -25,16 +26,17 @@ void			write_label_pos(t_struct *env, char *line, int current_pos,
 	if (cut != NULL)
 		*cut = '\0';
 	ft_clear_space(temp);
-	temp += 2;
+	temp2 = temp + 2;
 	while (link)
 	{
-		if (ft_strcmp(link->label, temp) == 0)
+		if (ft_strcmp(link->label, temp2) == 0)
 		{
 			put_hex_in_char(env, link->pos_label - current_pos, env->i, dir);
 			break ;
 		}
 		link = link->next;
 	}
+	free(temp);
 }
 
 static void		write_params_code(t_struct *env, char *line, int current_pos,

@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:33:31 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/27 14:12:42 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 16:28:48 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int		ft_gnl(t_struct *env, int fd, int i)
 		if (i >= env->nb_realloc)
 		{
 			env->nb_realloc *= 2;
-			env->check = realloc(env->check, sizeof(env->check) * 
+			env->check = realloc(env->check, sizeof(env->check) *
 					env->nb_realloc);
 		}
 		env->check[i++] = ft_strdup(line);
@@ -46,6 +46,7 @@ int				parser(t_struct *env, char *file)
 	int		fd;
 	int		ret;
 
+	env->nb_realloc = 50;
 	if ((fd = open(file, O_RDONLY)) == -1)
 	{
 		perror("Error: Open Failed\n");
@@ -74,7 +75,6 @@ int				main(int ac, char **av)
 	t_struct	*env;
 
 	env = ft_memalloc(sizeof(t_struct));
-	env->nb_realloc = 50;
 	env->j = 0;
 	if (ac != 2)
 		ft_putstr_fd("Usage: ./asm <sourcefile.s>\n", 2);
@@ -84,11 +84,16 @@ int				main(int ac, char **av)
 		if (ext == NULL || ft_strcmp(ext, ".s") != 0)
 		{
 			ft_putstr_fd("Error: Bad extension, need file[.s].\n", 2);
+			free_struct(env);
 			return (1);
 		}
 		parser(env, av[1]);
 		if (create_cor(env, av[1]) <= 0)
+		{
+			free_struct(env);
 			return (1);
+		}
 	}
+	free_struct(env);
 	return (0);
 }

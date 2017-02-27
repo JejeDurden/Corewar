@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 09:00:25 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/02/25 09:39:48 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 15:01:13 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char			*ft_clear_space(char *line)
 	char	*temp;
 	char	next_space;
 
-	new = ft_strdup(line);
 	next_space = get_next_space(line);
 	if (next_space == '\0')
 		return (line);
@@ -44,7 +43,7 @@ char			*ft_clear_space(char *line)
 			cur = ft_strchr(temp, next_space);
 			*cur = '\0';
 		}
-		new = ft_strjoin(new, temp);
+		new = ft_strjoin(line, temp);
 		if (next_space != '\0')
 			temp = cur + 1;
 	}

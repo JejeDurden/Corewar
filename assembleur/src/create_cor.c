@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 20:38:48 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/26 15:42:23 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 14:53:20 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,16 @@ static int		new_file_cor(char *file)
 	new_file = ft_strjoin(file, ".cor");
 	if ((fd = open(new_file, O_CREAT | O_EXCL | O_WRONLY, S_IRUSR
 					| S_IWUSR | S_IRGRP | S_IROTH)) != -1)
+	{
+		free(new_file);
 		return (fd);
+	}
 	else if ((fd = open(new_file, O_TRUNC | O_WRONLY)) >= 0)
+	{
+		free(new_file);
 		return (fd);
+	}
+	free(new_file);
 	return (-1);
 }
 

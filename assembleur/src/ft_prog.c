@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 15:34:11 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/02/27 13:48:23 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 15:21:40 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,51 +16,43 @@
 static int		write_opcode(t_struct *env, char *line)
 {
 	int		i;
-	char	*find;
+	char	*op;
 
+	i = 0;
+	op = ft_strdup(line);
+	while (!ft_isspace(op[i]))
+		i++;
+	op[i] = '\0';
 	i = 0;
 	while (g_op_tab[i].name)
 	{
-		find = ft_strstr(line, g_op_tab[i].name);
-		if (find != NULL && *(find - 2) != '%' &&
-				!ft_isalpha(find[ft_strlen(g_op_tab[i].name)]))
+		if (ft_strcmp(op, g_op_tab[i].name) == 0)
 		{
 			put_hex_in_char(env, g_op_tab[i].opcode, env->i, 1);
 			env->i++;
+			free(op);
 			return (1);
 		}
 		i++;
 	}
+	free(op);
 	return (1);
 }
 
 static char		*find_op(char *line)
 {
 	int		i;
-	char	*find;
 
 	i = 0;
 	while (valid_char(line[i]) > 0)
 		i++;
 	if (line[i] == LABEL_CHAR)
 		line += i + 1;
-	i = -1;
-	while (g_op_tab[++i].name)
-	{
-		find = ft_strstr(line, g_op_tab[i].name);
-		if (find != NULL && !ft_isalpha(find[ft_strlen(g_op_tab[i].name)]) &&
-				line[find - line - 2] != '%')
-			return (find);
-		else if (find != NULL && line[find - line - 2] != '%' &&
-				!ft_isalpha(find[ft_strlen(g_op_tab[i].name)]))
-		{
-			line = find;
-			find = find_op(find + 1);
-			if (find != NULL)
-				return (find);
-		}
-	}
-	return (find);
+	while (ft_isspace(*line))
+		line++;
+	if (*line == '\0')
+		return (NULL);
+	return (line);
 }
 
 static char		*del_comments(char *line)
@@ -85,8 +77,7 @@ int				ft_prog(t_struct *env, char *line)
 
 	i = 0;
 	op = ft_memalloc(sizeof(char) * 5);
-	current_pos = env->i - (PROG_NAME_LENGTH + PROG_LENGTH_LENGTH + 4 +
-		COMMENT_LENGTH + 8);
+	current_pos = env->i - HEADER_LENGTH;
 	line = del_comments(line);
 	line = find_op(line);
 	if (line == NULL)
@@ -103,5 +94,6 @@ int				ft_prog(t_struct *env, char *line)
 	while (ft_isspace(*line) && *line != '\0')
 		line++;
 	write_params(env, line, current_pos, op);
+	free(op);
 	return (1);
 }

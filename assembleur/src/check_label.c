@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 13:34:06 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/27 13:33:58 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/27 14:58:29 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static int		label_exist(t_struct *env, char *line, int i)
 {
 	int		j;
 	char	*tmp;
+	char	*join;
 
 	j = i;
 	if (line[i] == '\0' || ft_isspace(line[i]))
@@ -43,9 +44,10 @@ static int		label_exist(t_struct *env, char *line, int i)
 	while (line[j] != '\0' && valid_char(line[j]) > 0)
 		j++;
 	tmp = ft_strsub(line + i, 0, j - i);
-	ft_strjoin(tmp, ":");
+	join = ft_strjoin(tmp, ":");
 	check_string(env, tmp, j + 1 - i);
 	free(tmp);
+	free(join);
 	return (j);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 17:30:20 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 17:20:42 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/02/27 13:57:50 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,5 @@ int					ft_isspace(int c);
 char				*double_strchr(const char *s, int c, int d);
 void				*ft_realloc(void *ptr, size_t size);
 int					ft_check_extension(char *file, char *ext);
-
 
 #endif

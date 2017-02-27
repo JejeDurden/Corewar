@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 13:56:47 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/27 13:37:11 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 14:14:43 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void			put_hex_in_char(t_struct *env, int nbr, int i, int dir)
 
 static void		write_comment(t_struct *env, char *line)
 {
+	char	*str;
+
 	str = ft_strchr(line, '"') + 1;
 	ft_memcpy(env->buf + 4 + PROG_NAME_LENGTH + 8,
 		str, ft_strlen(str) - ft_strlen(ft_strchr(str, '"')));
