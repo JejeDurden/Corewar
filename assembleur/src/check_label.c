@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 13:34:06 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 18:09:14 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/27 13:26:03 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static	int		check_string(t_struct *env, char *line , int i)
 	int j;
 
 	j = 0;
-	while (j < env->size_max - 1)
+	while (j < env->size_max)
 	{
 		if (ft_strncmp(env->check[j], line, i - 1) == 0)
 			return (1);
