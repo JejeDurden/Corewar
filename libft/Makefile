@@ -1,5 +1,6 @@
 NAME = libft.a
 SRCS = 	ft_atoi.c	 		\
+		ft_atol.c	 		\
 		ft_bzero.c	 		\
 		ft_count_int_tab.c	\
 		ft_count_words.c	\

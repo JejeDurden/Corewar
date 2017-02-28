@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:48:53 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/21 13:48:54 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/02/28 14:39:29 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,37 +31,99 @@ static int	ft_parser_open(char *file)
 	return (ret);
 }
 
-static int	parsing(int ac, char **av)
+static int	parse_champ_nb(t_struct *env, char **av, int debut, int i)
+{
+	int		j;
+
+	j = -1;
+	if (ft_strcmp(av[debut], "-n") == 0)
+	{
+		debut++;
+		while (av[debut][++j] != '\0')
+		{
+			if (!ft_isdigit(av[debut][j]))
+			{
+				ft_putstr_fd("Error: Player number must be an INT\n", 2);
+				return (-1);
+			}
+		}
+		env->champ[i].number = ft_atol(av[debut]);
+		if (ft_strlen(av[debut]) > 11 || env->champ[i].number < 1 ||
+			env->champ[i].number > INT_MAX)
+		{
+			ft_putstr_fd("Error: Player number must be an INT\n", 2);
+			return (-1);
+		}
+		debut++;
+	}
+	return (debut);
+}
+
+static int	parsing(t_struct *env, int ac, char **av, int debut)
 {
 	char	*ext;
 	int		i;
 
-	i = 1;
-	while (i < ac)
+	i = 0;
+	if (debut < 0)
 	{
-		if (!(ext = ft_strrchr(av[1], '.')) || ft_strcmp(ext, ".cor") != 0)
+		ft_printf("Usage : %s\n", ERR_P);
+		return (0);
+	}
+	while (debut < ac)
+	{
+		env->champ[i].number = 0;
+		debut = parse_champ_nb(env, av, debut, i++);
+		if (debut < 0)
+			return (0);
+		if (!(ext = ft_strrchr(av[debut], '.')) || ft_strcmp(ext, ".cor") != 0)
 		{
 			ft_putstr_fd("Error: Bad extension, need file[.cor].\n", 2);
 			return (0);
 		}
-		if (ft_parser_open(av[i]) == 0)
+		if (ft_parser_open(av[debut]) == 0)
 			return (0);
+		debut++;
 		i++;
 	}
 	return (1);
 }
 
+static int	get_first_champ(t_struct *env, char **av)
+{
+	int		i;
+
+	i = 1;
+	if (ft_strcmp("-v", av[i]) == 0)
+	{
+		env->graphic = 1;
+		i++;
+	}
+	if (ft_strcmp("-dump", av[i]) == 0)
+	{
+		i++;
+		env->dump = ft_atoi(av[i]);
+		if (env->dump < 1)
+			return (-1);
+		i++;
+	}
+	return (i);
+}
+
 int			main(int ac, char **av)
 {
 	t_struct	env;
+	int			debut;
 
-	if (ac > 5)
+	env.graphic = 0;
+	if (ac > 16)
 		ft_putstr_fd("Error: Too many args.\n", 2);
 	else if (ac < 2)
-		ft_putstr_fd("Usage: ./corewar <champion1.cor> <...>\n", 2);
+		ft_printf("Usage : %s\n", ERR_P);
 	else
 	{
-		if (parsing(ac, av) == 0)
+		debut = get_first_champ(&env, av);
+		if (parsing(&env, ac, av, debut) == 0)
 			return (1);
 		get_info(av + 1, ac - 1, &env);
 		create_map(&env);

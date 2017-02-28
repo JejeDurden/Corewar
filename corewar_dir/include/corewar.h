@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/23 20:02:53 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/02/28 14:20:48 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "libft.h"
 # include "op.h"
+# include <ncurses.h>
+
+# define ERR_P "./corewar [-v] [-dump nbr_cycles] [[-n number] champion.cor]..."
 
 extern t_op		g_op_tab[];
 
@@ -26,7 +29,9 @@ typedef struct	s_info
 	char		prog[CHAMP_MAX_SIZE];
 	char		map[MEM_SIZE];
 	int			*pc;
+	int			pc_size;
 	int			reg[REG_NUMBER];
+	int			number;
 }				t_info;
 
 typedef struct	s_struct
@@ -34,6 +39,8 @@ typedef struct	s_struct
 	int			nb_champ;
 	t_info		champ[MAX_PLAYERS];
 	char		map[MEM_SIZE];
+	int			graphic;
+	int			dump;
 }				t_struct;
 
 int				parser(int fd);

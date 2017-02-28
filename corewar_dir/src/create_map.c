@@ -6,13 +6,13 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 20:25:34 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/25 20:25:35 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/02/28 10:25:38 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	create_map(t_struct *env)
+int		create_map(t_struct *env)
 {
 	int		div_mem_size;
 	int		i;

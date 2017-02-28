@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 17:30:20 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/27 13:57:50 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/28 14:24:31 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "ft_printf.h"
 
 int					ft_atoi(const char *str);
+long int			ft_atol(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_count_int_tab(int *tab);
 int					ft_count_words(char const *src, char c);
