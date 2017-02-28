@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:48:53 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/28 15:31:38 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/28 19:38:31 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,18 @@ static int	parsing(t_struct *env, int ac, char **av, int debut)
 	char	*ext;
 	int		i;
 
-	i = 0;
+	i = -1;
 	if (debut < 0)
 		return (0);
 	while (debut < ac)
 	{
+		if (++i > 3)
+		{
+			ft_putstr_fd("Error: Too many champions\n", 2);
+			return (0);
+		}
 		env->champ[i].number = 0;
-		debut = parse_champ_nb(env, av, debut, i++);
+		debut = parse_champ_nb(env, av, debut, i);
 		if (debut < 0)
 			return (0);
 		if (!(ext = ft_strrchr(av[debut], '.')) || ft_strcmp(ext, ".cor") != 0)
@@ -81,7 +86,6 @@ static int	parsing(t_struct *env, int ac, char **av, int debut)
 		if (ft_parser_open(av[debut]) == 0)
 			return (0);
 		debut++;
-		i++;
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 18:42:00 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/23 18:48:55 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/02/28 19:17:48 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,20 @@ static int	check_prog_len(char *buf)
 {
 	int		i;
 	int		res;
+	int		ascii;
 
 	i = 0;
 	res = 0;
 	while (i < PROG_LENGTH_LENGTH)
 	{
-		res += (i != PROG_LENGTH_LENGTH - 1 ? buf[i] * 256 : buf[i]);
+		ascii = (int)buf[i];
+		ascii = (ascii < 0) ? 256 + ascii : ascii;
+		res += (i < PROG_LENGTH_LENGTH - 1) ? ascii * 256 : ascii;
 		i++;
 	}
 	if (res > CHAMP_MAX_SIZE)
 	{
-		ft_putstr_fd("Error: Prog don't have the good size\n", 2);
+		ft_putstr_fd("Error: Prog doesn't have the good size\n", 2);
 		return (0);
 	}
 	else if (res == 0)

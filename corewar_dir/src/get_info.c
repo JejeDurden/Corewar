@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 16:46:46 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/28 15:31:27 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/28 19:27:05 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ static int	get_champ_info(int fd, t_info *champ)
 {
 	char	buf[HEADER_LENGTH + CHAMP_MAX_SIZE];
 	int		i;
+	int		ascii;
 
-	i = 0;
+	i = -1;
 	champ->prog_len = 0;
 	if ((read(fd, buf, HEADER_LENGTH + CHAMP_MAX_SIZE)) == -1)
 	{
@@ -25,13 +26,14 @@ static int	get_champ_info(int fd, t_info *champ)
 		return (0);
 	}
 	ft_memcpy(champ->name, buf + 4, PROG_NAME_LENGTH + 4);
-	while (i < PROG_LENGTH_LENGTH)
+	while (++i < PROG_LENGTH_LENGTH)
 	{
+		ascii = (int)buf[i + 4 + PROG_NAME_LENGTH + 4];
+		ascii = (ascii < 0) ? 256 + ascii : ascii;
 		if (i != PROG_LENGTH_LENGTH - 1)
-			champ->prog_len += buf[i + 4 + PROG_NAME_LENGTH + 4] * 256;
+			champ->prog_len += ascii * 256;
 		else
-			champ->prog_len += buf[i + 4 + PROG_NAME_LENGTH + 4];
-		i++;
+			champ->prog_len += ascii;
 	}
 	ft_memcpy(champ->comment, buf + (HEADER_LENGTH -
 		(COMMENT_LENGTH + 4)), COMMENT_LENGTH + 4);
