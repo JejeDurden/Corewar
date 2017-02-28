@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/28 14:20:48 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/28 15:14:13 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ typedef struct	s_struct
 int				parser(int fd);
 char			*ft_read(int fd, int size);
 int				parser_prog(int fd, int size);
-void			get_info(char **tab, int ac, t_struct *env);
+void			get_info(char **tab, int ac, int debut, t_struct *env);
 int				create_map(t_struct *env);
+int				parse_champ_nb(t_struct *env, char **av, int debut, int i);
+int				get_first_champ(t_struct *env, char **av);
 
 #endif

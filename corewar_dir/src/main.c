@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:48:53 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/28 14:39:29 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/28 15:31:38 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_parser_open(char *file)
 	return (ret);
 }
 
-static int	parse_champ_nb(t_struct *env, char **av, int debut, int i)
+int		parse_champ_nb(t_struct *env, char **av, int debut, int i)
 {
 	int		j;
 
@@ -51,7 +51,7 @@ static int	parse_champ_nb(t_struct *env, char **av, int debut, int i)
 		if (ft_strlen(av[debut]) > 11 || env->champ[i].number < 1 ||
 			env->champ[i].number > INT_MAX)
 		{
-			ft_putstr_fd("Error: Player number must be an INT\n", 2);
+			ft_putstr_fd("Error: Player number must be a positive INT\n", 2);
 			return (-1);
 		}
 		debut++;
@@ -66,10 +66,7 @@ static int	parsing(t_struct *env, int ac, char **av, int debut)
 
 	i = 0;
 	if (debut < 0)
-	{
-		ft_printf("Usage : %s\n", ERR_P);
 		return (0);
-	}
 	while (debut < ac)
 	{
 		env->champ[i].number = 0;
@@ -89,7 +86,7 @@ static int	parsing(t_struct *env, int ac, char **av, int debut)
 	return (1);
 }
 
-static int	get_first_champ(t_struct *env, char **av)
+int			get_first_champ(t_struct *env, char **av)
 {
 	int		i;
 
@@ -102,9 +99,13 @@ static int	get_first_champ(t_struct *env, char **av)
 	if (ft_strcmp("-dump", av[i]) == 0)
 	{
 		i++;
-		env->dump = ft_atoi(av[i]);
-		if (env->dump < 1)
+		env->dump = ft_atol(av[i]);
+		if (ft_strlen(av[i]) > 11 || env->dump < 1 ||
+			env->dump > INT_MAX)
+		{
+			ft_putstr_fd("Error: Dump number must be a positive INT\n", 2);
 			return (-1);
+		}
 		i++;
 	}
 	return (i);
@@ -125,7 +126,7 @@ int			main(int ac, char **av)
 		debut = get_first_champ(&env, av);
 		if (parsing(&env, ac, av, debut) == 0)
 			return (1);
-		get_info(av + 1, ac - 1, &env);
+		get_info(av, ac, debut, &env);
 		create_map(&env);
 	}
 	return (0);

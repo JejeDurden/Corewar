@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 16:46:46 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/24 16:46:47 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/02/28 15:31:27 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,22 @@ static int	get_champ_info(int fd, t_info *champ)
 	return (1);
 }
 
-void		get_info(char **tab, int ac, t_struct *env)
+void		get_info(char **tab, int ac, int debut, t_struct *env)
 {
-	int			i;
 	int			fd;
+	int			i;
 
 	i = 0;
-	env->nb_champ = ac;
-	while (i < ac)
+	debut = get_first_champ(env, tab);
+	while (debut < ac)
 	{
-		if ((fd = open(tab[i], O_RDONLY)) == -1)
+		debut = parse_champ_nb(env, tab, debut, i);
+		if ((fd = open(tab[debut], O_RDONLY)) == -1)
 		{
 			ft_putstr_fd("Error: Fail to open the file.\n", 2);
 			exit(1);
 		}
-		if (get_champ_info(fd, &env->champ[i]) == 0)
+		if (get_champ_info(fd, &env->champ[i++]) == 0)
 		{
 			close(fd);
 			exit(1);
@@ -63,6 +64,7 @@ void		get_info(char **tab, int ac, t_struct *env)
 			ft_putstr_fd("Error: Fail to close the file.\n", 2);
 			exit(1);
 		}
-		i++;
+		debut++;
 	}
+	env->nb_champ = i;
 }

@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 20:25:34 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/28 10:25:38 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/02/28 16:08:36 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		create_map(t_struct *env)
 	int		div_mem_size;
 	int		i;
 	int		start;
+	int		ascii;
 
 	i = 0;
 	start = 0;
@@ -31,7 +32,14 @@ int		create_map(t_struct *env)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		ft_printf("%.3x ", env->map[i] % 256);
+		ascii = (int)env->map[i];
+		if (ascii < 0)
+		{
+			ascii += 256;
+			ft_printf("%02x ", ascii);
+		}
+		else
+			ft_printf("%02x ", ascii);
 		i++;
 		if (i % 64 == 0)
 			ft_putchar('\n');
