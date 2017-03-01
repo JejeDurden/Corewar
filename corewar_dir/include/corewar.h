@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/01 13:26:53 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/01 13:38:29 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,31 @@
 
 extern t_op		g_op_tab[];
 
+
+typedef struct	s_player
+{
+	t_info		*champ;
+	char		map[MEM_SIZE];
+}				t_player;
+
 typedef struct	s_info
 {
 	char		name[PROG_NAME_LENGTH + 4];
 	char		comment[COMMENT_LENGTH + 4];
 	int			prog_len;
 	char		prog[CHAMP_MAX_SIZE];
-	char		map[MEM_SIZE];
-	int			*pc;
-	int			pc_size;
+	int			pc;
 	int			reg[REG_NUMBER];
 	int			number;
 	int			nbr_live;
+	int			carry;
 	s_info		*next;
 }				t_info;
 
 typedef struct	s_struct
 {
 	int			nb_champ;
-	t_info		champ[MAX_PLAYERS];
+	t_player	champ[MAX_PLAYERS];
 	char		map[MEM_SIZE];
 	int			graphic;
 	int			dump;
