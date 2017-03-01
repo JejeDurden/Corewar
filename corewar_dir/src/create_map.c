@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 20:25:34 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/28 17:11:30 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/01 08:36:43 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int		create_map(t_struct *env)
 	start = 0;
 	div_mem_size = MEM_SIZE / env->nb_champ;
 	ft_memset(env->map, 0, MEM_SIZE);
-	ft_printf("nb_chasmp = |%d| ", env->nb_champ);
 	while (i < env->nb_champ)
 	{
 		start = i * div_mem_size;
