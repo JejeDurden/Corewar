@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/01 10:27:54 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/01 13:26:53 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_info
 	int			reg[REG_NUMBER];
 	int			number;
 	int			nbr_live;
-	s_info		*child;
+	s_info		*next;
 }				t_info;
 
 typedef struct	s_struct
@@ -59,21 +59,22 @@ int				create_map(t_struct *env);
 int				parse_champ_nb(t_struct *env, char **av, int debut, int i);
 int				get_first_champ(t_struct *env, char **av);
 void			write_map(t_struct *env);
-void			live(t_game *game);
-void			ld(t_info *champ, t_game *game);
-void			st(t_info *champ, t_game *game);
-void			add(t_info *champ, t_game *game);
-void			sub(t_info *champ, t_game *game);
-void			and(t_info *champ, t_game *game);
-void			or(t_info *champ, t_game *game);
-void			xor(t_info *champ, t_game *game);
-void			zjmp(t_info *champ, t_game *game);
-void			ldi(t_info *champ, t_game *game);
-void			sti(t_info *champ, t_game *game);
-void			fork(t_info *champ, t_game *game);
-void			lld(t_info *champ, t_game *game);
-void			lldi(t_info *champ, t_game *game);
-void			lfork(t_info *champ, t_game *game);
-void			aff(t_info *champ, t_game *game);
+void			live(t_info *champ);
+void			ld(t_info *champ, int val, int reg);
+void			st(t_info *champ);
+void			add(t_info *champ);
+void			sub(t_info *champ);
+void			and(t_info *champ);
+void			or(t_info *champ);
+void			xor(t_info *champ);
+void			zjmp(t_info *champ);
+void			ldi(t_info *champ);
+void			sti(t_info *champ);
+void			fork(t_info *champ);
+void			lld(t_info *champ);
+void			lldi(t_info *champ);
+void			lfork(t_info *champ);
+int				aff(t_info *champ, int i);
+int				char_to_int(char c)
 
 #endif

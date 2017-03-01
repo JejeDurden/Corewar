@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 16:46:46 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/28 19:27:05 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/01 11:17:11 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ static int	get_champ_info(int fd, t_info *champ)
 	ft_memcpy(champ->name, buf + 4, PROG_NAME_LENGTH + 4);
 	while (++i < PROG_LENGTH_LENGTH)
 	{
-		ascii = (int)buf[i + 4 + PROG_NAME_LENGTH + 4];
-		ascii = (ascii < 0) ? 256 + ascii : ascii;
+		ascii = char_to_int(buf[i + 4 + PROG_NAME_LENGTH + 4]);
 		if (i != PROG_LENGTH_LENGTH - 1)
 			champ->prog_len += ascii * 256;
 		else

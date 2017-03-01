@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 18:42:00 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/28 19:17:48 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/01 11:17:38 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ static int	check_prog_len(char *buf)
 	res = 0;
 	while (i < PROG_LENGTH_LENGTH)
 	{
-		ascii = (int)buf[i];
-		ascii = (ascii < 0) ? 256 + ascii : ascii;
+		ascii = char_to_int(buf[i]);
 		res += (i < PROG_LENGTH_LENGTH - 1) ? ascii * 256 : ascii;
 		i++;
 	}
