@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/01 10:21:49 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/01 10:27:54 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	s_info
 	int			pc_size;
 	int			reg[REG_NUMBER];
 	int			number;
+	int			nbr_live;
 	s_info		*child;
 }				t_info;
 
@@ -48,7 +49,6 @@ typedef struct	s_game
 {
 	int			max_checks;
 	int			cycle_to_die;
-	char		nbr_live;
 }				t_game;
 
 int				parser(int fd);
@@ -59,21 +59,21 @@ int				create_map(t_struct *env);
 int				parse_champ_nb(t_struct *env, char **av, int debut, int i);
 int				get_first_champ(t_struct *env, char **av);
 void			write_map(t_struct *env);
-void			live(t_info *champ, s_game *game);
-void			ld(t_info *champ, s_game *game);
-void			st(t_info *champ, s_game *game);
-void			add(t_info *champ, s_game *game);
-void			sub(t_info *champ, s_game *game);
-void			and(t_info *champ, s_game *game);
-void			or(t_info *champ, s_game *game);
-void			xor(t_info *champ, s_game *game);
-void			zjmp(t_info *champ, s_game *game);
-void			ldi(t_info *champ, s_game *game);
-void			sti(t_info *champ, s_game *game);
-void			fork(t_info *champ, s_game *game);
-void			lld(t_info *champ, s_game *game);
-void			lldi(t_info *champ, s_game *game);
-void			lfork(t_info *champ, s_game *game);
-void			aff(t_info *champ, s_game *game);
+void			live(t_game *game);
+void			ld(t_info *champ, t_game *game);
+void			st(t_info *champ, t_game *game);
+void			add(t_info *champ, t_game *game);
+void			sub(t_info *champ, t_game *game);
+void			and(t_info *champ, t_game *game);
+void			or(t_info *champ, t_game *game);
+void			xor(t_info *champ, t_game *game);
+void			zjmp(t_info *champ, t_game *game);
+void			ldi(t_info *champ, t_game *game);
+void			sti(t_info *champ, t_game *game);
+void			fork(t_info *champ, t_game *game);
+void			lld(t_info *champ, t_game *game);
+void			lldi(t_info *champ, t_game *game);
+void			lfork(t_info *champ, t_game *game);
+void			aff(t_info *champ, t_game *game);
 
 #endif
