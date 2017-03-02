@@ -21,41 +21,35 @@
 
 extern t_op		g_op_tab[];
 
-
-typedef struct	s_player
+typedef struct		s_info
 {
-	t_info		*champ;
-	char		map[MEM_SIZE];
-}				t_player;
+	char			name[PROG_NAME_LENGTH + 4];
+	char			comment[COMMENT_LENGTH + 4];
+	int				prog_len;
+	char			prog[CHAMP_MAX_SIZE];
+	int				pc;
+	int				reg[REG_NUMBER];
+	int				number;
+	int				nbr_live;
+	int				carry;
+	struct s_info	*next;
+}					t_info;
 
-typedef struct	s_info
+typedef struct		s_struct
 {
-	char		name[PROG_NAME_LENGTH + 4];
-	char		comment[COMMENT_LENGTH + 4];
-	int			prog_len;
-	char		prog[CHAMP_MAX_SIZE];
-	int			pc;
-	int			reg[REG_NUMBER];
-	int			number;
-	int			nbr_live;
-	int			carry;
-	s_info		*next;
-}				t_info;
+	int				nb_champ;
+	t_info			champ[MAX_PLAYERS];
+	char			map[MEM_SIZE];
+	int				map_color[MEM_SIZE];
+	int				graphic;
+	int				dump;
+}					t_struct;
 
-typedef struct	s_struct
+typedef struct		s_game
 {
-	int			nb_champ;
-	t_player	champ[MAX_PLAYERS];
-	char		map[MEM_SIZE];
-	int			graphic;
-	int			dump;
-}				t_struct;
-
-typedef struct	s_game
-{
-	int			max_checks;
-	int			cycle_to_die;
-}				t_game;
+	int				max_checks;
+	int				cycle_to_die;
+}					t_game;
 
 int				parser(int fd);
 char			*ft_read(int fd, int size);
@@ -65,7 +59,7 @@ int				create_map(t_struct *env);
 int				parse_champ_nb(t_struct *env, char **av, int debut, int i);
 int				get_first_champ(t_struct *env, char **av);
 void			write_map(t_struct *env);
-void			live(t_info *champ);
+/*void			live(t_info *champ);
 void			ld(t_info *champ, int val, int reg);
 void			st(t_info *champ);
 void			add(t_info *champ);
@@ -80,7 +74,7 @@ void			fork(t_info *champ);
 void			lld(t_info *champ);
 void			lldi(t_info *champ);
 void			lfork(t_info *champ);
-int				aff(t_info *champ, int i);
-int				char_to_int(char c)
+int				aff(t_info *champ, int i);*/
+int				char_to_int(char c);
 
 #endif

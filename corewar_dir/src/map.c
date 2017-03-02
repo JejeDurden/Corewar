@@ -20,19 +20,12 @@ void	write_map(t_struct *env)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		ascii = (int)env->map[i];
-		if (ascii < 0)
-		{
-			ascii += 256;
-			ft_printf("%02x ", ascii);
-		}
-		else
-			ft_printf("%02x ", ascii);
+		ascii = char_to_int(env->map[i]);
+		ft_printf("%02x ", ascii);
 		i++;
 		if (i % 64 == 0)
 			ft_putchar('\n');
 	}
-	return (1);
 }
 
 int		create_map(t_struct *env)
@@ -51,4 +44,5 @@ int		create_map(t_struct *env)
 		ft_memcpy(env->map + start, env->champ[i].prog, env->champ[i].prog_len);
 		i++;
 	}
+	return (1);
 }
