@@ -97,5 +97,6 @@ void			create_process(t_struct *env);
 t_process		*new_process(t_process **l_proc);
 void			del_process(t_process **l_proc, t_process *maillon);
 int				cycle_to_die(t_struct *env, t_game *game);
+int				check_proc_live(t_struct *env);
 
 #endif

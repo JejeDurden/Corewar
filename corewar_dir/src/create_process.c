@@ -59,6 +59,7 @@ void		del_process(t_process **l_proc, t_process *maillon)
 	{
 		*l_proc = maillon->next;
 		free(maillon);
+		maillon = NULL;
 	}
 	else
 	{
@@ -67,5 +68,6 @@ void		del_process(t_process **l_proc, t_process *maillon)
 			tmp = tmp->next;
 		tmp->next = maillon->next;
 		free(maillon);
+		maillon = NULL;
 	}
 }
