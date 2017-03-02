@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/01 13:38:29 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/02 14:55:37 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,24 @@ int				parser_prog(int fd, int size);
 void			get_info(char **tab, int ac, int debut, t_struct *env);
 int				create_map(t_struct *env);
 int				parse_champ_nb(t_struct *env, char **av, int debut, int i);
+//int				set_champ_nb(t_struct *env, char **av, int debut);
 int				get_first_champ(t_struct *env, char **av);
 void			write_map(t_struct *env);
-/*void			live(t_info *champ);
-void			ld(t_info *champ, int val, int reg);
-void			st(t_info *champ);
-void			add(t_info *champ);
-void			sub(t_info *champ);
-void			and(t_info *champ);
-void			or(t_info *champ);
-void			xor(t_info *champ);
-void			zjmp(t_info *champ);
-void			ldi(t_info *champ);
-void			sti(t_info *champ);
-void			fork(t_info *champ);
-void			lld(t_info *champ);
-void			lldi(t_info *champ);
-void			lfork(t_info *champ);
-int				aff(t_info *champ, int i);*/
+/*void			cw_live(t_struct *env, t_process *proc);
+void			cw_ld(t_struct *env, t_process *proc);
+void			cw_st(t_struct *env, t_process *proc);
+void			cw_add(t_struct *env, t_process *proc);
+void			cw_sub(t_struct *env, t_process *proc);
+void			cw_and(t_struct *env, t_process *proc);
+void			cw_or(t_struct *env, t_process *proc);
+void			cw_xor(t_struct *env, t_process *proc);
+void			cw_ldi(t_struct *env, t_process *proc);
+void			cw_sti(t_struct *env, t_process *proc);
+void			cw_fork(t_struct *env, t_process *proc);
+void			cw_lld(t_struct *env, t_process *proc);
+void			cw_lldi(t_struct *env, t_process *proc);
+void			cw_lfork(t_struct *env, t_process *proc);
+void			cw_aff(t_struct *env, t_process *proc);*/
 int				char_to_int(char c);
 
 #endif
