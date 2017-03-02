@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/02 14:55:37 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/02 15:21:23 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct			s_info
 	char				comment[COMMENT_LENGTH + 4];
 	char				prog[CHAMP_MAX_SIZE];
 	int					prog_len;
-	t_process			*lpc;
+	t_process			*l_proc;
 }						t_info;
 
 typedef struct			s_struct
@@ -67,7 +67,7 @@ int				parser_prog(int fd, int size);
 void			get_info(char **tab, int ac, int debut, t_struct *env);
 int				create_map(t_struct *env);
 int				parse_champ_nb(t_struct *env, char **av, int debut, int i);
-//int				set_champ_nb(t_struct *env, char **av, int debut);
+//int			set_champ_nb(t_struct *env, char *av, int debut);
 int				get_first_champ(t_struct *env, char **av);
 void			write_map(t_struct *env);
 /*void			cw_live(t_struct *env, t_process *proc);
