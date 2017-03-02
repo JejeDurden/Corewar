@@ -22,7 +22,7 @@ static int	check_proc(t_struct *env, int i, int ret)
 		proc = env->champ[i].l_proc;
 		while (proc)
 		{
-			if (proc->nb_live <= 0)
+			if (proc->nb_live <= 0 && proc->verif == 1)
 			{
 				tmp = proc;
 				proc = proc->next;
@@ -30,9 +30,10 @@ static int	check_proc(t_struct *env, int i, int ret)
 			}
 			else
 			{
-				if (proc->nb_live >= NBR_LIVE)
+				if (proc->nb_live >= NBR_LIVE && proc->verif == 1)
 					ret = 1;
 				proc->nb_live = 0;
+				proc->verif = 1;
 				proc = proc->next;
 			}
 		}
@@ -47,9 +48,9 @@ int		cycle_to_die(t_struct *env, t_game *game)
 
 	if (game->cycle == game->ctd)
 	{
-		f_dec = 0;
 		game->max_checks++;
-		check_proc(env, env->nb_champ - 1, 0);
+		f_dec = check_proc(env, env->nb_champ - 1, 0);
+		ft_memset(env->live_current, 0, MAX_PLAYERS);
 		if (f_dec == 1 || game->max_checks == MAX_CHECKS)
 		{
 			game->max_checks = 0;

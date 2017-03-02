@@ -33,21 +33,14 @@ void		create_process(t_struct *env)
 	}
 }
 
-t_process	*new_process(t_process **l_proc)
+t_process	*new_process(t_process *l_proc)
 {
 	t_process *new;
-	t_process *tmp;
 
 	new = ft_memalloc(sizeof(t_process));
-	if (*l_proc)
-	{
-		tmp = *l_proc;
-		while (tmp && tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-	else
-		*l_proc = new;
+	while (l_proc && l_proc->next)
+		l_proc = l_proc->next;
+	l_proc->next = new;
 	return (new);
 }
 

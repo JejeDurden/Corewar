@@ -37,6 +37,10 @@ SRC_NAME = main.c\
 		   create_process.c\
 		   cycle_to_die.c\
 		   set_champ_nb.c\
+		   pc_rotate.c\
+		   instrs/cw_zjmp.c\
+		   instrs/cw_live.c\
+		   instrs/cw_fork.c\
 
 INC_LIB = -I$(LIB)/includes/
 
