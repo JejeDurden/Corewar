@@ -50,6 +50,7 @@ typedef struct			s_struct
 	int					map_color[MEM_SIZE];
 	int					graphic;
 	int					dump;
+	int					last_champ;
 }						t_struct;
 
 typedef struct			s_game
@@ -57,7 +58,6 @@ typedef struct			s_game
 	int					max_checks;
 	int					cycle_total;
 	int					cycle;
-	int					ctd_total;
 	int					ctd;
 }						t_game;
 
@@ -86,5 +86,15 @@ void			cw_lldi(t_struct *env, t_process *proc);
 void			cw_lfork(t_struct *env, t_process *proc);
 void			cw_aff(t_struct *env, t_process *proc);*/
 int				char_to_int(char c);
+
+
+/*
+** Mon mien
+*/
+
+void			create_process(t_struct *env);
+t_process		*new_process(t_process **l_proc);
+void			del_process(t_process **l_proc, t_process *maillon);
+int				cycle_to_die(t_struct *env, t_game *game);
 
 #endif

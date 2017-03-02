@@ -34,6 +34,8 @@ SRC_NAME = main.c\
 		   get_info.c\
 		   map.c\
 		   char_to_int.c\
+		   create_process.c\
+		   cycle_to_die.c\
 
 INC_LIB = -I$(LIB)/includes/
 

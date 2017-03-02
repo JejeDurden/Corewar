@@ -133,6 +133,7 @@ int			main(int ac, char **av)
 			return (1);
 		get_info(av, ac, debut, &env);
 		create_map(&env);
+		create_process(&env);
 	}
 	return (0);
 }
