@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/02 15:21:23 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/02 17:32:57 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ char			*ft_read(int fd, int size);
 int				parser_prog(int fd, int size);
 void			get_info(char **tab, int ac, int debut, t_struct *env);
 int				create_map(t_struct *env);
-int				parse_champ_nb(t_struct *env, char **av, int debut, int i);
-//int			set_champ_nb(t_struct *env, char *av, int debut);
+int				parse_champ_nb(char **av, int debut);
+int				get_champ_nb(t_struct *env, char **av, int debut, int i);
+int				set_champ_nb(t_struct *env, char **av, int debut, int n);
 int				get_first_champ(t_struct *env, char **av);
 void			write_map(t_struct *env);
 /*void			cw_live(t_struct *env, t_process *proc);

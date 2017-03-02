@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 16:46:46 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/01 11:17:11 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/02 17:35:33 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		get_info(char **tab, int ac, int debut, t_struct *env)
 	debut = get_first_champ(env, tab);
 	while (debut < ac)
 	{
-		debut = parse_champ_nb(env, tab, debut, i);
+		debut = get_champ_nb(env, tab, debut, i);
 		if ((fd = open(tab[debut], O_RDONLY)) == -1)
 		{
 			ft_putstr_fd("Error: Fail to open the file.\n", 2);

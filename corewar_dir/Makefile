@@ -6,7 +6,7 @@
 #    By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 17:05:27 by jgoncalv          #+#    #+#              #
-#    Updated: 2017/03/01 11:16:39 by jdesmare         ###   ########.fr        #
+#    Updated: 2017/03/02 16:50:30 by jdesmare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC_NAME = main.c\
 		   get_info.c\
 		   map.c\
 		   char_to_int.c\
+		   set_champ_nb.c\
 
 INC_LIB = -I$(LIB)/includes/
 

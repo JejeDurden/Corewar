@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:48:53 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/02 10:04:50 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/02 17:39:12 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_parser_open(char *file)
 	return (ret);
 }
 
-int		parse_champ_nb(t_struct *env, char **av, int debut, int i)
+int		parse_champ_nb(char **av, int debut)
 {
 	int		j;
 
@@ -43,18 +43,18 @@ int		parse_champ_nb(t_struct *env, char **av, int debut, int i)
 		{
 			if (!ft_isdigit(av[debut][j]))
 			{
-				ft_putstr_fd("Error: Player number must be an INT\n", 2);
+				ft_putstr_fd("Error: Player number must be a positive INT\n",
+						2);
 				return (-1);
 			}
 		}
-		env->champ[i].number = ft_atol(av[debut]);
-		if (ft_strlen(av[debut]) > 11 || env->champ[i].number < 1 ||
-			env->champ[i].number > INT_MAX)
+		if (ft_strlen(av[debut]) > 11 || ft_atol(av[debut]) < 1 ||
+			ft_atol(av[debut]) > INT_MAX)
 		{
 			ft_putstr_fd("Error: Player number must be a positive INT\n", 2);
 			return (-1);
 		}
-		debut++;
+		return (debut + 1);
 	}
 	return (debut);
 }
@@ -75,7 +75,7 @@ static int	parsing(t_struct *env, int ac, char **av, int debut)
 			return (0);
 		}
 		env->champ[i].number = 0;
-		debut = parse_champ_nb(env, av, debut, i);
+		debut = parse_champ_nb(av, debut);
 		if (debut < 0)
 			return (0);
 		if (!(ext = ft_strrchr(av[debut], '.')) || ft_strcmp(ext, ".cor") != 0)
@@ -133,6 +133,12 @@ int			main(int ac, char **av)
 			return (1);
 		get_info(av, ac, debut, &env);
 		create_map(&env);
+		int i = 0;
+		while (i < MAX_PLAYERS)
+		{
+			printf("champ = |%s|, number = |%d|\n", env.champ[i].name, env.champ[i].number);
+			i++;
+		}
 	}
 	return (0);
 }
