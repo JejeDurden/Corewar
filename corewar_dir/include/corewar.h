@@ -30,7 +30,7 @@ typedef struct		s_info
 	int				pc;
 	int				reg[REG_NUMBER];
 	int				number;
-	int				nbr_live;
+	int				nb_live;
 	int				carry;
 	struct s_info	*next;
 }					t_info;
@@ -39,6 +39,8 @@ typedef struct		s_struct
 {
 	int				nb_champ;
 	t_info			champ[MAX_PLAYERS];
+	int				live[MAX_PLAYERS];
+	int				live_current[MAX_PLAYERS];
 	char			map[MEM_SIZE];
 	int				map_color[MEM_SIZE];
 	int				graphic;
@@ -48,7 +50,10 @@ typedef struct		s_struct
 typedef struct		s_game
 {
 	int				max_checks;
-	int				cycle_to_die;
+	int				cycle_total;
+	int				cycle;
+	int				ctd_total;
+	int				ctd;
 }					t_game;
 
 int				parser(int fd);
