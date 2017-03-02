@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 20:25:34 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/01 09:44:13 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/02 10:02:26 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	write_map(t_struct *env)
 		ascii = char_to_int(env->map[i]);
 		ft_printf("%02x ", ascii);
 		i++;
-		if (i % 64 == 0)
+		if (i % 32 == 0)
 			ft_putchar('\n');
 	}
 }

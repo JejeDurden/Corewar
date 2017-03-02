@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:48:53 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/28 19:38:31 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/02 10:04:50 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int			get_first_champ(t_struct *env, char **av)
 	int		i;
 
 	i = 1;
+	env->dump = -1;
 	if (ft_strcmp("-v", av[i]) == 0)
 	{
 		env->graphic = 1;
