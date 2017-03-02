@@ -19,42 +19,47 @@
 
 # define ERR_P "./corewar [-v] [-dump nbr_cycles] [[-n number] champion.cor]..."
 
-extern t_op		g_op_tab[];
+extern t_op				g_op_tab[];
 
-typedef struct		s_info
-{
-	char			name[PROG_NAME_LENGTH + 4];
-	char			comment[COMMENT_LENGTH + 4];
-	int				prog_len;
-	char			prog[CHAMP_MAX_SIZE];
-	int				pc;
-	int				reg[REG_NUMBER];
-	int				number;
-	int				nb_live;
-	int				carry;
-	struct s_info	*next;
-}					t_info;
+typedef	struct			s_process
+{	
+	int					pc;
+	int					reg[REG_NUMBER];
+	int					nb_live;
+	int					carry;
+	struct s_process	*next;
+}						t_process;
 
-typedef struct		s_struct
+typedef struct			s_info
 {
-	int				nb_champ;
-	t_info			champ[MAX_PLAYERS];
-	int				live[MAX_PLAYERS];
-	int				live_current[MAX_PLAYERS];
-	char			map[MEM_SIZE];
-	int				map_color[MEM_SIZE];
-	int				graphic;
-	int				dump;
-}					t_struct;
+	int					number;
+	char				name[PROG_NAME_LENGTH + 4];
+	char				comment[COMMENT_LENGTH + 4];
+	char				prog[CHAMP_MAX_SIZE];
+	int					prog_len;
+	t_process			*pc;
+}						t_info;
 
-typedef struct		s_game
-{
-	int				max_checks;
-	int				cycle_total;
-	int				cycle;
-	int				ctd_total;
-	int				ctd;
-}					t_game;
+typedef struct			s_struct
+{	
+	int					nb_champ;
+	t_info				champ[MAX_PLAYERS];
+	int					live[MAX_PLAYERS];
+	int					live_current[MAX_PLAYERS];
+	char				map[MEM_SIZE];
+	int					map_color[MEM_SIZE];
+	int					graphic;
+	int					dump;
+}						t_struct;
+
+typedef struct			s_game
+{	
+	int					max_checks;
+	int					cycle_total;
+	int					cycle;
+	int					ctd_total;
+	int					ctd;
+}						t_game;
 
 int				parser(int fd);
 char			*ft_read(int fd, int size);
