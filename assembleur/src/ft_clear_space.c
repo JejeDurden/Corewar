@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 09:00:25 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/02/27 15:01:13 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/02 13:51:49 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char			*ft_clear_space(char *line)
 	next_space = get_next_space(line);
 	if (next_space == '\0')
 		return (line);
-	cur = ft_strchr(new, next_space);
+	cur = ft_strchr(line, next_space);
 	*cur = '\0';
 	temp = cur + 1;
 	while (next_space != '\0')

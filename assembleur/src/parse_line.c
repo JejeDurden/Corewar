@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 12:55:57 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/27 13:40:36 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/02 14:09:20 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int				parse_line(t_struct *env)
 	int i;
 
 	i = 0;
+	//ft_printf("%s\n", env->check[env->j]);
 	if (env->name == 0 || env->comment == 0)
 		return (get_header(env, env->check[env->j]));
 	if (env->check[env->j][0] == '#' || env->check[env->j][0] == ';')

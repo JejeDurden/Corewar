@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 18:28:39 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 17:39:02 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/02 14:18:01 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static int		parse_second_param(t_struct *env, char *line, int i)
 {
-	int j;
-
 	env->oct_size += 1;
 	i++;
 	while (line[i] && ft_isspace(line[i]))
@@ -26,17 +24,8 @@ static int		parse_second_param(t_struct *env, char *line, int i)
 		free_struct(env);
 		exit(1);
 	}
-	i++;
-	j = i;
-	while (line[j] && ft_isdigit(line[j]))
-		j++;
-	if (j - i >= 3)
-	{
-		ft_putstr("Load : Invalid register\n");
-		free_struct(env);
-		exit(1);
-	}
-	check_end_line(env, line, j);
+	i = register_number(env, line, "Load", i);
+	check_end_line(env, line, i);
 	return (1);
 }
 
