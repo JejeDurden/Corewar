@@ -37,7 +37,7 @@ typedef struct			s_info
 	char				comment[COMMENT_LENGTH + 4];
 	char				prog[CHAMP_MAX_SIZE];
 	int					prog_len;
-	t_process			*pc;
+	t_process			*lpc;
 }						t_info;
 
 typedef struct			s_struct
