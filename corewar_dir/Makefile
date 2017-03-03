@@ -6,7 +6,7 @@
 #    By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 17:05:27 by jgoncalv          #+#    #+#              #
-#    Updated: 2017/03/02 16:50:30 by jdesmare         ###   ########.fr        #
+#    Updated: 2017/03/03 08:27:57 by jdesmare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC_NAME = main.c\
 		   instrs/cw_zjmp.c\
 		   instrs/cw_live.c\
 		   instrs/cw_fork.c\
+		   start.c\
 
 INC_LIB = -I$(LIB)/includes/
 

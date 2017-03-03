@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:48:53 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/02 17:39:12 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/02 18:07:10 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ int			main(int ac, char **av)
 		get_info(av, ac, debut, &env);
 		create_map(&env);
 		create_process(&env);
+		start_game(env);
 	}
 	return (0);
 }

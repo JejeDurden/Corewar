@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/02 17:32:57 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/03 08:38:15 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef	struct			s_process
 	int					nb_live;
 	int					carry;
 	int					verif;
+	int					action;
+	int					wait;
 	struct s_process	*next;
 }						t_process;
 
@@ -72,6 +74,7 @@ int				get_champ_nb(t_struct *env, char **av, int debut, int i);
 int				set_champ_nb(t_struct *env, char **av, int debut, int n);
 int				get_first_champ(t_struct *env, char **av);
 void			write_map(t_struct *env);
+int				start_game(t_struct *env);
 /*void			cw_live(t_struct *env, t_process *proc);
 void			cw_ld(t_struct *env, t_process *proc);
 void			cw_st(t_struct *env, t_process *proc);
