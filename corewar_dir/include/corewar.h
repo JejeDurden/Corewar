@@ -77,21 +77,21 @@ int				get_first_champ(t_struct *env, char **av);
 void			write_map(t_struct *env);
 int				start_game(t_struct *env);
 void			cw_live(t_struct *env, t_process *proc);
-/*void			cw_ld(t_struct *env, t_process *proc);
+void			cw_ld(t_struct *env, t_process *proc);
+//void			cw_ldi(t_struct *env, t_process *proc);
+void			cw_lld(t_struct *env, t_process *proc);
+//void			cw_lldi(t_struct *env, t_process *proc);
 void			cw_st(t_struct *env, t_process *proc);
+//void			cw_sti(t_struct *env, t_process *proc);
 void			cw_add(t_struct *env, t_process *proc);
 void			cw_sub(t_struct *env, t_process *proc);
 void			cw_and(t_struct *env, t_process *proc);
 void			cw_or(t_struct *env, t_process *proc);
 void			cw_xor(t_struct *env, t_process *proc);
 void			cw_zjmp(t_struct *env, t_process *proc);
-void			cw_ldi(t_struct *env, t_process *proc);
-void			cw_sti(t_struct *env, t_process *proc);
 void			cw_fork(t_struct *env, t_process *proc);
-void			cw_lld(t_struct *env, t_process *proc);
-void			cw_lldi(t_struct *env, t_process *proc);
 void			cw_lfork(t_struct *env, t_process *proc);
-void			cw_aff(t_struct *env, t_process *proc);*/
+void			cw_aff(t_struct *env, t_process *proc);
 int				char_to_int(char c);
 
 
@@ -120,10 +120,6 @@ int				binary_args_direct(t_struct *env, t_process *proc,
 				unsigned int *tab , int a);
 int				binary_args_reg(t_struct *env, t_process *proc,
 				unsigned int *tab , int a);
-
-
-
-
 
 
 #endif

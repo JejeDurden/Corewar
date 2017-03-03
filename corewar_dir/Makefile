@@ -41,6 +41,11 @@ SRC_NAME = main.c\
 		   instrs/cw_zjmp.c\
 		   instrs/cw_live.c\
 		   instrs/cw_fork.c\
+		   instrs/cw_ld.c\
+		   instrs/cw_lld.c\
+		   instrs/cw_st.c\
+		   instrs/cw_add.c\
+		   instrs/cw_sub.c\
 		   start.c\
 
 INC_LIB = -I$(LIB)/includes/
