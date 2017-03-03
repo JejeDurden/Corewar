@@ -6,7 +6,7 @@
 #    By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 17:05:27 by jgoncalv          #+#    #+#              #
-#    Updated: 2017/03/03 16:39:25 by rghirell         ###   ########.fr        #
+#    Updated: 2017/03/03 17:15:47 by jdesmare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = corewar
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 LIB = ../libft
 
@@ -38,6 +38,7 @@ SRC_NAME = main.c\
 		   cycle_to_die.c\
 		   set_champ_nb.c\
 		   pc_rotate.c\
+		   start.c\
 		   instrs/cw_zjmp.c\
 		   instrs/cw_live.c\
 		   instrs/cw_fork.c\
@@ -46,13 +47,12 @@ SRC_NAME = main.c\
 		   instrs/cw_st.c\
 		   instrs/cw_add.c\
 		   instrs/cw_sub.c\
-		   start.c\
-		   tab_op.c\
-		   same_parameters.c\
-		   reg_ind_params.c\
-		   ind_dir_params.c\
-		   binary.c\
-		   aff.c\
+		   instrs/tab_op.c\
+		   instrs/same_parameters.c\
+		   instrs/reg_ind_params.c\
+		   instrs/ind_dir_params.c\
+		   instrs/binary.c\
+		   instrs/aff.c\
 
 INC_LIB = -I$(LIB)/includes/
 

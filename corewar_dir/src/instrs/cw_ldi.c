@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tab_op.c                                           :+:      :+:    :+:   */
+/*   cw_ldi.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/03 14:08:22 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/03 17:17:25 by jdesmare         ###   ########.fr       */
+/*   Created: 2017/03/03 17:10:11 by jdesmare          #+#    #+#             */
+/*   Updated: 2017/03/03 17:11:44 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	tab_op(t_process *proc, int *tab, int a, int i)
+void	cw_ldi(t_struct *env, t_process *proc)
 {
-	if (a == 0)
-		proc->reg[i - 1] = tab[0] & tab[1];
-	else if (a == 1)
-		proc->reg[i - 1] = tab[0] | tab[1];
-	else
-		proc->reg[i - 1] = tab[0] ^ tab[1];
+	(void)env;
+	(void)proc;
 }

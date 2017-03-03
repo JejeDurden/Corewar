@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 14:27:11 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/03 17:18:20 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ void			write_map(t_struct *env);
 int				start_game(t_struct *env);
 void			cw_live(t_struct *env, t_process *proc);
 void			cw_ld(t_struct *env, t_process *proc);
-//void			cw_ldi(t_struct *env, t_process *proc);
+void			cw_ldi(t_struct *env, t_process *proc);
 void			cw_lld(t_struct *env, t_process *proc);
-//void			cw_lldi(t_struct *env, t_process *proc);
+void			cw_lldi(t_struct *env, t_process *proc);
 void			cw_st(t_struct *env, t_process *proc);
-//void			cw_sti(t_struct *env, t_process *proc);
+void			cw_sti(t_struct *env, t_process *proc);
 void			cw_add(t_struct *env, t_process *proc);
 void			cw_sub(t_struct *env, t_process *proc);
 void			cw_and(t_struct *env, t_process *proc);
@@ -105,7 +105,7 @@ void			del_process(t_process **l_proc, t_process *maillon);
 int				cycle_to_die(t_struct *env, t_game *game);
 int				check_proc_live(t_struct *env);
 int				pc_rotate(int pc, int i);
-void			tab_op(t_process *proc, int *tab, int a);
+void			tab_op(t_process *proc, int *tab, int a, int i);
 int				binary_args(t_struct *env, t_process *proc, unsigned int *tab,
 				int a);
 int				binary_args_ind_dir(t_struct *env,

@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 09:59:56 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/03 14:22:45 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/03 17:17:40 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int				binary_args_ind_dir(t_struct *env,
 		to_register(env, proc, &tab, 0);
 	else
 		to_register(env, proc, &tab, 1);
-	tab_op(proc, &tab, a);
+	tab_op(proc, &tab, a, i);
 	proc->pc = pc_rotate(proc->pc, 9);
 	return (1);
 }

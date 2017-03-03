@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/03 14:37:46 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/03 15:54:03 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int				start_game(t_struct *env)
 	int			i;
 
 	assign_apf(f);
+	if (env->graphic == 1)
+		initscr();
 	while (cycle_to_die(env, &game) == 1)
 	{
 		i = 0;

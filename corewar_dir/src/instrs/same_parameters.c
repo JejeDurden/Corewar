@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:57:55 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/03 14:23:36 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/03 17:17:18 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int					binary_args_indirect(t_struct *env, t_process *proc,
 	if (i > 16)
 		return (-1);
 	to_register(env, proc, &tab, 0);
-	tab_op(proc, &tab, a);
+	tab_op(proc, &tab, a, i);
 	proc->pc = pc_rotate(proc->pc, 7);
 	return (1);
 }
@@ -61,7 +61,7 @@ int					binary_args_direct(t_struct *env, t_process *proc,
 	if (i > 16)
 		return (-1);
 	to_register(env, proc, &tab, 1);
-	tab_op(proc, &tab, a);
+	tab_op(proc, &tab, a, i);
 	proc->pc = pc_rotate(proc->pc, 11);
 	return (1);
 }
@@ -75,7 +75,7 @@ int					binary_args_reg(t_struct *env, t_process *proc,
 	if (i > 16)
 		return (-1);
 	to_register(env, proc, &tab, 2);
-	tab_op(proc, &tab, a);
+	tab_op(proc, &tab, a, i);
 	proc->pc = pc_rotate(proc->pc, 5);
 	return (1);
 }
