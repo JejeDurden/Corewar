@@ -15,6 +15,6 @@
 int		pc_rotate(int pc, int i)
 {
 	if (pc + i >= MEM_SIZE)
-		return (pc + (i - UINT_MAX));
+		return ((pc + (i % MEM_SIZE)) - MEM_SIZE);
 	return (pc + i);
 }
