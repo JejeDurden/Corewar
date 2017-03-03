@@ -21,7 +21,7 @@ void	cw_live(t_struct *env, t_process *proc)
 	live = (env->map[pc_rotate(proc->pc, 1)] |
 		env->map[pc_rotate(proc->pc, 2)] |
 		env->map[pc_rotate(proc->pc, 3)] |
-		env->map[pc_rotate(proc->pc, 3)]) & 0xFFFFFF;
+		env->map[pc_rotate(proc->pc, 4)]) & 0xFFFFFF;
 	while (i < env->nb_champ)
 	{
 		if (env->champ[i].number == live)
@@ -35,5 +35,5 @@ void	cw_live(t_struct *env, t_process *proc)
 		}
 		i++;
 	}
-	proc->pc = pc_rotate(proc->pc, 4);
+	proc->pc = pc_rotate(proc->pc, 5);
 }
