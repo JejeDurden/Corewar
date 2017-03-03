@@ -6,11 +6,31 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/03 13:29:47 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/03 14:37:46 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+static	void	assign_apf(void (*f[16])(t_struct*, t_process*))
+{
+	f[0] = cw_live;
+	f[1] = cw_ld;
+	f[2] = cw_st;
+	f[3] = cw_add;
+	f[4] = cw_sub;
+	f[5] = cw_and;
+	f[6] = cw_or;
+	f[7] = cw_xor;
+	f[8] = cw_zjmp;
+	f[9] = cw_ldi;
+	f[10] = cw_sti;
+	f[11] = cw_fork;
+	f[12] = cw_lld;
+	f[13] = cw_lldi;
+	f[14] = cw_lfork;
+	f[15] = cw_aff;
+}
 
 static	int		is_checked(t_struct *env, t_process *proc)
 {
@@ -21,7 +41,7 @@ static	int		is_checked(t_struct *env, t_process *proc)
 }
 
 static	int		proc_exec(t_process *proc, t_struct *env,
-												void (*f[16]) (t_struct*, t_process*))
+										void (*f[16]) (t_struct*, t_process*))
 {
 
 	if (proc->action == 1 && proc->wait > 0 && is_checked(env, proc) == 1)
@@ -44,7 +64,7 @@ static	int		proc_exec(t_process *proc, t_struct *env,
 }
 
 static void		proc_get(t_info *champ, t_struct *env,
-												void (*f[16])(t_struct*, t_process*))
+										void (*f[16])(t_struct*, t_process*))
 {
 	t_process	*proc;
 
@@ -62,7 +82,7 @@ int				start_game(t_struct *env)
 	void		(*f[16])(t_struct*, t_process*);
 	int			i;
 
-	f = {cw_live, cw_ld, cw_st, cw_add, cw_sub, cw_and, cw_or, cw_xor, cw_zjmp, cw_ldi, cw_sti, cw_fork, cw_lld, cw_lldi, cw_lfork, cw_aff};
+	assign_apf(f);
 	while (cycle_to_die(env, &game) == 1)
 	{
 		i = 0;
