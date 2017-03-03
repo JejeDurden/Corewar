@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 14:18:01 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/03 14:27:11 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,9 @@ int				binary_args_reg_dir(t_struct *env,
 				t_process *proc, unsigned int *tab, int a);
 int				binary_args_reg_dir(t_struct *env,
 				t_process *proc, unsigned int *tab, int a);
-int				binary_args_indirect(t_struct *env, t_proc *proc,
+int				binary_args_indirect(t_struct *env, t_process *proc,
 				unsigned int *tab , int a);
-int				binary_args_direct(t_struct *env, t_proc *proc,
+int				binary_args_direct(t_struct *env, t_process *proc,
 				unsigned int *tab , int a);
 int				binary_args_reg(t_struct *env, t_process *proc,
 				unsigned int *tab , int a);

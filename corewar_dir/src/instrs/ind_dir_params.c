@@ -6,13 +6,13 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 09:59:56 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/03 14:11:19 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/03 14:22:45 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void			to_register(t_struct *env, t_proc *proc,
+static void			to_register(t_struct *env, t_process *proc,
 					unsigned int *tab, int a)
 {
 	if (a == 0)
