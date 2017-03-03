@@ -12,29 +12,6 @@
 
 #include "corewar.h"
 
-static void		*create_tab()
-{
-	static void		(*f[16])(t_struct, t_process);
-
-	f[0] = cw_live;
-	f[1] = cw_ld;
-	f[2] = cw_st;
-	f[3] = cw_add;
-	f[4] = cw_sub;
-	f[5] = cw_and;
-	f[6] = cw_or;
-	f[7] = cw_xor;
-	f[8] = cw_zjmp;
-	f[9] = cw_ldi;
-	f[10] = cw_sti;
-	f[11] = cw_fork;
-	f[12] = cw_lld;
-	f[13] = cw_lldi;
-	f[14] = cw_lfork;
-	f[15] = cw_aff;
-	return (f);
-}
-
 static	int		is_checked(t_struct *env, t_process *proc)
 {
 	if (proc->check == char_to_int(env->map[proc->pc]))
@@ -44,7 +21,7 @@ static	int		is_checked(t_struct *env, t_process *proc)
 }
 
 static	int		proc_exec(t_process *proc, t_struct *env,
-												void (*f) (t_struct, t_process))
+												void (*f[16]) (t_struct*, t_process*))
 {
 
 	if (proc->action == 1 && proc->wait > 0 && is_checked(env, proc) == 1)
@@ -66,8 +43,8 @@ static	int		proc_exec(t_process *proc, t_struct *env,
 	}
 }
 
-static int		proc_get(t_info *champ, t_struct *env,
-												void (*f)(t_struct, t_process))
+static void		proc_get(t_info *champ, t_struct *env,
+												void (*f[16])(t_struct*, t_process*))
 {
 	t_process	*proc;
 
@@ -82,25 +59,22 @@ static int		proc_get(t_info *champ, t_struct *env,
 int				start_game(t_struct *env)
 {
 	t_game		game;
-	void		*func;
-	void		(*f[16])(t_struct, t_process);
+	void		(*f[16])(t_struct*, t_process*);
 	int			i;
 
-	func = create_tab();
-	f = (void (*f[16])(t_struct, t_process))func;
+	f = {cw_live, cw_ld, cw_st, cw_add, cw_sub, cw_and, cw_or, cw_xor, cw_zjmp, cw_ldi, cw_sti, cw_fork, cw_lld, cw_lldi, cw_lfork, cw_aff};
 	while (cycle_to_die(env, &game) == 1)
 	{
 		i = 0;
 		while (i < MAX_PLAYERS)
 		{
-			if (proc_get(env->champ[i], env, f) == -1)
-				return (-1);
+			proc_get(&env->champ[i], env, f);
 			i++;
 		}
-		game->cycle++;
-		game->cycle_total++;
+		game.cycle++;
+		game.cycle_total++;
 	}
-	ft_printf("le joueur %d(%s) a gagné\n", env->champ[last_champ]->number,
-			env->champ[last_champ]->name);
+	ft_printf("le joueur %d(%s) a gagné\n", env->champ[env->last_champ].number,
+			env->champ[env->last_champ].name);
 	return (1);
 }
