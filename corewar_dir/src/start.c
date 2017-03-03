@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/03 13:13:57 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/03 13:29:47 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int				start_game(t_struct *env)
 	int			i;
 
 	func = create_tab();
-	f = (void *f[16](t_struct, t_process))func;
+	f = (void (*f[16])(t_struct, t_process))func;
 	while (cycle_to_die(env, &game) == 1)
 	{
 		i = 0;
