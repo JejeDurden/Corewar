@@ -6,7 +6,7 @@
 #    By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 17:05:27 by jgoncalv          #+#    #+#              #
-#    Updated: 2017/03/03 08:27:57 by jdesmare         ###   ########.fr        #
+#    Updated: 2017/03/03 16:39:25 by rghirell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,12 @@ SRC_NAME = main.c\
 		   instrs/cw_add.c\
 		   instrs/cw_sub.c\
 		   start.c\
+		   tab_op.c\
+		   same_parameters.c\
+		   reg_ind_params.c\
+		   ind_dir_params.c\
+		   binary.c\
+		   aff.c\
 
 INC_LIB = -I$(LIB)/includes/
 
