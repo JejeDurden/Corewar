@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 12:55:02 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/03 11:11:31 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/03 11:38:51 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,12 @@ void			cw_and(t_struct *env, t_process *proc)
 	unsigned int tab[2];
 
 	if (binary_args(env, proc, tab, 0) < 0)
-		proc->pc++;
+	{
+		if (prog->pc + 1 >= MEM_SIZE)
+			proc->pc = (prog->pc - MEM_SIZE) + 1;
+		else
+			prog->pc++;
+	}
 }
 
 void			cw_or(t_struct *env, t_process *proc)
@@ -48,7 +53,12 @@ void			cw_or(t_struct *env, t_process *proc)
 	unsigned int tab[2];
 
 	if (binary_args(env, proc, tab, 1) < 0)
-		proc->pc++;
+	{
+		if (prog->pc + 1 >= MEM_SIZE)
+			proc->pc = (prog->pc - MEM_SIZE) + 1;
+		else
+			prog->pc++;
+	}
 }
 
 void			cw_xor(t_struct *env, t_process *proc)
@@ -56,5 +66,10 @@ void			cw_xor(t_struct *env, t_process *proc)
 	unsigned int tab[2];
 
 	if (binary_args(env, proc, tab, 2) < 0)
-		proc->pc++;
+	{
+		if (prog->pc + 1 >= MEM_SIZE)
+			proc->pc = (prog->pc - MEM_SIZE) + 1;
+		else
+			prog->pc++;
+	}
 }
