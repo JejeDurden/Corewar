@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cw_fork.c                                          :+:      :+:    :+:   */
+/*   cw_lfork.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/02 20:57:35 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/02 20:57:36 by jgoncalv         ###   ########.fr       */
+/*   Created: 2017/03/03 14:07:35 by jgoncalv          #+#    #+#             */
+/*   Updated: 2017/03/03 14:07:36 by jgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	cw_fork(t_struct *env, t_process *proc)
+void	cw_lfork(t_struct *env, t_process *proc)
 {
 	int			live;
 	t_process	*new;
