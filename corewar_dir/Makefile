@@ -6,7 +6,7 @@
 #    By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 17:05:27 by jgoncalv          #+#    #+#              #
-#    Updated: 2017/03/03 17:15:47 by jdesmare         ###   ########.fr        #
+#    Updated: 2017/03/03 17:45:46 by rghirell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRC_NAME = main.c\
 		   instrs/ind_dir_params.c\
 		   instrs/binary.c\
 		   instrs/aff.c\
+		   instrs/reg_dir_params.c\
 
 INC_LIB = -I$(LIB)/includes/
 
