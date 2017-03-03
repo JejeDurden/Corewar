@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 09:59:56 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/03 17:17:40 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/03 17:20:56 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ static void			to_register(t_struct *env, t_process *proc,
 {
 	if (a == 0)
 	{
-		tab[0] = char_to_int(env->map[pc_rotate(proc->pc + 2)]) << 8;
-		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc + 3)]);
-		tab[1] = char_to_int(env->map[pc_rotate(proc->pc + 4)]) << 24;
-		tab[1] = tab[1] | char_to_int(env->map[pc_rotate(proc->pc + 5)]) << 16;
-		tab[1] = tab[1] | char_to_int(env->map[pc_rotate(proc->pc + 6)]) << 8;
-		tab[1] = tab[1] | char_to_int(env->map[pc_rotate(proc->pc + 7)]);
+		tab[0] = char_to_int(env->map[pc_rotate(proc->pc, 2)]) << 8;
+		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc, 3)]);
+		tab[1] = char_to_int(env->map[pc_rotate(proc->pc, 4)]) << 24;
+		tab[1] = tab[1] | char_to_int(env->map[pc_rotate(proc->pc, 5)]) << 16;
+		tab[1] = tab[1] | char_to_int(env->map[pc_rotate(proc->pc, 6)]) << 8;
+		tab[1] = tab[1] | char_to_int(env->map[pc_rotate(proc->pc, 7)]);
 	}
 	else
 	{
-		tab[0] = char_to_int(env->map[pc_rotate(proc->pc + 2)]) << 24;
-		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc + 3)]) << 16;
-		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc + 4)]) << 8;
-		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc + 5)]);
-		tab[1] = char_to_int(env->map[pc_rotate(proc->pc + 6)]) << 8;
-		tab[1] = tab[1] | char_to_int(env->map[pc_rotate(proc->pc + 7)]);
+		tab[0] = char_to_int(env->map[pc_rotate(proc->pc, 2)]) << 24;
+		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc, 3)]) << 16;
+		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc, 4)]) << 8;
+		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc, 5)]);
+		tab[1] = char_to_int(env->map[pc_rotate(proc->pc, 6)]) << 8;
+		tab[1] = tab[1] | char_to_int(env->map[pc_rotate(proc->pc, 7)]);
 	}
 }
    
