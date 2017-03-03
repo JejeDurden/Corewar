@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/03 12:50:59 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/03 13:13:57 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		*create_tab()
 {
-	void	(*f[16])(t_struct, t_process);
+	static void		(*f[16])(t_struct, t_process);
 
 	f[0] = cw_live;
 	f[1] = cw_ld;
@@ -35,7 +35,7 @@ static void		*create_tab()
 	return (f);
 }
 
-static	int		is_verif(t_struct *env, t_process *proc)
+static	int		is_checked(t_struct *env, t_process *proc)
 {
 	if (proc->check == char_to_int(env->map[proc->pc]))
 		return (1);
@@ -44,7 +44,7 @@ static	int		is_verif(t_struct *env, t_process *proc)
 }
 
 static	int		proc_exec(t_process *proc, t_struct *env,
-												void (*f) (t_struct, t_game))
+												void (*f) (t_struct, t_process))
 {
 
 	if (proc->action == 1 && proc->wait > 0 && is_checked(env, proc) == 1)
@@ -54,12 +54,12 @@ static	int		proc_exec(t_process *proc, t_struct *env,
 	}
 	else if (proc->action == 1 && proc->wait == 0 && is_checked(env, proc) == 1)
 	{
-		f[proc->check - 1](proc, game);
-		return (1)
+		f[proc->check - 1](env, proc);
+		return (1);
 	}
 	else
 	{
-		proc->check = char_to_int(env->map[pc]);
+		proc->check = char_to_int(env->map[proc->pc]);
 		proc->wait = g_op_tab[proc->check - 1].nb_cycles;
 		proc->action = 1;
 		return (1);
@@ -67,7 +67,7 @@ static	int		proc_exec(t_process *proc, t_struct *env,
 }
 
 static int		proc_get(t_info *champ, t_struct *env,
-												void (*f)(t_struct, t_game))
+												void (*f)(t_struct, t_process))
 {
 	t_process	*proc;
 
@@ -82,10 +82,12 @@ static int		proc_get(t_info *champ, t_struct *env,
 int				start_game(t_struct *env)
 {
 	t_game		game;
-	void	(*f[16])(t_struct, t_process);
+	void		*func;
+	void		(*f[16])(t_struct, t_process);
 	int			i;
 
-	f = (void(*f[16])(t_struct, t_process))create_tab();
+	func = create_tab();
+	f = (void *f[16](t_struct, t_process))func;
 	while (cycle_to_die(env, &game) == 1)
 	{
 		i = 0;
