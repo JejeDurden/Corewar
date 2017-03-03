@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 12:55:02 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/03 11:38:51 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/03 14:15:30 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 
 int				binary_args(t_struct *env, t_process *proc, unsigned int *tab,
-				int a);
+				int a)
 {
 	int ascii;
 

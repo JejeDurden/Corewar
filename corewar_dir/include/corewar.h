@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 12:50:31 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/03 14:18:01 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,25 @@ void			del_process(t_process **l_proc, t_process *maillon);
 int				cycle_to_die(t_struct *env, t_game *game);
 int				check_proc_live(t_struct *env);
 int				pc_rotate(int pc, int i);
+void			tab_op(t_process *proc, int *tab, int a);
+int				binary_args(t_struct *env, t_process *proc, unsigned int *tab,
+				int a);
+int				binary_args_ind_dir(t_struct *env,
+				t_process *proc, unsigned int *tab, int a);
+int				binary_args_reg_dir(t_struct *env,
+				t_process *proc, unsigned int *tab, int a);
+int				binary_args_reg_dir(t_struct *env,
+				t_process *proc, unsigned int *tab, int a);
+int				binary_args_indirect(t_struct *env, t_proc *proc,
+				unsigned int *tab , int a);
+int				binary_args_direct(t_struct *env, t_proc *proc,
+				unsigned int *tab , int a);
+int				binary_args_reg(t_struct *env, t_process *proc,
+				unsigned int *tab , int a);
+
+
+
+
+
 
 #endif
