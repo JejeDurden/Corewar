@@ -26,12 +26,13 @@ void	cw_live(t_struct *env, t_process *proc)
 	{
 		if (env->champ[i].number == live)
 		{
-			ft_printf("Un processus dit que le joueur %s est en vie\n", env->champ[i].name);
+			ft_printf("Un processus dit que le joueur %s est en vie\n",
+				env->champ[i].name);
 			proc->nb_live++;
 			env->live[i]++;
 			env->live_current[i]++;
 			env->last_champ = i;
-			break;
+			break ;
 		}
 		i++;
 	}
