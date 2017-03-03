@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 09:44:00 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/03 12:50:31 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # define ERR_P "./corewar [-v] [-dump nbr_cycles] [[-n number] champion.cor]..."
 
 extern t_op				g_op_tab[];
-extern char				*g_inst_tab[];
 
 typedef	struct			s_process
 {	
@@ -31,6 +30,7 @@ typedef	struct			s_process
 	int					verif;
 	int					action;
 	int					wait;
+	int					check;
 	struct s_process	*next;
 }						t_process;
 

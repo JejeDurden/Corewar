@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/03 09:43:43 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/03 12:50:59 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void		*create_tab()
 
 static	int		is_verif(t_struct *env, t_process *proc)
 {
-	if (proc->verif == char_to_int(env->map[proc->pc]))
+	if (proc->check == char_to_int(env->map[proc->pc]))
 		return (1);
 	else
 		return (0);
@@ -47,20 +47,20 @@ static	int		proc_exec(t_process *proc, t_struct *env,
 												void (*f) (t_struct, t_game))
 {
 
-	if (proc->action == 1 && proc->wait > 0 && is_verif(env, proc) == 1)
+	if (proc->action == 1 && proc->wait > 0 && is_checked(env, proc) == 1)
 	{
 		proc->wait--;
 		return (1);
 	}
-	else if (proc->action == 1 && proc->wait == 0 && is_verif(env, proc) == 1)
+	else if (proc->action == 1 && proc->wait == 0 && is_checked(env, proc) == 1)
 	{
-		f[proc->verif - 1](proc, game);
+		f[proc->check - 1](proc, game);
 		return (1)
 	}
 	else
 	{
-		proc->verif = char_to_int(env->map[pc]);
-		proc->wait = g_op_tab[proc->verifi - 1].nb_cycles;
+		proc->check = char_to_int(env->map[pc]);
+		proc->wait = g_op_tab[proc->check - 1].nb_cycles;
 		proc->action = 1;
 		return (1);
 	}
