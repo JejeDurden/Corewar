@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 10:12:54 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/03 17:21:21 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/03 17:37:22 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void			to_register(t_struct *env, t_process *proc,
 		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc, 3)]) << 16;
 		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc, 4)]) << 8;
 		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc, 5)]);
-		tab[1] = char_to_int(env->map[proc->pc + 6]);
+		tab[1] = char_to_int(env->map[pc_rotate(proc->pc + 6)]);
 	}
 	else
 	{
@@ -36,6 +36,8 @@ static void			to_register(t_struct *env, t_process *proc,
 int				binary_args_reg_dir(t_struct *env,
 				t_process *proc, unsigned int *tab, int a)
 {
+	int i;
+
 	i = char_to_int(env->map[proc->pc + 7]);
 	if (i > 16)
 		return (-1);
@@ -43,7 +45,7 @@ int				binary_args_reg_dir(t_struct *env,
 		to_register(env, proc, &tab, 0);
 	else
 		to_register(env, proc, &tab, 1);
-	tab_op(proc, &tab, a, i);
+	tab_op(proc, tab, a, i);
 	proc->pc = pc_rotate(proc->pc, 8);
 	return (1);
 }

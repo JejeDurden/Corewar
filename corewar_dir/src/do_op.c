@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tab_op.c                                           :+:      :+:    :+:   */
+/*   do_op.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/03 14:08:22 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/03 17:30:01 by rghirell         ###   ########.fr       */
+/*   Created: 2017/03/02 12:57:00 by rghirell          #+#    #+#             */
+/*   Updated: 2017/03/02 13:09:27 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	tab_op(t_process *proc, unsigned int *tab, int a, int i)
+void		sub(t_info *champ, int i, int j, int k)
 {
-	if (a == 0)
-		proc->reg[i - 1] = tab[0] & tab[1];
-	else if (a == 1)
-		proc->reg[i - 1] = tab[0] | tab[1];
+	if (champ->carry == 0)
+		champ->carry = 1;
 	else
-		proc->reg[i - 1] = tab[0] ^ tab[1];
+		champ->carry = 0;
+	champ->reg[k - 1] = champ->reg[i - 1] - champ->reg[i - 1];
+}
+
+void		add(t_info *champ, int i, int j, int k)
+{
+	if (champ->carry == 0)
+		champ->carry = 1;
+	else
+		champ->carry = 0;
+	champ->reg[k - 1] = champ->reg[i - 1] + champ->reg[i - 1];
 }

@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 12:55:02 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/03 14:15:30 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/03 17:37:20 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int				binary_args(t_struct *env, t_process *proc, unsigned int *tab,
 		return (binary_args_indirect(env, proc, tab, a));
 	if (ascii == 164)
 		return (binary_args_direct(env, proc, tab, a));
-	else if (ascii == 84);
-		return (binary_args_reg(env, proc, tab, ascii, a));
+	else if (ascii == 84)
+		return (binary_args_reg(env, proc, tab, a));
 	else if (ascii == 228 || ascii == 180)
-		return (binary_args_ind_dir(env, proc, a));
-	else if (ascii == 148 || 100)
-		return (binary_args_dir_reg(env, proc, a));
+		return (binary_args_ind_dir(env, proc, tab, a));
+	else if (ascii == 148 || ascii == 100)
+		return (binary_args_reg_dir(env, proc, tab, a));
 	else if (ascii == 212 || ascii == 116)
-		return (binary_args_ind_reg(env, proc, a));
+		return (binary_args_reg_ind(env, proc, tab, a));
 	return (-1);
 }
 
@@ -41,10 +41,10 @@ void			cw_and(t_struct *env, t_process *proc)
 
 	if (binary_args(env, proc, tab, 0) < 0)
 	{
-		if (prog->pc + 1 >= MEM_SIZE)
-			proc->pc = (prog->pc - MEM_SIZE) + 1;
+		if (proc->pc + 1 >= MEM_SIZE)
+			proc->pc = (proc->pc - MEM_SIZE) + 1;
 		else
-			prog->pc++;
+			proc->pc++;
 	}
 }
 
@@ -54,10 +54,10 @@ void			cw_or(t_struct *env, t_process *proc)
 
 	if (binary_args(env, proc, tab, 1) < 0)
 	{
-		if (prog->pc + 1 >= MEM_SIZE)
-			proc->pc = (prog->pc - MEM_SIZE) + 1;
+		if (proc->pc + 1 >= MEM_SIZE)
+			proc->pc = (proc->pc - MEM_SIZE) + 1;
 		else
-			prog->pc++;
+			proc->pc++;
 	}
 }
 
@@ -67,9 +67,9 @@ void			cw_xor(t_struct *env, t_process *proc)
 
 	if (binary_args(env, proc, tab, 2) < 0)
 	{
-		if (prog->pc + 1 >= MEM_SIZE)
-			proc->pc = (prog->pc - MEM_SIZE) + 1;
+		if (proc->pc + 1 >= MEM_SIZE)
+			proc->pc = (proc->pc - MEM_SIZE) + 1;
 		else
-			prog->pc++;
+			proc->pc++;
 	}
 }

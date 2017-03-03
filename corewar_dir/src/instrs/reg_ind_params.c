@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 10:36:08 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/03 17:21:52 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/03 17:38:02 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,19 @@ static void			to_register(t_struct *env, t_process *proc,
 	}
 }
 
-int				binary_args_reg_dir(t_struct *env,
+int				binary_args_reg_ind(t_struct *env,
 				t_process *proc, unsigned int *tab, int a)
 {
+	int i;
+
 	i = char_to_int(env->map[proc->pc + 5]);
 	if (i > 16)
 		return (-1);
 	if (char_to_int(env->map[proc->pc + 1]) == 212)
-		to_register(env, proc, &tab, 0);
+		to_register(env, proc, tab, 0);
 	else
-		to_register(env, proc, &tab, 1);
-	tab_op(proc, &tab, a, i);
+		to_register(env, proc, tab, 1);
+	tab_op(proc, tab, a, i);
 	proc->pc = pc_rotate(proc->pc, 6);
 	return (1);
 }
