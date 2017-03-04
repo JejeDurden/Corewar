@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 18:45:55 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/04 16:39:22 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <ncurses.h>
 
 # define ERR_P "./corewar [-v] [-dump nbr_cycles] [[-n number] champion.cor]..."
+# define COLS_MAIN (2 * COLS / 3)
+# define COLS_INFO (COLS / 3)
+# define LINES_INFO (2 * LINES / 3)
 
 extern t_op				g_op_tab[];
 
@@ -55,6 +58,11 @@ typedef struct			s_struct
 	int					graphic;
 	int					dump;
 	int					last_champ;
+	WINDOW				*main;
+	WINDOW				*main_border;
+	WINDOW				*info;
+	WINDOW				*info_border;
+	int					sleep;
 }						t_struct;
 
 typedef struct			s_game
@@ -123,5 +131,14 @@ int				binary_args_direct(t_struct *env, t_process *proc,
 int				binary_args_reg(t_struct *env, t_process *proc,
 				unsigned int *tab , int a);
 
+
+/*
+** Ncurses
+*/
+
+void	ncur_init(t_struct *env);
+void	ncur_print(t_struct *env);
+void	ncur_free(t_struct *env);
+void	ncur_free(t_struct *env);
 
 #endif

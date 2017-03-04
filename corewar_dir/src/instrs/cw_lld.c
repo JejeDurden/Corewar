@@ -6,13 +6,13 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 16:31:28 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 17:53:48 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/04 13:58:39 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void	ld_dir(t_struct *env, t_process *proc)
+static void	lld_dir(t_struct *env, t_process *proc)
 {
 	int	value;
 	int reg;
@@ -34,7 +34,7 @@ static void	ld_dir(t_struct *env, t_process *proc)
 	proc->pc += 7;
 }
 
-static void	ld_ind(t_struct *env, t_process *proc)
+static void	lld_ind(t_struct *env, t_process *proc)
 {
 	int	value;
 	int reg;
@@ -57,9 +57,9 @@ static void	ld_ind(t_struct *env, t_process *proc)
 void		cw_lld(t_struct *env, t_process *proc)
 {
 	if ((int)env->map[pc_rotate(proc->pc, 1)] == 0x90)
-		ld_dir(env, proc);
+		lld_dir(env, proc);
 	else if ((int)env->map[pc_rotate(proc->pc, 1)] == 0xD0)
-		ld_ind(env, proc);
+		lld_ind(env, proc);
 	else
 	{
 		proc->carry = 0;

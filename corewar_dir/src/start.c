@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/03 18:52:11 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/04 16:25:38 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static	int		proc_exec(t_process *proc, t_struct *env)
 	}
 	else if (proc->action == 1 && proc->wait == 0 && is_checked(env, proc) == 1)
 	{
-		ft_printf("prog->check == |%d|\n", proc->check);
 		g_f[proc->check - 1](env, proc);
+		proc->action = 0;
 		return (1);
 	}
 	else
 	{
 		proc->check = char_to_int(env->map[proc->pc]);
-		if (proc->check == 0)
+		if (proc->check == 0 || proc->check > 16)
 		{
 			proc->pc++;
 			return (1);
@@ -58,6 +58,8 @@ static void		proc_get(t_info *champ, t_struct *env)
 		proc_exec(proc, env);
 		proc = proc->next;
 	}
+	if (env->graphic == 1)
+		ncur_print(env);
 }
 
 int				start_game(t_struct *env)
@@ -67,8 +69,8 @@ int				start_game(t_struct *env)
 
 	ft_bzero(&game, sizeof(game));
 	game.ctd = CYCLE_TO_DIE;
-//	if (env->graphic == 1)
-//		initscr();
+	if (env->graphic == 1)
+		ncur_init(env);
 	while (cycle_to_die(env, &game) == 1)
 	{
 //		ft_printf("CTD == |%d|\n", game.ctd);
@@ -81,7 +83,11 @@ int				start_game(t_struct *env)
 		}
 		game.cycle++;
 		game.cycle_total++;
+		if (env->graphic == 1)
+			refresh();
 	}
+	if (env->graphic == 1)
+		ncur_free(env);
 	ft_printf("le joueur %d(%s) a gagné\n", env->champ[env->last_champ].number,
 			env->champ[env->last_champ].name);
 	return (1);

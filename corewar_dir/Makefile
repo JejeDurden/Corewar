@@ -6,7 +6,7 @@
 #    By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 17:05:27 by jgoncalv          #+#    #+#              #
-#    Updated: 2017/03/03 18:46:44 by jdesmare         ###   ########.fr        #
+#    Updated: 2017/03/04 15:59:23 by jdesmare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,8 @@ SRC_NAME = main.c\
 		   instrs/binary.c\
 		   instrs/aff.c\
 		   instrs/reg_dir_params.c\
+		   ncurses/ncur_init.c\
+		   ncurses/ncur_print.c\
 
 INC_LIB = -I$(LIB)/includes/
 
@@ -76,7 +78,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo $(NAME) ": Sources compiling..."
-	@$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
+	@$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS) -lncurses
 	@echo "\033[33;32m=== Compilation\t" $(NAME) "\t\tDONE"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c

@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:24:29 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 18:27:40 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/04 14:53:43 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	cw_live(t_struct *env, t_process *proc)
 	int	i;
 
 	i = 0;
-	printf("coucou\n");
 	live = (env->map[pc_rotate(proc->pc, 1)] |
 		env->map[pc_rotate(proc->pc, 2)] |
 		env->map[pc_rotate(proc->pc, 3)] |
