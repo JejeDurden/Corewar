@@ -6,7 +6,7 @@
 #    By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 17:05:27 by jgoncalv          #+#    #+#              #
-#    Updated: 2017/03/03 17:45:46 by rghirell         ###   ########.fr        #
+#    Updated: 2017/03/03 18:46:44 by jdesmare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC_NAME = main.c\
 		   ft_read.c\
 		   parser_prog.c\
 		   op.c\
+		   g_f.c\
 		   get_info.c\
 		   map.c\
 		   char_to_int.c\
@@ -43,8 +44,12 @@ SRC_NAME = main.c\
 		   instrs/cw_live.c\
 		   instrs/cw_fork.c\
 		   instrs/cw_ld.c\
+		   instrs/cw_ldi.c\
+		   instrs/cw_lfork.c\
 		   instrs/cw_lld.c\
+		   instrs/cw_lldi.c\
 		   instrs/cw_st.c\
+		   instrs/cw_sti.c\
 		   instrs/cw_add.c\
 		   instrs/cw_sub.c\
 		   instrs/tab_op.c\

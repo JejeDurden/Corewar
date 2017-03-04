@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 14:16:08 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/02 14:16:09 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/03/03 18:02:05 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void		create_process(t_struct *env)
 		proc->reg[0] = env->champ[i].number;
 		proc->carry = 0;
 		proc->next = NULL;
+		proc->verif = 1;
 		i++;
 	}
 }

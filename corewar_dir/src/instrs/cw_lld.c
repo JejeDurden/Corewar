@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 16:31:28 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 16:31:29 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/03/03 17:53:48 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	ld_ind(t_struct *env, t_process *proc)
 	proc->pc += 5;
 }
 
-void		cw_ld(t_struct *env, t_process *proc)
+void		cw_lld(t_struct *env, t_process *proc)
 {
 	if ((int)env->map[pc_rotate(proc->pc, 1)] == 0x90)
 		ld_dir(env, proc);

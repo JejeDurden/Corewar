@@ -6,13 +6,13 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 16:57:46 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 16:57:47 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/03/03 17:53:41 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	cw_add(t_struct *env, t_process *proc)
+void	cw_sub(t_struct *env, t_process *proc)
 {
 	int value;
 

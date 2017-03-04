@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cw_sti.c                                           :+:      :+:    :+:   */
+/*   g_f.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/03 16:58:58 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 18:53:04 by jdesmare         ###   ########.fr       */
+/*   Created: 2017/03/03 18:34:32 by jdesmare          #+#    #+#             */
+/*   Updated: 2017/03/03 18:47:18 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	cw_sti(t_struct *env, t_process *proc)
-{
-	(void)env;
-	proc->pc++;
-	(void)proc;
-}
+void	(*g_f[16])(t_struct *, t_process *) =
+{ 
+	cw_live,
+	cw_ld,
+	cw_st,
+	cw_add,
+	cw_sub,
+	cw_and,
+	cw_or,
+	cw_xor,
+	cw_zjmp,
+	cw_ldi,
+	cw_sti,
+	cw_fork,
+	cw_lld,
+	cw_lldi,
+	cw_lfork,
+	cw_aff
+};

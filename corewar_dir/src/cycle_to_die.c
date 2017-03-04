@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:59:04 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/02 15:59:05 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/03/03 18:26:11 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,17 @@ int		cycle_to_die(t_struct *env, t_game *game)
 	if (game->cycle == game->ctd)
 	{
 		game->max_checks++;
+		game->cycle = 0;
 		f_dec = check_proc(env, env->nb_champ - 1, 0);
 		ft_memset(env->live_current, 0, MAX_PLAYERS);
 		if (f_dec == 1 || game->max_checks == MAX_CHECKS)
 		{
 			game->max_checks = 0;
-			game->cycle = 0;
 			game->ctd -= CYCLE_DELTA;
 		}
 		if (game->ctd <= 0)
 			return (0);
+		return (check_proc_live(env));
 	}
 	return (1);
 }

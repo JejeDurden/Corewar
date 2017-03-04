@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:48:53 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 12:55:51 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/03 18:18:20 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ int			main(int ac, char **av)
 	t_struct	env;
 	int			debut;
 
+	ft_bzero(&env, sizeof(env));
 	env.graphic = 0;
 	if (ac > 16)
 		ft_putstr_fd("Error: Too many args.\n", 2);

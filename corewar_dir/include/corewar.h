@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 17:38:38 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/03 18:45:55 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ typedef struct			s_game
 	int					cycle;
 	int					ctd;
 }						t_game;
+
+extern void				(*g_f[])(t_struct *, t_process *);
 
 int				parser(int fd);
 char			*ft_read(int fd, int size);

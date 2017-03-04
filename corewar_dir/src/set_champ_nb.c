@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:06:44 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/02 17:34:35 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/03 17:55:25 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int		n_is_set(t_struct *env, char **av, int debut)
 	j = ft_atol(av[debut]);
 	while (i < MAX_PLAYERS)
 	{
-		ft_printf("j = |%d| champ number = |%d|\n", j, env->champ[i].number);
 		if (env->champ[i].number == j)
 		{
 			ft_putstr_fd("Error : 2 champs can't have the same number\n", 2);
