@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:59:04 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 18:26:11 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:44:29 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int	check_proc(t_struct *env, int i, int ret)
 				tmp = proc;
 				proc = proc->next;
 				del_process(&env->champ[i].l_proc, tmp);
+				env->nb_proc--;
 			}
 			else
 			{

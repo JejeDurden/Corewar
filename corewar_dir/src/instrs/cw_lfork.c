@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 14:07:35 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 14:07:36 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:42:49 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	cw_lfork(t_struct *env, t_process *proc)
 	new->carry = proc->carry;
 	new->verif = 0;
 	new->next = NULL;
+	env->nb_proc++;
 }

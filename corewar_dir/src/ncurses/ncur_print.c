@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 14:55:40 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/06 13:01:44 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:25:38 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,11 @@ void			ncur_print(t_struct *env)
 	row = 0;
 	while (row < MEM_SIZE / 64)
 	{
-		wmove(env->main, row + 5, 10);
+		wmove(env->main, row + 7, 20);
 		ncur_print_line(env, cursor, 64);
 		wprintw(env->main, "\n");
 		cursor += 64;
 		row++;
 	}
+	wrefresh(env->main);
 }

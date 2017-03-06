@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/06 17:00:08 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:41:27 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ typedef struct			s_info
 }						t_info;
 
 typedef struct			s_struct
-{	
+{
 	int					nb_champ;
+	int					nb_proc;
 	t_info				champ[MAX_PLAYERS];
 	int					live[MAX_PLAYERS];
 	int					live_current[MAX_PLAYERS];

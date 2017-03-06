@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 14:54:15 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/06 15:49:48 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:23:49 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ void	ncur_init(t_struct *env)
 	noecho();
 	nodelay(stdscr, TRUE);
 	curs_set(0);
+	refresh();
 }

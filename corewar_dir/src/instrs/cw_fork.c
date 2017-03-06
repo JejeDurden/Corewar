@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 20:57:35 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/02 20:57:36 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:42:39 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ void	cw_fork(t_struct *env, t_process *proc)
 	new->verif = 0;
 	new->champ = proc->champ;
 	new->next = NULL;
+	env->nb_proc++;
 }

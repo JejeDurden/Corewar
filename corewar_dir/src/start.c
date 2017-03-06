@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/06 16:34:06 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:23:34 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ static void		proc_get(t_info *champ, t_struct *env)
 		proc = proc->next;
 	}
 	if (env->graphic == 1)
-	{
 		ncur_print(env);
-	}
 }
 
 int				start_game(t_struct *env)
@@ -74,8 +72,6 @@ int				start_game(t_struct *env)
 		ncur_init(env);
 	while (cycle_to_die(env, &game) == 1)
 	{
-//		ft_printf("CTD == |%d|\n", game.cycle_total);
-//		ft_printf("live_current == |%d|\n", env->live_current[0]);
 		i = 0;
 		while (i < MAX_PLAYERS)
 		{
@@ -88,7 +84,6 @@ int				start_game(t_struct *env)
 		{
 			ncur_print_info(env, &game);
 			ncur_print_score(env);
-			refresh();
 		}
 	}
 	if (env->graphic == 1)
