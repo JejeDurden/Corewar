@@ -6,7 +6,7 @@
 #    By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 17:05:27 by jgoncalv          #+#    #+#              #
-#    Updated: 2017/03/04 15:59:23 by jdesmare         ###   ########.fr        #
+#    Updated: 2017/03/06 11:52:37 by jdesmare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ SRC_NAME = main.c\
 		   instrs/reg_dir_params.c\
 		   ncurses/ncur_init.c\
 		   ncurses/ncur_print.c\
+		   ncurses/ncur_print_side.c\
 
 INC_LIB = -I$(LIB)/includes/
 

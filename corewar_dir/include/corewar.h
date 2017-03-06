@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/04 16:39:22 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 11:49:33 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 # define ERR_P "./corewar [-v] [-dump nbr_cycles] [[-n number] champion.cor]..."
 # define COLS_MAIN (2 * COLS / 3)
 # define COLS_INFO (COLS / 3)
-# define LINES_INFO (2 * LINES / 3)
+# define LINES_INFO (LINES / 2)
+# define COLS_SIDE (COLS / 3)
+# define LINES_SIDE (LINES / 2)
 
 extern t_op				g_op_tab[];
 
@@ -54,7 +56,7 @@ typedef struct			s_struct
 	int					live[MAX_PLAYERS];
 	int					live_current[MAX_PLAYERS];
 	char				map[MEM_SIZE];
-	int					map_color[MEM_SIZE];
+	char				map_color[MEM_SIZE];
 	int					graphic;
 	int					dump;
 	int					last_champ;
@@ -62,7 +64,10 @@ typedef struct			s_struct
 	WINDOW				*main_border;
 	WINDOW				*info;
 	WINDOW				*info_border;
+	WINDOW				*side;
+	WINDOW				*side_border;
 	int					sleep;
+	int					map_ptr;
 }						t_struct;
 
 typedef struct			s_game
@@ -139,6 +144,7 @@ int				binary_args_reg(t_struct *env, t_process *proc,
 void	ncur_init(t_struct *env);
 void	ncur_print(t_struct *env);
 void	ncur_free(t_struct *env);
-void	ncur_free(t_struct *env);
+void	write_map_color(t_struct *env);
+void	ncur_print_side(t_struct *env, t_game *game);
 
 #endif

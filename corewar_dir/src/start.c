@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/04 16:25:38 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 12:24:22 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int				start_game(t_struct *env)
 		ncur_init(env);
 	while (cycle_to_die(env, &game) == 1)
 	{
-//		ft_printf("CTD == |%d|\n", game.ctd);
+//		ft_printf("CTD == |%d|\n", game.cycle_total);
 //		ft_printf("live_current == |%d|\n", env->live_current[0]);
 		i = 0;
 		while (i < MAX_PLAYERS)
@@ -84,11 +84,15 @@ int				start_game(t_struct *env)
 		game.cycle++;
 		game.cycle_total++;
 		if (env->graphic == 1)
-			refresh();
+		{
+			ncur_print_side(env, &game);
+		}
 	}
 	if (env->graphic == 1)
 		ncur_free(env);
 	ft_printf("le joueur %d(%s) a gagné\n", env->champ[env->last_champ].number,
 			env->champ[env->last_champ].name);
+	if (env->dump != -1)
+		write_map(env);
 	return (1);
 }
