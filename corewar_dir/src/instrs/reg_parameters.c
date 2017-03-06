@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 18:07:09 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/06 19:02:18 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/06 19:26:18 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		two_registers(t_struct *env, t_process *proc, int i, int j)
 		dest = sti_calc(env, proc, 3);
 		dest = (dest + proc->reg[j - 1]) % MEM_SIZE;
 	}
-	else if (ascii == 116)
+	else if (dest == 116)
 	{
 		dest = sti_calc(env, proc, 3);
 		dest = get_indirect(env, proc, dest);
@@ -49,6 +49,7 @@ int		two_registers(t_struct *env, t_process *proc, int i, int j)
 	}
 	write_params(env, proc, dest, i);
 	proc->pc = pc_rotate(proc->pc, 6);
+	return (1);
 }
 
 int		reg_parameters(t_struct *env, t_process *proc, int ascii)
@@ -62,12 +63,12 @@ int		reg_parameters(t_struct *env, t_process *proc, int ascii)
 	if (ascii == 100 || ascii == 116 || ascii == 84)
 		j = char_to_int(env->map[proc->pc + 5]);
 	else
-		j = char_to_int(env->map[proc->pc + 3])
+		j = char_to_int(env->map[proc->pc + 3]);
 	if (j > 16)
 		return (-1);
 	if (ascii == 84)
 		return (only_registers(env, proc, i, j));
 	if (ascii == 100 || ascii == 116 || ascii == 88)
-		return(two_registers(env, process, i, j));
+		return(two_registers(env, proc, i, j));
 	return (-1);
 }

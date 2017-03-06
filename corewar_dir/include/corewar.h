@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/06 19:13:29 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/06 19:24:25 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,13 +147,14 @@ int				search_champ_id(t_struct *env, t_process *proc);
 void			put_octet(t_struct *env, int start, int nb, int value);
 void			write_params(t_struct *env, t_process *proc, unsigned int dest,
 				int i);
-int				sti_no_register(t_struct *env, t_process *proc);
+int				sti_no_register(t_struct *env, t_process *proc, int ascii);
 unsigned int	sti_calc(t_struct *env, t_process *proc, int i);
 int				reg_parameters(t_struct *env, t_process *proc, int ascii);
 int				two_registers(t_struct *env, t_process *proc, int i, int j);
 int				only_registers(t_struct *env, t_process *proc, int i, int j);
 unsigned int	get_four_octet(t_struct *env, unsigned int dest);
-unsigned int	get_indirect(t_process *proc, unsigned int dest);
+unsigned int	get_indirect(t_struct *env,
+				t_process *proc, unsigned int dest);
 
 
 

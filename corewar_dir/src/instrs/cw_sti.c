@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 16:58:58 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/06 18:53:15 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/06 19:30:13 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	cw_sti(t_struct *env, t_process *proc)
 	}
 	else
 	{
-		if (sti_no_register(env, proc) < 0)
+		if (sti_no_register(env, proc, ascii) < 0)
 			proc->pc = pc_rotate(proc->pc, 1);
 	}
 }
