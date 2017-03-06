@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 14:54:15 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/06 13:13:21 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 15:49:48 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void		ncur_set_colors()
 	init_pair(3, COLOR_CYAN, COLOR_BLACK);
 	init_pair(4, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(5, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(6, COLOR_BLUE, COLOR_BLACK);
 }
 
 void	ncur_free(t_struct *env)
@@ -36,7 +37,7 @@ void	ncur_free(t_struct *env)
 void	ncur_init(t_struct *env)
 {
 	initscr();
-	env->sleep = 500;
+	env->usleep = 500;
 	env->main_border = subwin(stdscr, LINES, COLS_MAIN, 0, 0);
 	env->info_border = subwin(stdscr, LINES_INFO, COLS_INFO, 0, COLS_MAIN);
 	env->score_border = subwin(stdscr, LINES_SCORE, COLS_SCORE, LINES_SCORE,

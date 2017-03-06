@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/06 13:10:56 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 16:20:04 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define CYAN 3
 # define MAGENTA 4
 # define YELLOW 5
+# define BLUE 6
 
 extern t_op				g_op_tab[];
 
@@ -36,7 +37,7 @@ typedef	struct			s_process
 {	
 	int					pc;
 	int					champ;
-	int					reg[REG_NUMBER];
+	unsigned int		reg[REG_NUMBER];
 	int					nb_live;
 	int					carry;
 	int					verif;
@@ -73,8 +74,7 @@ typedef struct			s_struct
 	WINDOW				*info_border;
 	WINDOW				*score;
 	WINDOW				*score_border;
-	int					sleep;
-	int					map_ptr;
+	int					usleep;
 }						t_struct;
 
 typedef struct			s_game
@@ -154,5 +154,6 @@ void	ncur_print(t_struct *env);
 void	ncur_free(t_struct *env);
 void	write_map_color(t_struct *env);
 void	ncur_print_info(t_struct *env, t_game *game);
+void	ncur_print_score(t_struct *env);
 
 #endif

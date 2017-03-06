@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/06 13:09:38 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 16:34:06 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static	int		is_checked(t_struct *env, t_process *proc)
 
 static	int		proc_exec(t_process *proc, t_struct *env)
 {
-
 	if (proc->action == 1 && proc->wait > 0 && is_checked(env, proc) == 1)
 	{
 		proc->wait--;
@@ -88,6 +87,7 @@ int				start_game(t_struct *env)
 		if (env->graphic == 1)
 		{
 			ncur_print_info(env, &game);
+			ncur_print_score(env);
 			refresh();
 		}
 	}
