@@ -144,6 +144,7 @@ int				binary_args_direct(t_struct *env, t_process *proc,
 int				binary_args_reg(t_struct *env, t_process *proc,
 				unsigned int *tab , int a);
 int				search_champ_id(t_struct *env, t_process *proc);
+void			put_octet(t_struct *env, int start, int nb, int value);
 
 
 /*

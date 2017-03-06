@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   search_champ_id.c                                  :+:      :+:    :+:   */
+/*   put_octet.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/06 15:19:42 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/06 17:02:05 by jdesmare         ###   ########.fr       */
+/*   Created: 2017/03/06 17:10:44 by jgoncalv          #+#    #+#             */
+/*   Updated: 2017/03/06 17:10:48 by jgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	search_champ_id(t_struct *env, t_process *proc)
+void	put_octet(t_struct *env, int start, int nb, int value)
 {
-	int i;
-
-	i = 0;
-	while (i < env->nb_champ)
-	{
-		if ((unsigned int)env->champ[i].number == proc->reg[0])
-			return (i);
-		i++;
-	}
-	return (proc->champ);
+	env->map[pc_rotate(start, nb)] = value / 256 / 256 / 256;
+	env->map[pc_rotate(start, nb + 1)] = value / 256 / 256 % 256;
+	env->map[pc_rotate(start, nb + 2)] = value / 256 % 256;
+	env->map[pc_rotate(start, nb + 3)] = value % 256;
 }
