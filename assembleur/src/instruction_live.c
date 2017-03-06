@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 16:14:28 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 17:38:57 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/06 13:20:44 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int				instruction_live(t_struct *env, char *line)
 		i++;
 	if (line[i] != '%')
 	{
-		ft_putstr("Live need a direct parameter\n");
+		ft_putstr("Live needs a direct parameter\n");
 		free_struct(env);
 		exit(1);
 	}

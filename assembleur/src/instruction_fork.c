@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 15:16:30 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 17:38:48 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/06 12:41:23 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			instruction_fork(t_struct *env, char *line)
 		i++;
 	if (line[i] != '%')
 	{
-		ft_putstr("Zjmp need a direct parameter\n");
+		ft_putstr("Fork needs a direct parameter\n");
 		free_struct(env);
 		exit(1);
 	}

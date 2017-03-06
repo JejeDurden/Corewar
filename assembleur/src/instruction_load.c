@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 18:28:39 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/02 14:18:01 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/06 13:22:10 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int		parse_second_param(t_struct *env, char *line, int i)
 {
-	env->oct_size += 1;
 	i++;
 	while (line[i] && ft_isspace(line[i]))
 		i++;
@@ -48,7 +47,7 @@ static int		parse_first_param(t_struct *env, char *line, int i)
 		free_struct(env);
 		exit(1);
 	}
-	return (1);
+	return (i);
 }
 
 int				instruction_load(t_struct *env, char *line)
@@ -65,9 +64,7 @@ int				instruction_load(t_struct *env, char *line)
 		free_struct(env);
 		exit(1);
 	}
-	parse_first_param(env, line, i);
-	while (line[i] && line[i] != ',')
-		i++;
+	i = parse_first_param(env, line, i);
 	parse_second_param(env, line, i);
 	env->oct_size += 2;
 	return (1);
