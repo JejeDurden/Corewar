@@ -12,57 +12,51 @@
 
 #include "corewar.h"
 
+static
+
 static void	ldi_dir(t_struct *env, t_process *proc)
 {
-	int	value;
-	int reg;
 
-	value = (env->map[pc_rotate(proc->pc, 2)] |
-		env->map[pc_rotate(proc->pc, 3)] |
-		env->map[pc_rotate(proc->pc, 4)] |
-		env->map[pc_rotate(proc->pc, 5)]) & 0xFFFFFF;
-	value = env->map[pc_rotate(proc->pc, value)];
-	reg = env->map[pc_rotate(proc->pc, 6)];
-	if (reg < 1 || reg > 16)
-	{
-		proc->carry = 0;
-		proc->pc++;
-		return ;
-	}
-	proc->reg[reg - 1] = value;
-	proc->carry = 1;
-	proc->pc += 7;
 }
 
 static void	ldi_ind(t_struct *env, t_process *proc)
 {
-	int	value;
-	int reg;
 
-	value = (env->map[pc_rotate(proc->pc, 2)] |
-		env->map[pc_rotate(proc->pc, 3)]) & 0xFFFFFF;
-	value = env->map[pc_rotate(proc->pc, value)];
-	reg = env->map[pc_rotate(proc->pc, 4)];
-	if (reg < 1 || reg > 16)
-	{
-		proc->carry = 0;
-		proc->pc++;
-		return ;
-	}
-	proc->reg[reg - 1] = value;
-	proc->carry = 1;
-	proc->pc += 5;
 }
 
 void		cw_ldi(t_struct *env, t_process *proc)
 {
-	if ((int)env->map[pc_rotate(proc->pc, 1)] == 0x90)
-		ldi_dir(env, proc);
-	else if ((int)env->map[pc_rotate(proc->pc, 1)] == 0xD0)
-		ldi_ind(env, proc);
+	int ocodage;
+
+	ocodage = (int)env->map[pc_rotate(proc->pc, 1)];
+	if (ocodage == 0x54)
+	{
+	// reg reg reg
+
+	}
+	else if (ocodage == 0x64)
+	{
+		// reg dir reg
+	}
+	else if (ocodage == 0x94)
+	{
+		// dir reg reg
+	}
+	else if (ocodage == 0xa4)
+	{
+		// dir dir reg
+	}
+	else if (ocodage == 0xd4)
+	{
+		// ind reg reg
+	}
+	else if (ocodage == 0xe4)
+	{
+		// ind dir reg
+	}
 	else
 	{
-		proc->carry = 0;
 		proc->pc++;
+		proc->carry = 0;
 	}
 }

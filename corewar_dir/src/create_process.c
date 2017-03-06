@@ -30,6 +30,7 @@ void		create_process(t_struct *env)
 		proc->carry = 0;
 		proc->next = NULL;
 		proc->verif = 1;
+		proc->champ = i;
 		i++;
 	}
 }

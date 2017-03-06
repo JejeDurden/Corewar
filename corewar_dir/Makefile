@@ -62,6 +62,7 @@ SRC_NAME = main.c\
 		   ncurses/ncur_init.c\
 		   ncurses/ncur_print.c\
 		   ncurses/ncur_print_side.c\
+		   search_champ_id.c\
 
 INC_LIB = -I$(LIB)/includes/
 

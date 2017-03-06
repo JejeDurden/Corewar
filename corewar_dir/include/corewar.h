@@ -35,6 +35,7 @@ extern t_op				g_op_tab[];
 typedef	struct			s_process
 {	
 	int					pc;
+	int					champ;
 	int					reg[REG_NUMBER];
 	int					nb_live;
 	int					carry;
@@ -141,6 +142,7 @@ int				binary_args_direct(t_struct *env, t_process *proc,
 				unsigned int *tab , int a);
 int				binary_args_reg(t_struct *env, t_process *proc,
 				unsigned int *tab , int a);
+int				search_champ_id(t_struct *env, t_process *proc);
 
 
 /*
