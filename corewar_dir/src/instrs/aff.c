@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 11:14:45 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/03 17:39:25 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/06 13:41:34 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		cw_aff(t_struct *env, t_process *proc)
 		else
 			proc->pc++;
 	}
-	else
+	else if (env->graphic == 0)
 		ft_printf("aff : %c\n", proc->reg[i - 1] % 256);
 	if (proc->pc + 3 >= MEM_SIZE)
 		proc->pc = (proc->pc - MEM_SIZE) + 3;

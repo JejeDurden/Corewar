@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:24:29 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/04 14:53:43 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 13:40:45 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ void	cw_live(t_struct *env, t_process *proc)
 	{
 		if (env->champ[i].number == live)
 		{
-			ft_printf("Un processus dit que le joueur %s est en vie\n",
-				env->champ[i].name);
+			if (env->graphic == 0)
+				ft_printf("Un processus dit que le joueur %s est en vie\n",
+					env->champ[i].name);
 			proc->nb_live++;
 			env->live[i]++;
 			env->live_current[i]++;
