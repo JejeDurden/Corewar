@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/06 12:24:22 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 13:09:38 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ static void		proc_get(t_info *champ, t_struct *env)
 		proc = proc->next;
 	}
 	if (env->graphic == 1)
+	{
 		ncur_print(env);
+	}
 }
 
 int				start_game(t_struct *env)
@@ -85,7 +87,8 @@ int				start_game(t_struct *env)
 		game.cycle_total++;
 		if (env->graphic == 1)
 		{
-			ncur_print_side(env, &game);
+			ncur_print_info(env, &game);
+			refresh();
 		}
 	}
 	if (env->graphic == 1)

@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 14:55:40 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/06 10:39:43 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 13:01:44 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static int		ncur_get_champ_color(t_struct *env, int pos)
 static void		ncur_white(t_struct *env, int on)
 {
 	if (on)
-		wattron(env->main, COLOR_PAIR(0) | A_BOLD);
+		wattron(env->main, COLOR_PAIR(WHITE) | A_BOLD);
 	else
-		wattroff(env->main, COLOR_PAIR(0) | A_BOLD);
+		wattroff(env->main, COLOR_PAIR(WHITE) | A_BOLD);
 }
 
 static void		ncur_put_color(t_struct *env, int on, int pos)
@@ -74,9 +74,9 @@ void			ncur_print(t_struct *env)
 
 	cursor = 0;
 	row = 0;
-	wmove(env->main, 0, 0);
 	while (row < MEM_SIZE / 64)
 	{
+		wmove(env->main, row + 5, 10);
 		ncur_print_line(env, cursor, 64);
 		wprintw(env->main, "\n");
 		cursor += 64;

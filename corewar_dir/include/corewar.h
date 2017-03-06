@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/06 11:49:33 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 13:10:56 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,14 @@
 # define COLS_MAIN (2 * COLS / 3)
 # define COLS_INFO (COLS / 3)
 # define LINES_INFO (LINES / 2)
-# define COLS_SIDE (COLS / 3)
-# define LINES_SIDE (LINES / 2)
+# define COLS_SCORE (COLS / 3)
+# define LINES_SCORE (LINES / 2)
+# define WHITE 0
+# define GREEN 1
+# define RED 2
+# define CYAN 3
+# define MAGENTA 4
+# define YELLOW 5
 
 extern t_op				g_op_tab[];
 
@@ -64,8 +70,8 @@ typedef struct			s_struct
 	WINDOW				*main_border;
 	WINDOW				*info;
 	WINDOW				*info_border;
-	WINDOW				*side;
-	WINDOW				*side_border;
+	WINDOW				*score;
+	WINDOW				*score_border;
 	int					sleep;
 	int					map_ptr;
 }						t_struct;
@@ -145,6 +151,6 @@ void	ncur_init(t_struct *env);
 void	ncur_print(t_struct *env);
 void	ncur_free(t_struct *env);
 void	write_map_color(t_struct *env);
-void	ncur_print_side(t_struct *env, t_game *game);
+void	ncur_print_info(t_struct *env, t_game *game);
 
 #endif
