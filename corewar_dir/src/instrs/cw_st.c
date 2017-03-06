@@ -43,12 +43,9 @@ static void	cw_st_ind(t_struct *env, t_process *proc)
 		ind = (env->map[pc_rotate(proc->pc, 3)] |
 			env->map[pc_rotate(proc->pc, 4)]) & 0xFFFFFF;
 		ind %= IDX_MOD;
-		env->map[pc_rotate(proc->pc, ind)] = proc->reg[reg] / 256 / 256 / 256;
-		env->map[pc_rotate(proc->pc, ind + 1)] = proc->reg[reg] / 256 / 256 % 256;
-		env->map[pc_rotate(proc->pc, ind + 2)] = proc->reg[reg] / 256 % 256;
-		env->map[pc_rotate(proc->pc, ind + 3)] = proc->reg[reg] % 256;
+		put_octet(env, proc->pc, ind, proc->reg[reg]);
 		ft_memset(env->map_color + pc_rotate(proc->pc, ind),
-			search_champ_id(env, proc->reg[0]) + 49, 4);
+			search_champ_id(env, proc) + 49, 4);
 		proc->pc += 5;
 		return ;
 	}
