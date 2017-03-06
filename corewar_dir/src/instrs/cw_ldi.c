@@ -6,24 +6,20 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 17:10:11 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/04 13:59:33 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/06 16:48:03 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-static
-
+/*
 static void	ldi_dir(t_struct *env, t_process *proc)
 {
-
 }
 
 static void	ldi_ind(t_struct *env, t_process *proc)
 {
-
 }
-
+*/
 void		cw_ldi(t_struct *env, t_process *proc)
 {
 	int ocodage;

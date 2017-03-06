@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:37:28 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 15:37:29 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:01:12 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	cw_st_ind(t_struct *env, t_process *proc)
 		env->map[pc_rotate(proc->pc, ind + 2)] = proc->reg[reg] / 256 % 256;
 		env->map[pc_rotate(proc->pc, ind + 3)] = proc->reg[reg] % 256;
 		ft_memset(env->map_color + pc_rotate(proc->pc, ind),
-			search_champ_id(env, proc->reg[0]) + 49, 4);
+			search_champ_id(env, proc) + 49, 4);
 		proc->pc += 5;
 		return ;
 	}

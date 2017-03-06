@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 15:19:42 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/06 15:19:43 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:02:05 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	search_champ_id(t_struct *env, t_process *proc)
 	i = 0;
 	while (i < env->nb_champ)
 	{
-		if (env->champ[i].number == proc->reg[0])
+		if (env->champ[i].number == (int)proc->reg[0])
 			return (i);
 		i++;
 	}
-	return (prog->champ);
+	return (proc->champ);
 }
