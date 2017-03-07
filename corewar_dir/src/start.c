@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/07 10:39:40 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/07 11:02:43 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static	int		proc_exec(t_process *proc, t_struct *env)
 	else if (proc->action == 1 && proc->wait == 0 && is_checked(env, proc) == 1)
 	{
 		g_f[proc->check - 1](env, proc);
-//		printf("proc->live == |%d|\n", proc->nb_live);
 		proc->action = 0;
 		return (1);
 	}
