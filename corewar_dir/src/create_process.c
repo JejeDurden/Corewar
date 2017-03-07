@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 14:16:08 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/07 16:58:46 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/07 17:55:38 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		create_process(t_struct *env)
 		proc = env->champ[i].l_proc;
 		proc->pc = i * div_mem_size;
 		ft_bzero(proc->reg, REG_NUMBER);
-		proc->reg[0] = env->champ[i].number;
+		proc->reg[0] = UINT_MAX - env->champ[i].number + 1;
 		proc->carry = 0;
 		proc->next = NULL;
 		proc->verif = 1;
@@ -44,14 +44,20 @@ t_process	*new_process(t_process *l_proc)
 	while (l_proc && l_proc->next)
 		l_proc = l_proc->next;
 	l_proc->next = new;
+	new->next = NULL;
 	return (new);
 }
 
-void		del_process(t_process **l_proc, t_process *maillon)
+void	del_process(t_process **l_proc, t_process *maillon)
 {
 	t_process *tmp;
 
-	if (*l_proc == maillon)
+	if (*l_proc == maillon && (*l_proc)->next == NULL)
+	{
+		free(*l_proc);
+		*l_proc = NULL;
+	}
+	else if (*l_proc == maillon)
 	{
 		*l_proc = maillon->next;
 		free(maillon);
