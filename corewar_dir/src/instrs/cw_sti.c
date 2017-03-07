@@ -30,3 +30,4 @@ void	cw_sti(t_struct *env, t_process *proc)
 	else
 		proc->pc = pc_rotate(proc->pc, 1);
 }
+

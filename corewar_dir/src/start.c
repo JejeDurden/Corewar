@@ -52,7 +52,7 @@ static void		proc_get(t_info *champ, t_struct *env)
 	t_process	*proc;
 
 	proc = champ->l_proc;
-	while (proc != NULL)
+	while (proc)
 	{
 		proc_exec(proc, env);
 		proc = proc->next;
@@ -72,12 +72,9 @@ int				start_game(t_struct *env)
 		ncur_init(env);
 	while (cycle_to_die(env, &game) == 1 && env->dump != 0)
 	{
-		i = env->nb_champ - 1;
-		while (i >= 0)
-		{
+		i = env->nb_champ;
+		while (--i >= 0)
 			proc_get(&env->champ[i], env);
-			i--;
-		}
 		game.cycle++;
 		game.cycle_total++;
 		if (env->graphic == 1)

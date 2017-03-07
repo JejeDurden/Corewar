@@ -28,7 +28,6 @@ static int	calc(t_struct *env, t_process *proc, int val, int i)
 			return (0);
 		proc->reg[reg3 - 1] = get_four_octet(env, pc_rotate(proc->pc, (proc->reg[reg2 - 1] + val) % IDX_MOD));
 		proc->pc = pc_rotate(proc->pc, i + 2);
-		proc->carry = 1;
 	}
 	else
 	{
@@ -37,7 +36,6 @@ static int	calc(t_struct *env, t_process *proc, int val, int i)
 		dir = sti_calc(env, proc, i + 1);
 		proc->reg[reg3 - 1] = get_four_octet(env, pc_rotate(proc->pc, (dir + val) % IDX_MOD));
 		proc->pc = pc_rotate(proc->pc, i + 3);
-		proc->carry = 1;
 	}
 	return (1);
 }

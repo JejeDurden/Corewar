@@ -21,7 +21,7 @@ static void	ld_dir(t_struct *env, t_process *proc)
 	reg = env->map[pc_rotate(proc->pc, 6)];
 	if (reg < 1 || reg > 16)
 	{
-		proc->carry = 0;
+		proc->carry = 1;
 		proc->pc = pc_rotate(proc->pc, 1);
 		return ;
 	}
@@ -42,7 +42,7 @@ static void	ld_ind(t_struct *env, t_process *proc)
 	reg = env->map[pc_rotate(proc->pc, 4)];
 	if (reg < 1 || reg > 16)
 	{
-		proc->carry = 0;
+		proc->carry = 1;
 		proc->pc = pc_rotate(proc->pc, 1);
 		return ;
 	}
@@ -59,7 +59,7 @@ void		cw_ld(t_struct *env, t_process *proc)
 		ld_ind(env, proc);
 	else
 	{
-		proc->carry = 0;
+		proc->carry = 1;
 		proc->pc = pc_rotate(proc->pc, 1);
 	}
 }

@@ -28,7 +28,6 @@ static int	calc(t_struct *env, t_process *proc, int val, int i)
 			return (0);
 		proc->reg[reg3 - 1] = get_four_octet(env, pc_rotate(proc->pc, (proc->reg[reg2 - 1] + val)));
 		proc->pc = pc_rotate(proc->pc, i + 2);
-		proc->carry = 1;
 	}
 	else
 	{
@@ -37,7 +36,6 @@ static int	calc(t_struct *env, t_process *proc, int val, int i)
 		dir = sti_calc(env, proc, i + 1);
 		proc->reg[reg3 - 1] = get_four_octet(env, pc_rotate(proc->pc, (dir + val)));
 		proc->pc = pc_rotate(proc->pc, i + 3);
-		proc->carry = 1;
 	}
 	return (1);
 }
@@ -49,6 +47,7 @@ void		cw_lldi(t_struct *env, t_process *proc)
 	unsigned int	val;
 	unsigned int	reg1;
 
+	proc->carry = 1;
 	ocodage = env->map[pc_rotate(proc->pc, 1)];
 	if (ocodage == (char)0x54 || ocodage == (char)0x64 || ocodage == (char)0x94 ||
 		ocodage == (char)0xa4 || ocodage == (char)0xd4 || ocodage == (char)0xe4)

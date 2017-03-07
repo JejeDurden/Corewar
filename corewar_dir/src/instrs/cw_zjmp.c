@@ -15,13 +15,7 @@
 void	cw_zjmp(t_struct *env, t_process *proc)
 {
 	int res;
-	int nb;
 
-	res = 0;
-	nb = proc->pc;
-	nb = pc_rotate(nb, 1);
-	res = env->map[nb] * 256;
-	nb = pc_rotate(nb, 1);
-	res = res + (int)env->map[nb];
+	res = sti_calc(env, proc, 1);
 	proc->pc = pc_rotate(proc->pc, res);
 }
