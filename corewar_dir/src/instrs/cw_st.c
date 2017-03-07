@@ -24,7 +24,7 @@ static void	cw_st_reg(t_struct *env, t_process *proc)
 	reg2 = (unsigned int)env->map[pc_rotate(proc->pc, 3)];
 	if (reg1 >= 1 && reg1 <= 16 && reg2 >= 1 && reg2 <= 16)
 	{
-		proc->reg[reg2] = proc->reg[reg1];
+		proc->reg[reg2 - 1] = proc->reg[reg1 - 1];
 		proc->pc += 4;
 		return ;
 	}

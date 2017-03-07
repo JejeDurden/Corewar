@@ -18,5 +18,6 @@ unsigned int	sti_calc(t_struct *env, t_process *proc, int i)
 
 	dest = char_to_int(env->map[pc_rotate(proc->pc, i)]) << 8;
 	dest = (dest + char_to_int(env->map[pc_rotate(proc->pc, i + 1)]));
+	dest %= MEM_SIZE;
 	return (dest);
 }

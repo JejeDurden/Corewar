@@ -26,18 +26,18 @@ static int	calc(t_struct *env, t_process *proc, int val, int i)
 			(reg3 = env->map[pc_rotate(proc->pc, i + 2)]) < 1 ||
 			reg2 > 16 || reg3 > 16)
 			return (0);
-		proc->reg[reg3] = val + proc->reg[reg2];
+
+		proc->reg[reg3 - 1] = get_four_octet(env, pc_rotate(proc->pc, (proc->reg[reg2 - 1] + val) % IDX_MOD));
 		proc->pc += i + 2;
 		proc->carry = 1;
 	}
 	else
 	{
-		if ((reg3 = env->map[pc_rotate(proc->pc, i + 2)]) < 1 || reg3 > 16)
+		if ((reg3 = env->map[pc_rotate(proc->pc, i + 3)]) < 1 || reg3 > 16)
 			return (0);
-		dir = get_four_octet(env, proc->pc + i + 1);
-		proc->reg[reg3] = val + dir;
-		ft_printf("%x\n", proc->reg[reg3]);
-		proc->pc += i + 4;
+		dir = sti_calc(env, proc, i + 1);
+		proc->reg[reg3 - 1] = get_four_octet(env, pc_rotate(proc->pc, (dir + val) % IDX_MOD));
+		proc->pc += i + 3;
 		proc->carry = 1;
 	}
 	return (1);
@@ -62,14 +62,14 @@ void		cw_ldi(t_struct *env, t_process *proc)
 				proc->pc++;
 				return ;
 			}
-			val = proc->reg[reg1];
+			val = proc->reg[reg1 - 1];
 			if (calc(env, proc, val, 2) == 0)
 				proc->pc++;
 		}
 		else if ((ocodage >> 6 | 0x80) << 6 == (char)0x80)
 		{
-			val = get_four_octet(env, proc->pc + 2);
-			if (calc(env, proc, val, 5) == 0)
+			val = sti_calc(env, proc, 2);
+			if (calc(env, proc, val, 3) == 0)
 				proc->pc++;
 		}
 		else if ((ocodage >> 6 | 0xc0) << 6 == (char)0xc0)
