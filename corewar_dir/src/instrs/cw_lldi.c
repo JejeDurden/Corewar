@@ -12,57 +12,73 @@
 
 #include "corewar.h"
 
-static void	lldi_dir(t_struct *env, t_process *proc)
+static int	calc(t_struct *env, t_process *proc, int val, int i)
 {
-	int	value;
-	int reg;
+	int		reg2;
+	int		reg3;
+	int		dir;
+	char	ocodage;
 
-	value = (env->map[pc_rotate(proc->pc, 2)] |
-		env->map[pc_rotate(proc->pc, 3)] |
-		env->map[pc_rotate(proc->pc, 4)] |
-		env->map[pc_rotate(proc->pc, 5)]) & 0xFFFFFF;
-	value = env->map[pc_rotate(proc->pc, value)];
-	reg = env->map[pc_rotate(proc->pc, 6)];
-	if (reg < 1 || reg > 16)
+	ocodage = env->map[pc_rotate(proc->pc, 1)];
+	if ((ocodage >> 6 & 0x10) << 6 == 0x10)
 	{
-		proc->carry = 0;
-		proc->pc++;
-		return ;
+		if ((reg2 = env->map[pc_rotate(proc->pc, i + 1)]) < 1 ||
+			(reg3 = env->map[pc_rotate(proc->pc, i + 2)]) < 1 ||
+			reg2 > 16 || reg3 > 16)
+			return (0);
+		proc->reg[reg3] = val + proc->reg[reg2];
+		proc->carry = 1;
+		proc->pc += i + 2;
 	}
-	proc->reg[reg - 1] = value;
-	proc->carry = 1;
-	proc->pc += 7;
-}
-
-static void	lldi_ind(t_struct *env, t_process *proc)
-{
-	int	value;
-	int reg;
-
-	value = (env->map[pc_rotate(proc->pc, 2)] |
-		env->map[pc_rotate(proc->pc, 3)]) & 0xFFFFFF;
-	value = env->map[pc_rotate(proc->pc, value)];
-	reg = env->map[pc_rotate(proc->pc, 4)];
-	if (reg < 1 || reg > 16)
+	else
 	{
-		proc->carry = 0;
-		proc->pc++;
-		return ;
+		if ((reg3 = env->map[pc_rotate(proc->pc, i + 2)]) < 1 || reg3 > 16)
+			return (0);
+		dir = get_four_octet(env, proc->pc + i + 1);
+		proc->reg[reg3] = val + dir;
+		proc->pc += i + 4;
+		proc->carry = 1;
 	}
-	proc->reg[reg - 1] = value;
-	proc->carry = 1;
-	proc->pc += 5;
+	return (1);
 }
 
 void		cw_lldi(t_struct *env, t_process *proc)
 {
-	if ((int)env->map[pc_rotate(proc->pc, 1)] == 0x90)
-		lldi_dir(env, proc);
-	else if ((int)env->map[pc_rotate(proc->pc, 1)] == 0xD0)
-		lldi_ind(env, proc);
-	else
+	char			ocodage;
+	int				id;
+	unsigned int	val;
+	int				reg1;
+
+	ocodage = env->map[pc_rotate(proc->pc, 1)];
+	if (ocodage == (char)0x54 || ocodage == (char)0x64 || ocodage == (char)0x94 ||
+		ocodage == (char)0xa4 || ocodage == (char)0xd4 || ocodage == (char)0xe4)
 	{
-		proc->carry = 0;
-		proc->pc++;
+		if ((ocodage >> 6 | 0x40) << 6 == (char)0x40)
+		{
+			if ((reg1 = env->map[pc_rotate(proc->pc, 2)]) < 1
+				|| reg1 > 16)
+			{
+				proc->pc++;
+				return ;
+			}
+			val = proc->reg[reg1];
+			if (calc(env, proc, val, 2) == 0)
+				proc->pc++;
+		}
+		else if ((ocodage >> 6 | 0x80) << 6 == (char)0x80)
+		{
+			val = get_four_octet(env, proc->pc + 2);
+			if (calc(env, proc, val, 5) == 0)
+				proc->pc++;
+		}
+		else if ((ocodage >> 6 | 0xc0) << 6 == (char)0xc0)
+		{
+			id = sti_calc(env, proc, 2);
+			val = sti_calc(env, proc, id);
+			if (calc(env, proc, val, 3) == 0)
+				proc->pc++;
+		}
 	}
+	else
+		proc->pc++;
 }

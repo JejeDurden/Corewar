@@ -29,7 +29,6 @@ static void	ld_dir(t_struct *env, t_process *proc)
 		proc->pc++;
 		return ;
 	}
-	value %= IDX_MOD;
 	proc->reg[reg - 1] = value;
 	proc->carry = 1;
 	proc->pc += 7;
