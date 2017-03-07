@@ -27,7 +27,7 @@ static void	ld_dir(t_struct *env, t_process *proc)
 	}
 	proc->reg[reg - 1] = value;
 	proc->carry = 1;
-	proc->pc += 7;
+	proc->pc = pc_rotate(proc->pc, 7);
 }
 
 static void	ld_ind(t_struct *env, t_process *proc)
@@ -47,7 +47,7 @@ static void	ld_ind(t_struct *env, t_process *proc)
 	}
 	proc->reg[reg - 1] = nvalue;
 	proc->carry = 1;
-	proc->pc += 5;
+	proc->pc = pc_rotate(proc->pc, 5);
 }
 
 void		cw_lld(t_struct *env, t_process *proc)
@@ -59,6 +59,6 @@ void		cw_lld(t_struct *env, t_process *proc)
 	else
 	{
 		proc->carry = 0;
-		proc->pc++;
+		proc->pc = pc_rotate(proc->pc, 1);
 	}
 }

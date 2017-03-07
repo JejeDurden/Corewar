@@ -28,9 +28,9 @@ void		create_process(t_struct *env)
 		ft_bzero(proc->reg, REG_NUMBER);
 		proc->reg[0] = UINT_MAX - env->champ[i].number + 1;
 		proc->carry = 0;
-		proc->next = NULL;
 		proc->verif = 1;
 		proc->champ = i;
+		proc->next = NULL;
 		i++;
 		env->nb_proc++;
 	}
@@ -52,12 +52,7 @@ void	del_process(t_process **l_proc, t_process *maillon)
 {
 	t_process *tmp;
 
-	if (*l_proc == maillon && (*l_proc)->next == NULL)
-	{
-		free(*l_proc);
-		*l_proc = NULL;
-	}
-	else if (*l_proc == maillon)
+	if (*l_proc == maillon)
 	{
 		*l_proc = maillon->next;
 		free(maillon);

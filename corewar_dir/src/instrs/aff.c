@@ -29,5 +29,5 @@ void		cw_aff(t_struct *env, t_process *proc)
 	if (proc->pc + 3 >= MEM_SIZE)
 		proc->pc = (proc->pc - MEM_SIZE) + 3;
 	else 
-		proc->pc += 3;
+		proc->pc = pc_rotate(proc->pc, 3);
 }

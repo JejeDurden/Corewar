@@ -38,7 +38,7 @@ static	int		proc_exec(t_process *proc, t_struct *env)
 		proc->check = char_to_int(env->map[proc->pc]);
 		if (proc->check == 0 || proc->check > 16)
 		{
-			proc->pc++;
+			proc->pc = pc_rotate(proc->pc, 1);
 			return (1);
 		}
 		proc->wait = g_op_tab[proc->check - 1].nb_cycles;
@@ -72,10 +72,12 @@ int				start_game(t_struct *env)
 		ncur_init(env);
 	while (cycle_to_die(env, &game) == 1 && env->dump != 0)
 	{
-		i = -1;
-		proc_get(&env->champ[env->nb_champ - 1], env);
-		while (++i < env->nb_champ - 1)
+		i = env->nb_champ - 1;
+		while (i >= 0)
+		{
 			proc_get(&env->champ[i], env);
+			i--;
+		}
 		game.cycle++;
 		game.cycle_total++;
 		if (env->graphic == 1)

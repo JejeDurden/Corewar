@@ -44,7 +44,7 @@ void			cw_and(t_struct *env, t_process *proc)
 		if (proc->pc + 1 >= MEM_SIZE)
 			proc->pc = (proc->pc - MEM_SIZE) + 1;
 		else
-			proc->pc++;
+			proc->pc = pc_rotate(proc->pc, 1);
 	}
 }
 
@@ -57,7 +57,7 @@ void			cw_or(t_struct *env, t_process *proc)
 		if (proc->pc + 1 >= MEM_SIZE)
 			proc->pc = (proc->pc - MEM_SIZE) + 1;
 		else
-			proc->pc++;
+			proc->pc = pc_rotate(proc->pc, 1);
 	}
 }
 
@@ -70,6 +70,6 @@ void			cw_xor(t_struct *env, t_process *proc)
 		if (proc->pc + 1 >= MEM_SIZE)
 			proc->pc = (proc->pc - MEM_SIZE) + 1;
 		else
-			proc->pc++;
+			proc->pc = pc_rotate(proc->pc, 1);
 	}
 }

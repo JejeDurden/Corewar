@@ -25,11 +25,11 @@ static void	cw_st_reg(t_struct *env, t_process *proc)
 	if (reg1 >= 1 && reg1 <= 16 && reg2 >= 1 && reg2 <= 16)
 	{
 		proc->reg[reg2 - 1] = proc->reg[reg1 - 1];
-		proc->pc += 4;
+		proc->pc = pc_rotate(proc->pc, 4);
 		return ;
 	}
 	else
-		proc->pc++;
+		proc->pc = pc_rotate(proc->pc, 1);
 }
 
 static void	cw_st_ind(t_struct *env, t_process *proc)
@@ -45,7 +45,7 @@ static void	cw_st_ind(t_struct *env, t_process *proc)
 		put_octet(env, proc->pc, ind, proc->reg[reg - 1]);
 		ft_memset(env->map_color + pc_rotate(proc->pc, ind),
 			search_champ_id(env, proc) + 49, 4);
-		proc->pc += 5;
+		proc->pc = pc_rotate(proc->pc, 5);
 		return ;
 	}
 	else
@@ -59,5 +59,5 @@ void		cw_st(t_struct *env, t_process *proc)
 	else if (env->map[pc_rotate(proc->pc, 1)] == (char)0x50)
 		cw_st_reg(env, proc);
 	else
-		proc->pc++;
+		proc->pc = pc_rotate(proc->pc, 1);
 }
