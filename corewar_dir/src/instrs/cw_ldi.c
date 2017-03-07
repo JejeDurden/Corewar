@@ -36,6 +36,7 @@ static int	calc(t_struct *env, t_process *proc, int val, int i)
 			return (0);
 		dir = get_four_octet(env, proc->pc + i + 1);
 		proc->reg[reg3] = val + dir;
+		ft_printf("%x\n", proc->reg[reg3]);
 		proc->pc += i + 4;
 		proc->carry = 1;
 	}
