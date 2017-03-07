@@ -14,7 +14,7 @@
 
 unsigned int		get_four_octet(t_struct *env, unsigned int dest)
 {
-	int i;
+	unsigned int i;
 
 	i = dest;
 	dest = char_to_int(env->map[pc_rotate(i, 0)]) << 24;

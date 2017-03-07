@@ -77,7 +77,7 @@ void			ncur_print(t_struct *env)
 
 	cursor = 0;
 	row = 0;
-	usleep(env->usleep + 1500);
+	usleep(env->usleep + 8000);
 	while (row < MEM_SIZE / 64)
 	{
 		wmove(env->main, row + 7, 20);

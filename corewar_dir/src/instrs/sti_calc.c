@@ -16,6 +16,7 @@ unsigned int	sti_calc(t_struct *env, t_process *proc, int i)
 {
 	unsigned int dest;
 
+	ft_printf("ici %d %u\n", i, env->map[pc_rotate(proc->pc, i)] * 256 + env->map[pc_rotate(proc->pc, i +1)]);
 	dest = char_to_int(env->map[pc_rotate(proc->pc, i)]) << 8;
 	dest = (dest + char_to_int(env->map[pc_rotate(proc->pc, i + 1)]));
 	return (dest);

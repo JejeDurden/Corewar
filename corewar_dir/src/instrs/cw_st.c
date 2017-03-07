@@ -17,11 +17,11 @@
 */
 static void	cw_st_reg(t_struct *env, t_process *proc)
 {
-	int reg1;
-	int reg2;
+	unsigned int reg1;
+	unsigned int reg2;
 
-	reg1 = (int)env->map[pc_rotate(proc->pc, 2)];
-	reg2 = (int)env->map[pc_rotate(proc->pc, 3)];
+	reg1 = (unsigned int)env->map[pc_rotate(proc->pc, 2)];
+	reg2 = (unsigned int)env->map[pc_rotate(proc->pc, 3)];
 	if (reg1 >= 1 && reg1 <= 16 && reg2 >= 1 && reg2 <= 16)
 	{
 		proc->reg[reg2] = proc->reg[reg1];
@@ -34,10 +34,10 @@ static void	cw_st_reg(t_struct *env, t_process *proc)
 
 static void	cw_st_ind(t_struct *env, t_process *proc)
 {
-	int reg;
-	int ind;
+	unsigned int reg;
+	unsigned int ind;
 
-	reg = (int)env->map[pc_rotate(proc->pc, 2)];
+	reg = (unsigned int)env->map[pc_rotate(proc->pc, 2)];
 	if (reg >= 1 && reg <= 16)
 	{
 		ind = sti_calc(env, proc, 3);

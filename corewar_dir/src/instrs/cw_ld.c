@@ -12,14 +12,10 @@
 
 #include "corewar.h"
 
-/*
-** Va charger la valeur 'direct' qui se trouve sur 4 octets dans le registre
-*/
-
 static void	ld_dir(t_struct *env, t_process *proc)
 {
-	int	value;
-	int reg;
+	unsigned int	value;
+	unsigned int	reg;
 
 	value = get_four_octet(env, proc->pc + 2);
 	reg = env->map[pc_rotate(proc->pc, 6)];
@@ -34,16 +30,11 @@ static void	ld_dir(t_struct *env, t_process *proc)
 	proc->pc += 7;
 }
 
-/*
-** Va charger la valeur 'indirect' qui se trouve sur 4 octets donc chercher la valeur
-** a lendroit indiquer et la charger dans le registre
-*/
-
 static void	ld_ind(t_struct *env, t_process *proc)
 {
-	int	value;
-	int	nvalue;
-	int reg;
+	unsigned int	value;
+	unsigned int	nvalue;
+	unsigned int	reg;
 
 	value = sti_calc(env, proc, 2);
 	value %= IDX_MOD;
