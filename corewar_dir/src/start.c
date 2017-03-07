@@ -54,6 +54,7 @@ static void		proc_get(t_info *champ, t_struct *env)
 	proc = champ->l_proc;
 	while (proc)
 	{
+		ft_printf("ici %d\n", proc->pc);
 		proc_exec(proc, env);
 		proc = proc->next;
 	}

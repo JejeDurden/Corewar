@@ -17,11 +17,10 @@ void	cw_fork(t_struct *env, t_process *proc)
 	int			live;
 	t_process	*new;
 
-	live = (env->map[pc_rotate(proc->pc, 1)] |
-		env->map[pc_rotate(proc->pc, 2)]) & 0xFFFFFF;
+	live = sti_calc(env, proc, 1);
 	new = new_process(proc);
-	new->pc = pc_rotate(proc->pc, 3);
-	proc->pc = pc_rotate(proc->pc, live);
+	new->pc = pc_rotate(proc->pc, live);
+	proc->pc = pc_rotate(proc->pc, 3);
 	ft_memcpy(new->reg, proc->reg, REG_NUMBER);
 	new->nb_live = 0;
 	new->carry = proc->carry;

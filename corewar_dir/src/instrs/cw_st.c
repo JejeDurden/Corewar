@@ -20,8 +20,8 @@ static void	cw_st_reg(t_struct *env, t_process *proc)
 	int reg1;
 	int reg2;
 
-	reg1 = env->map[pc_rotate(proc->pc, 2)];
-	reg2 = env->map[pc_rotate(proc->pc, 3)];
+	reg1 = (int)env->map[pc_rotate(proc->pc, 2)];
+	reg2 = (int)env->map[pc_rotate(proc->pc, 3)];
 	if (reg1 >= 1 && reg1 <= 16 && reg2 >= 1 && reg2 <= 16)
 	{
 		proc->reg[reg2] = proc->reg[reg1];
@@ -37,11 +37,10 @@ static void	cw_st_ind(t_struct *env, t_process *proc)
 	int reg;
 	int ind;
 
-	reg = env->map[pc_rotate(proc->pc, 2)];
+	reg = (int)env->map[pc_rotate(proc->pc, 2)];
 	if (reg >= 1 && reg <= 16)
 	{
-		ind = (env->map[pc_rotate(proc->pc, 3)] |
-			env->map[pc_rotate(proc->pc, 4)]) & 0xFFFFFF;
+		ind = sti_calc(env, proc, 3);
 		ind %= IDX_MOD;
 		put_octet(env, proc->pc, ind, proc->reg[reg - 1]);
 		ft_memset(env->map_color + pc_rotate(proc->pc, ind),
@@ -55,9 +54,9 @@ static void	cw_st_ind(t_struct *env, t_process *proc)
 
 void	cw_st(t_struct *env, t_process *proc)
 {
-	if ((int)env->map[pc_rotate(proc->pc, 1)] == 0x70)
+	if (env->map[pc_rotate(proc->pc, 1)] == (char)0x70)
 		cw_st_ind(env, proc);
-	else if ((int)env->map[pc_rotate(proc->pc, 1)] == 0x50)
+	else if (env->map[pc_rotate(proc->pc, 1)] == (char)0x50)
 		cw_st_reg(env, proc);
 	else
 		proc->pc++;

@@ -12,19 +12,12 @@
 
 #include "corewar.h"
 
-/*
-** Va charger la valeur 'direct' qui se trouve sur 4 octets dans le registre
-*/
-
-static void	lld_dir(t_struct *env, t_process *proc)
+static void	ld_dir(t_struct *env, t_process *proc)
 {
 	int	value;
 	int reg;
 
-	value = (env->map[pc_rotate(proc->pc, 2)] |
-		env->map[pc_rotate(proc->pc, 3)] |
-		env->map[pc_rotate(proc->pc, 4)] |
-		env->map[pc_rotate(proc->pc, 5)]) & 0xFFFFFF;
+	value = get_four_octet(env, proc->pc + 2);
 	reg = env->map[pc_rotate(proc->pc, 6)];
 	if (reg < 1 || reg > 16)
 	{
@@ -32,28 +25,20 @@ static void	lld_dir(t_struct *env, t_process *proc)
 		proc->pc++;
 		return ;
 	}
+	value %= IDX_MOD
 	proc->reg[reg - 1] = value;
 	proc->carry = 1;
 	proc->pc += 7;
 }
 
-/*
-** Va charger la valeur 'indirect' qui se trouve sur 4 octets donc chercher la valeur
-** a lendroit indiquer et la charger dans le registre
-*/
-
-static void	lld_ind(t_struct *env, t_process *proc)
+static void	ld_ind(t_struct *env, t_process *proc)
 {
 	int	value;
 	int	nvalue;
 	int reg;
 
-	value = (env->map[pc_rotate(proc->pc, 2)] |
-		env->map[pc_rotate(proc->pc, 3)]) & 0xFFFFFF;
-	nvalue = (env->map[pc_rotate(proc->pc, value)] |
-		env->map[pc_rotate(proc->pc, value + 1)] |
-		env->map[pc_rotate(proc->pc, value + 2)] |
-		env->map[pc_rotate(proc->pc, value + 3)]) & 0xFFFFFF;
+	value = sti_calc(env, proc, 2);
+	nvalue = get_four_octet(env, proc->pc + value);
 	reg = env->map[pc_rotate(proc->pc, 4)];
 	if (reg < 1 || reg > 16)
 	{
@@ -66,12 +51,12 @@ static void	lld_ind(t_struct *env, t_process *proc)
 	proc->pc += 5;
 }
 
-void		cw_lld(t_struct *env, t_process *proc)
+void		cw_ld(t_struct *env, t_process *proc)
 {
-	if ((int)env->map[pc_rotate(proc->pc, 1)] == 0x90)
-		lld_dir(env, proc);
-	else if ((int)env->map[pc_rotate(proc->pc, 1)] == 0xD0)
-		lld_ind(env, proc);
+	if (env->map[pc_rotate(proc->pc, 1)] == (char)0x90)
+		ld_dir(env, proc);
+	else if (env->map[pc_rotate(proc->pc, 1)] == (char)0xD0)
+		ld_ind(env, proc);
 	else
 	{
 		proc->carry = 0;
