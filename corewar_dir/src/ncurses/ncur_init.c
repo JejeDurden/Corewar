@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 14:54:15 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/06 17:23:49 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/07 10:24:10 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ static void		ncur_set_colors()
 	init_pair(4, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(5, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(6, COLOR_BLUE, COLOR_BLACK);
+	init_pair(10, COLOR_BLACK, COLOR_WHITE);
+	init_pair(11, COLOR_BLACK, COLOR_GREEN);
+	init_pair(12, COLOR_BLACK, COLOR_RED);
+	init_pair(13, COLOR_BLACK, COLOR_CYAN);
+	init_pair(14, COLOR_BLACK, COLOR_MAGENTA);
 }
 
 void	ncur_free(t_struct *env)

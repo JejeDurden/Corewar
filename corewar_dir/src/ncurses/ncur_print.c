@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 14:55:40 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/06 17:25:38 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/07 10:57:00 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		ncur_white(t_struct *env, int on)
 		wattroff(env->main, COLOR_PAIR(WHITE) | A_BOLD);
 }
 
-static void		ncur_put_color(t_struct *env, int on, int pos)
+static void		ncur_put_color(t_struct *env, int on, int pos, int invert)
 {
 	int		champ_color;
 
@@ -44,24 +44,27 @@ static void		ncur_put_color(t_struct *env, int on, int pos)
 	{
 		champ_color = ncur_get_champ_color(env, pos);
 		if (on)
-			wattron(env->main, COLOR_PAIR(champ_color) | A_BOLD);
+			wattron(env->main, COLOR_PAIR(champ_color + invert) | A_BOLD);
 		else
-			wattroff(env->main, COLOR_PAIR(champ_color) | A_BOLD);
+			wattroff(env->main, COLOR_PAIR(champ_color + invert) | A_BOLD);
 	}
 }
 
 static void		ncur_print_line(t_struct *env, int cursor, int size)
 {
 	int		i;
+	int		invert;
 
 	i = 0;
 	while (i < 64)
 	{
 		if (i < size)
 		{
-			ncur_put_color(env, 1, i + cursor);
-			wprintw(env->main, "%02x ", char_to_int(env->map[i + cursor]));
-			ncur_put_color(env,  0, i + cursor);
+			invert = ncur_print_pc(env, i + cursor);
+			ncur_put_color(env, 1, i + cursor, invert);
+			wprintw(env->main, "%02x", char_to_int(env->map[i + cursor]));
+			ncur_put_color(env,  0, i + cursor, invert);
+			wprintw(env->main, " ");
 		}
 		i++;
 	}
@@ -74,6 +77,7 @@ void			ncur_print(t_struct *env)
 
 	cursor = 0;
 	row = 0;
+	usleep(env->usleep + 1500);
 	while (row < MEM_SIZE / 64)
 	{
 		wmove(env->main, row + 7, 20);

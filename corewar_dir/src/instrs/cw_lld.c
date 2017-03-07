@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 16:31:28 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/04 13:58:39 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/07 10:22:28 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ld_dir(t_struct *env, t_process *proc)
 		proc->pc++;
 		return ;
 	}
-	value %= IDX_MOD
+	value %= IDX_MOD;
 	proc->reg[reg - 1] = value;
 	proc->carry = 1;
 	proc->pc += 7;
@@ -51,7 +51,7 @@ static void	ld_ind(t_struct *env, t_process *proc)
 	proc->pc += 5;
 }
 
-void		cw_ld(t_struct *env, t_process *proc)
+void		cw_lld(t_struct *env, t_process *proc)
 {
 	if (env->map[pc_rotate(proc->pc, 1)] == (char)0x90)
 		ld_dir(env, proc);

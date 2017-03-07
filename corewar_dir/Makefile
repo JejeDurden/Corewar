@@ -6,7 +6,7 @@
 #    By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 17:05:27 by jgoncalv          #+#    #+#              #
-#    Updated: 2017/03/06 19:28:48 by rghirell         ###   ########.fr        #
+#    Updated: 2017/03/07 09:43:11 by jdesmare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ SRC_NAME = main.c\
 		   ncurses/ncur_init.c\
 		   ncurses/ncur_print.c\
 		   ncurses/ncur_print_side.c\
+		   ncurses/ncur_print_pc.c\
 		   search_champ_id.c\
 		   instrs/put_octet.c\
 		   write_params.c\

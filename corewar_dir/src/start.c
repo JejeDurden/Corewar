@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/06 17:23:34 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/07 10:39:40 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static	int		proc_exec(t_process *proc, t_struct *env)
 	else if (proc->action == 1 && proc->wait == 0 && is_checked(env, proc) == 1)
 	{
 		g_f[proc->check - 1](env, proc);
+//		printf("proc->live == |%d|\n", proc->nb_live);
 		proc->action = 0;
 		return (1);
 	}
@@ -54,7 +55,6 @@ static void		proc_get(t_info *champ, t_struct *env)
 	proc = champ->l_proc;
 	while (proc)
 	{
-		ft_printf("ici %d\n", proc->pc);
 		proc_exec(proc, env);
 		proc = proc->next;
 	}
@@ -73,12 +73,10 @@ int				start_game(t_struct *env)
 		ncur_init(env);
 	while (cycle_to_die(env, &game) == 1)
 	{
-		i = 0;
-		while (i < MAX_PLAYERS)
-		{
+		i = -1;
+		proc_get(&env->champ[env->nb_champ - 1], env);
+		while (++i < env->nb_champ - 1)
 			proc_get(&env->champ[i], env);
-			i++;
-		}
 		game.cycle++;
 		game.cycle_total++;
 		if (env->graphic == 1)

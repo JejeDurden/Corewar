@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/06 19:24:25 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/07 09:45:51 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,11 +162,12 @@ unsigned int	get_indirect(t_struct *env,
 ** Ncurses
 */
 
-void	ncur_init(t_struct *env);
-void	ncur_print(t_struct *env);
-void	ncur_free(t_struct *env);
-void	write_map_color(t_struct *env);
-void	ncur_print_info(t_struct *env, t_game *game);
-void	ncur_print_score(t_struct *env);
+void				ncur_init(t_struct *env);
+void				ncur_print(t_struct *env);
+void				ncur_free(t_struct *env);
+void				write_map_color(t_struct *env);
+void				ncur_print_info(t_struct *env, t_game *game);
+void				ncur_print_score(t_struct *env);
+int					ncur_print_pc(t_struct *env, int pos);
 
 #endif

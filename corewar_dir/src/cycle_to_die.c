@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:59:04 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/06 17:44:29 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/07 10:42:59 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	check_proc(t_struct *env, int i, int ret)
 			{
 				if (proc->nb_live >= NBR_LIVE && proc->verif == 1)
 					ret = 1;
-				proc->nb_live = 0;
 				proc->verif = 1;
 				proc = proc->next;
 			}
@@ -68,19 +67,22 @@ int		cycle_to_die(t_struct *env, t_game *game)
 int		check_proc_live(t_struct *env)
 {
 	int			i;
+	int			ret;
 	t_process	*proc;
 
 	i = 0;
+	ret = 0;
 	while (i < env->nb_champ)
 	{
 		proc = env->champ[i].l_proc;
 		while (proc)
 		{
 			if (proc->nb_live > 0)
-				return (1);
+				ret = 1;
+			proc->nb_live = 0;
 			proc = proc->next;
 		}
 		i++;
 	}
-	return (0);
+	return (ret);
 }
