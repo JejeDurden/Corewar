@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:24:29 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/07 09:19:58 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/07 13:45:58 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 void	cw_live(t_struct *env, t_process *proc)
 {
-	int	live;
+	unsigned int	live;
 	int	i;
 
 	i = 0;
-	live = (env->map[pc_rotate(proc->pc, 1)] |
-		env->map[pc_rotate(proc->pc, 2)] |
-		env->map[pc_rotate(proc->pc, 3)] |
-		env->map[pc_rotate(proc->pc, 4)]) & 0xFFFFFF;
+	live = get_four_octet(env, proc->pc + 1);
 	while (i < env->nb_champ)
 	{
-		if (env->champ[i].number == live)
+		if (UINT_MAX - (unsigned int)env->champ[i].number + 1 == live)
 		{
 			if (env->graphic == 0)
 				ft_printf("Un processus dit que le joueur %s est en vie\n",

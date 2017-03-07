@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/07 09:45:51 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/07 13:06:37 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int				binary_args_direct(t_struct *env, t_process *proc,
 int				binary_args_reg(t_struct *env, t_process *proc,
 				unsigned int *tab , int a);
 int				search_champ_id(t_struct *env, t_process *proc);
-void			put_octet(t_struct *env, int start, int nb, int value);
+void			put_octet(t_struct *env, int start, int nb, unsigned int value);
 void			write_params(t_struct *env, t_process *proc, unsigned int dest,
 				int i);
 int				sti_no_register(t_struct *env, t_process *proc, int ascii);
