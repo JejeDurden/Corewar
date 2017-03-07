@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/07 11:02:43 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/07 17:03:34 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void		proc_get(t_info *champ, t_struct *env)
 	t_process	*proc;
 
 	proc = champ->l_proc;
-	while (proc)
+	while (proc != NULL)
 	{
 		proc_exec(proc, env);
 		proc = proc->next;
@@ -70,7 +70,7 @@ int				start_game(t_struct *env)
 	game.ctd = CYCLE_TO_DIE;
 	if (env->graphic == 1)
 		ncur_init(env);
-	while (cycle_to_die(env, &game) == 1)
+	while (cycle_to_die(env, &game) == 1 && env->dump != 0)
 	{
 		i = -1;
 		proc_get(&env->champ[env->nb_champ - 1], env);
@@ -83,6 +83,8 @@ int				start_game(t_struct *env)
 			ncur_print_info(env, &game);
 			ncur_print_score(env);
 		}
+		if (env->dump > -1)
+			env->dump--;
 	}
 	if (env->graphic == 1)
 		ncur_free(env);
