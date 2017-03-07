@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:37:28 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/06 17:01:12 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/07 12:52:53 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	cw_st_ind(t_struct *env, t_process *proc)
 		proc->pc++;
 }
 
-void	cw_st(t_struct *env, t_process *proc)
+void		cw_st(t_struct *env, t_process *proc)
 {
 	if (env->map[pc_rotate(proc->pc, 1)] == (char)0x70)
 		cw_st_ind(env, proc);

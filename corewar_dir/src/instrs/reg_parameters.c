@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 18:07:09 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/07 11:34:23 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/07 13:29:44 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ int		reg_parameters(t_struct *env, t_process *proc, int ascii)
 	if (ascii == 84)
 		return (only_registers(env, proc, i, j));
 	if (ascii == 100 || ascii == 116 || ascii == 88)
-		return(two_registers(env, proc, i, j));
+		return (two_registers(env, proc, i, j));
 	return (-1);
 }
