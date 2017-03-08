@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 08:05:25 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/02 13:53:30 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/08 16:23:27 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		write_params_code(t_struct *env, char *line, int current_pos,
 		put_hex_in_char(env, ft_atoi(&line[1]), env->i, 1);
 		env->i++;
 	}
-	else if (ft_isdigit(line[0]) || line[0] == ':')
+	else if (ft_isdigit(line[0]) || ft_isdigit(line[0]) == '-' || line[0] == ':')
 	{
 		env->i += IND_SIZE - 1;
 		if (line[0] == ':')
