@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 18:01:27 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/08 14:22:25 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/08 15:20:18 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	write_params(t_struct *env, t_process *proc, unsigned int dest, int i)
 {
 	int j;
 
+	dest %= IDX_MOD;
+//	dest %= MEM_SIZE;
 	j = search_champ_id(env, proc);
 	change_map_colors(env, pc_rotate(proc->pc, dest), j, REG_SIZE);
 	put_octet(env, pc_rotate(proc->pc, dest), 0, proc->reg[i - 1]);

@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 13:56:47 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/02/27 14:14:43 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 16:44:06 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void			put_hex_in_char(t_struct *env, int nbr, int i, int dir)
 {
 	unsigned int nb;
-
+	
 	if (nbr >= 0)
 	{
 		while (nbr > 0)

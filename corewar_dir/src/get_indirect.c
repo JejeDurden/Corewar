@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 18:04:43 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/08 14:27:11 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/08 15:20:55 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ unsigned int		get_indirect(t_struct *env, unsigned int dest)
 {
 	dest = dest % MEM_SIZE;
 	dest = get_four_octet(env, dest);
-	dest %= MEM_SIZE;
-	dest %= IDX_MOD;
+//	dest %= MEM_SIZE;
 	return (dest);
 }

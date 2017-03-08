@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 18:07:09 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/08 13:52:05 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/08 15:51:14 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		only_registers(t_struct *env, t_process *proc, int i, int j)
 	if (k > 16)
 		return (-1);
 	dest = (proc->reg[k - 1] + proc->reg[j - 1]);
-	dest %= MEM_SIZE;
+//	dest %= MEM_SIZE;
 	write_params(env, proc, dest, i);
 	proc->pc = pc_rotate(proc->pc, 5);
 	return (1);
@@ -35,18 +35,20 @@ int		two_registers(t_struct *env, t_process *proc, int i, int j)
 	if (dest == 100)
 	{
 		dest = sti_calc(env, proc, 3);
-		dest = (dest + proc->reg[j - 1]) % MEM_SIZE;
+		dest = (dest + proc->reg[j - 1]);// % MEM_SIZE;
 	}
 	else if (dest == 116)
 	{
 		dest = sti_calc(env, proc, 3);
+		dest %= IDX_MOD;
+		dest += proc->pc;
 		dest = get_indirect(env, dest);
-		dest = (dest + proc->reg[j - 1]) % MEM_SIZE;
+		dest = (dest + proc->reg[j - 1]);// % MEM_SIZE;
 	}
 	else
 	{
 		dest = sti_calc(env, proc, 4);
-		dest = (dest + proc->reg[j - 1]) % MEM_SIZE;
+		dest = (dest + proc->reg[j - 1]);// % MEM_SIZE;
 	}
 	write_params(env, proc, dest, i);
 	proc->pc = pc_rotate(proc->pc, 6);
