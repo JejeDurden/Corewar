@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 18:07:09 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/08 09:15:52 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/08 13:52:05 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int		only_registers(t_struct *env, t_process *proc, int i, int j)
 	k = char_to_int(env->map[proc->pc + 3]);
 	if (k > 16)
 		return (-1);
-	dest = (proc->reg[k - 1] + proc->reg[j - 1]) % MEM_SIZE;
+	dest = (proc->reg[k - 1] + proc->reg[j - 1]);
+	dest %= MEM_SIZE;
 	write_params(env, proc, dest, i);
 	proc->pc = pc_rotate(proc->pc, 5);
 	return (1);
