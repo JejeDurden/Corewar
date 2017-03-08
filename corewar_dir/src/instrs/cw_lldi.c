@@ -46,7 +46,7 @@ static int	calc(t_struct *env, t_process *proc, int val, int i)
 	return (1);
 }
 
-void		cw_ldi(t_struct *env, t_process *proc)
+void		cw_lldi(t_struct *env, t_process *proc)
 {
 	char			ocodage;
 	unsigned int	id;
