@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/08 09:14:36 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/08 14:18:01 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ int				two_registers(t_struct *env, t_process *proc, int i, int j);
 int				only_registers(t_struct *env, t_process *proc, int i, int j);
 unsigned int	get_four_octet(t_struct *env, unsigned int dest);
 unsigned int	get_indirect(t_struct *env, unsigned int dest);
+void			change_map_colors(t_struct *env, int dest, int champ, int size);
 
 
 
