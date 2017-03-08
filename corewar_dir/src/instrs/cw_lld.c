@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 16:31:28 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/08 08:28:01 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 09:10:39 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,5 @@ void		cw_lld(t_struct *env, t_process *proc)
 	else if (env->map[pc_rotate(proc->pc, 1)] == (char)0xD0)
 		ld_ind(env, proc);
 	else
-	{
-		proc->carry = (proc->carry == 1) ? 0 : 1;
 		proc->pc = pc_rotate(proc->pc, 1);
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 16:50:24 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/07 17:44:14 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/08 09:10:11 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	cw_add(t_struct *env, t_process *proc)
 				+ proc->reg[(int)env->map[pc_rotate(proc->pc, 3)] - 1];
 			proc->reg[(int)env->map[pc_rotate(proc->pc, 4)] - 1] = value;
 			proc->pc = pc_rotate(proc->pc, 5);
+			proc->carry = (proc->carry == 1) ? 0 : 1;
 		}
 		else
 			proc->pc = pc_rotate(proc->pc, 1);
