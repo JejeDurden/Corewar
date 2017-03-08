@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 20:57:35 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/07 17:53:37 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 09:54:58 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	cw_fork(t_struct *env, t_process *proc)
 	new = new_process(proc);
 	new->pc = pc_rotate(proc->pc, live);
 	proc->pc = pc_rotate(proc->pc, 3);
-	ft_putnbr(proc->pc);
 	while (++i < REG_NUMBER)
 		new->reg[i] = proc->reg[i];
 	new->nb_live = 0;
