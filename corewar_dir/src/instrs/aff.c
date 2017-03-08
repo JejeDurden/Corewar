@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 11:14:45 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/06 13:41:34 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 14:52:25 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,8 @@ void		cw_aff(t_struct *env, t_process *proc)
 
 	i = char_to_int(env->map[proc->pc + 2]);
 	if (i > 16 || i == 0)
-	{
-		if (proc->pc + 1 >= MEM_SIZE)
-			proc->pc = (proc->pc - MEM_SIZE) + 1;
-		else
-			proc->pc++;
-	}
+		proc->pc = pc_rotate(proc->pc, 1);
 	else if (env->graphic == 0)
 		ft_printf("aff : %c\n", proc->reg[i - 1] % 256);
-	if (proc->pc + 3 >= MEM_SIZE)
-		proc->pc = (proc->pc - MEM_SIZE) + 3;
-	else 
-		proc->pc = pc_rotate(proc->pc, 3);
+	proc->pc = pc_rotate(proc->pc, 3);
 }
