@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 18:07:09 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/07 16:16:15 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 09:15:52 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		two_registers(t_struct *env, t_process *proc, int i, int j)
 	else if (dest == 116)
 	{
 		dest = sti_calc(env, proc, 3);
-		dest = get_indirect(env, proc, dest);
+		dest = get_indirect(env, dest);
 		dest = (dest + proc->reg[j - 1]) % MEM_SIZE;
 	}
 	else

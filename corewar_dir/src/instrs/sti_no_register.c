@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 18:27:07 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/08 08:45:10 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 09:16:21 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		sti_no_register(t_struct *env, t_process *proc, int ascii)
 	else
 	{
 		dest = sti_calc(env, proc, 3);
-		dest = get_indirect(env, proc, dest);
+		dest = get_indirect(env, dest);
 		dest2 = sti_calc(env, proc, 5);
 		dest = (dest + dest2) % MEM_SIZE;
 	}
