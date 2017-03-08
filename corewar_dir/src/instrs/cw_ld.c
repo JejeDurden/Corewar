@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 14:22:54 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/03 14:22:55 by jgoncalv         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:29:58 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ static void	ld_dir(t_struct *env, t_process *proc)
 	reg = env->map[pc_rotate(proc->pc, 6)];
 	if (reg < 1 || reg > 16)
 	{
-		proc->carry = 1;
 		proc->pc = pc_rotate(proc->pc, 1);
 		return ;
 	}
 	proc->reg[reg - 1] = value;
-	proc->carry = 1;
+	proc->carry = (proc->carry == 1) ? 0 : 1;
 	proc->pc = pc_rotate(proc->pc, 7);
 }
 
@@ -42,12 +41,11 @@ static void	ld_ind(t_struct *env, t_process *proc)
 	reg = env->map[pc_rotate(proc->pc, 4)];
 	if (reg < 1 || reg > 16)
 	{
-		proc->carry = 1;
 		proc->pc = pc_rotate(proc->pc, 1);
 		return ;
 	}
 	proc->reg[reg - 1] = nvalue;
-	proc->carry = 1;
+	proc->carry = (proc->carry == 1) ? 0 : 1;
 	proc->pc = pc_rotate(proc->pc, 5);
 }
 
@@ -59,7 +57,7 @@ void		cw_ld(t_struct *env, t_process *proc)
 		ld_ind(env, proc);
 	else
 	{
-		proc->carry = 1;
+		proc->carry = (proc->carry == 1) ? 0 : 1;
 		proc->pc = pc_rotate(proc->pc, 1);
 	}
 }

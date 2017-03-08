@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/07 17:53:10 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:35:45 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,9 @@ int				start_game(t_struct *env)
 		ncur_init(env);
 	while (cycle_to_die(env, &game) == 1 && env->dump != 0)
 	{
-		i = env->nb_champ;
-		while (--i >= 0)
+		i = -1;
+		proc_get(&env->champ[env->nb_champ - 1], env);
+		while (++i < env->nb_champ - 1)
 			proc_get(&env->champ[i], env);
 		game.cycle++;
 		game.cycle_total++;

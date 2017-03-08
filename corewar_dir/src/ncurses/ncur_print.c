@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 14:55:40 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/07 14:23:03 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:40:26 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static int		ncur_get_champ_color(t_struct *env, int pos)
 static void		ncur_white(t_struct *env, int on, int invert)
 {
 	if (on)
-		wattron(env->main, COLOR_PAIR(invert) | A_BOLD);
+		wattron(env->main, COLOR_PAIR(invert));
 	else
-		wattroff(env->main, COLOR_PAIR(invert) | A_BOLD);
+		wattroff(env->main, COLOR_PAIR(invert));
 }
 
 static void		ncur_put_color(t_struct *env, int on, int pos, int invert)
@@ -63,7 +63,7 @@ static void		ncur_print_line(t_struct *env, int cursor, int size)
 			invert = ncur_print_pc(env, i + cursor);
 			ncur_put_color(env, 1, i + cursor, invert);
 			wprintw(env->main, "%02x", char_to_int(env->map[i + cursor]));
-			ncur_put_color(env,  0, i + cursor, invert);
+			ncur_put_color(env, 0, i + cursor, invert);
 			wprintw(env->main, " ");
 		}
 		i++;
@@ -77,7 +77,7 @@ void			ncur_print(t_struct *env)
 
 	cursor = 0;
 	row = 0;
-		usleep(env->usleep);
+	usleep(env->usleep);
 	while (row < MEM_SIZE / 64)
 	{
 		wmove(env->main, row + 7, 20);

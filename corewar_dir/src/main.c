@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:48:53 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/07 17:08:10 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:36:37 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_parser_open(char *file)
 	return (ret);
 }
 
-int		parse_champ_nb(char **av, int debut)
+int			parse_champ_nb(char **av, int debut)
 {
 	int		j;
 

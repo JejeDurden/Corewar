@@ -6,34 +6,34 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 10:40:08 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/07 09:48:37 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:37:36 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void ncur_print_side_str(WINDOW *win, char *str, int color)
+static void		ncur_print_side_str(WINDOW *win, char *str, int color)
 {
 	wattron(win, COLOR_PAIR(color) | A_BOLD | A_DIM);
 	wprintw(win, " %s\n", str);
 	wattroff(win, COLOR_PAIR(color) | A_BOLD | A_DIM);
 }
 
-static void ncur_print_side_value(WINDOW *win, int value, int color)
+static void		ncur_print_side_value(WINDOW *win, int value, int color)
 {
 	wattron(win, COLOR_PAIR(color) | A_BOLD | A_DIM);
 	wprintw(win, " %d\n", value);
 	wattroff(win, COLOR_PAIR(color) | A_BOLD | A_DIM);
 }
 
-static void ncur_print_side_title(WINDOW *win, char *title, int color)
+static void		ncur_print_side_title(WINDOW *win, char *title, int color)
 {
 	wattron(win, COLOR_PAIR(color) | A_BOLD | A_UNDERLINE | A_DIM);
 	wprintw(win, "%s:", title);
 	wattroff(win, COLOR_PAIR(color) | A_BOLD | A_UNDERLINE | A_DIM);
 }
 
-void		ncur_print_info(t_struct *env, t_game *game)
+void			ncur_print_info(t_struct *env, t_game *game)
 {
 	wmove(env->info, 2, 0);
 	ncur_print_side_title(env->info, "Cycle", YELLOW);
@@ -47,7 +47,7 @@ void		ncur_print_info(t_struct *env, t_game *game)
 	wrefresh(env->info);
 }
 
-void		ncur_print_score(t_struct *env)
+void			ncur_print_score(t_struct *env)
 {
 	int		i;
 
@@ -60,7 +60,7 @@ void		ncur_print_score(t_struct *env)
 	{
 		if (env->champ[i].number != 0)
 		{
-			wattron(env->score, COLOR_PAIR(i + 1) | A_BOLD |  A_DIM);
+			wattron(env->score, COLOR_PAIR(i + 1) | A_BOLD | A_DIM);
 			wprintw(env->score, 
 			"P%d aka %s has called live %d times for the current period\n\n",
 			env->champ[i].number, env->champ[i].name, env->live_current[i]);

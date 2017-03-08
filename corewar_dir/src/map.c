@@ -6,25 +6,11 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:07:16 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/06 10:19:36 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:23:06 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-/*void	write_map_color(t_struct *env)
-{
-	int		i;
-
-	i = 0;
-	while (i < MEM_SIZE)
-	{
-		ft_printf("%c", env->map_color[i]);
-		i++;
-		if (i % 32 == 0)
-			ft_putchar('\n');
-	}
-}*/
 
 	void	write_map(t_struct *env)
 {

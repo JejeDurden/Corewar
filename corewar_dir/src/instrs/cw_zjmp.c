@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 19:03:10 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/07 13:37:44 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:31:38 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ void	cw_zjmp(t_struct *env, t_process *proc)
 {
 	int res;
 
-	res = sti_calc(env, proc, 1);
-	proc->pc = pc_rotate(proc->pc, res);
+	if (proc->carry == 1)
+	{
+		res = sti_calc(env, proc, 1);
+		proc->pc = pc_rotate(proc->pc, res);
+	}
 }

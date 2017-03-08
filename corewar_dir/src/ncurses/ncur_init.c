@@ -6,13 +6,13 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 14:54:15 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/07 11:40:51 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:42:47 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void		ncur_set_colors()
+static void		ncur_set_colors(void)
 {
 	init_pair(1, COLOR_GREEN, COLOR_BLACK);
 	init_pair(2, COLOR_RED, COLOR_BLACK);
@@ -27,7 +27,7 @@ static void		ncur_set_colors()
 	init_pair(14, COLOR_BLACK, COLOR_MAGENTA);
 }
 
-void	ncur_free(t_struct *env)
+void			ncur_free(t_struct *env)
 {
 	clear();
 	delwin(env->main);
@@ -39,7 +39,7 @@ void	ncur_free(t_struct *env)
 	endwin();
 }
 
-void	ncur_init(t_struct *env)
+void			ncur_init(t_struct *env)
 {
 	initscr();
 	env->usleep = 500;
