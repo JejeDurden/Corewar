@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 10:40:08 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/08 08:37:36 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:44:31 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void			ncur_print_score(t_struct *env)
 		if (env->champ[i].number != 0)
 		{
 			wattron(env->score, COLOR_PAIR(i + 1) | A_BOLD | A_DIM);
-			wprintw(env->score, 
+			wprintw(env->score,
 			"P%d aka %s has called live %d times for the current period\n\n",
 			env->champ[i].number, env->champ[i].name, env->live_current[i]);
 			wattroff(env->score, COLOR_PAIR(i) | A_BOLD | A_DIM);

@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 18:27:07 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/06 19:45:56 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:45:10 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		sti_no_register(t_struct *env, t_process *proc, int ascii)
 {
-	int i;
-	unsigned int dest;
-	unsigned int dest2;
+	int				i;
+	unsigned int	dest;
+	unsigned int	dest2;
 
 	i = char_to_int(env->map[proc->pc + 2]);
 	if (i > 16)

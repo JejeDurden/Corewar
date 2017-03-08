@@ -6,13 +6,13 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:07:16 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/08 08:23:06 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:44:49 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-	void	write_map(t_struct *env)
+void	write_map(t_struct *env)
 {
 	int		ascii;
 	int		i;

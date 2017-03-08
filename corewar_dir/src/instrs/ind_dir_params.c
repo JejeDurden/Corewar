@@ -6,13 +6,13 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 09:59:56 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/06 17:55:34 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:48:08 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void			to_register(t_struct *env, t_process *proc,
+static void		to_register(t_struct *env, t_process *proc,
 					unsigned int *tab, int a)
 {
 	if (a == 0)
@@ -34,11 +34,11 @@ static void			to_register(t_struct *env, t_process *proc,
 		tab[1] = tab[1] | char_to_int(env->map[pc_rotate(proc->pc, 7)]);
 	}
 }
-   
+
 int				binary_args_ind_dir(t_struct *env,
 				t_process *proc, unsigned int *tab, int a)
 {
-	int i;
+	int		i;
 
 	i = char_to_int(env->map[proc->pc + 8]);
 	if (i > 16)

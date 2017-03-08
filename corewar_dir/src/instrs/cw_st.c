@@ -6,15 +6,12 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:37:28 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/07 12:52:53 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:49:09 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-/*
-**	stock la valeur du registre vers le second parametre
-*/
 static void	cw_st_reg(t_struct *env, t_process *proc)
 {
 	unsigned int reg1;

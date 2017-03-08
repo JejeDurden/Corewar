@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:24:29 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/07 13:45:58 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:49:46 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	cw_live(t_struct *env, t_process *proc)
 {
 	unsigned int	live;
-	int	i;
+	int				i;
 
 	i = 0;
 	live = get_four_octet(env, proc->pc + 1);

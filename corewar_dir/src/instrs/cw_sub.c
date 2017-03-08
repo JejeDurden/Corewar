@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 16:57:46 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/07 17:44:16 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/08 08:48:44 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	cw_sub(t_struct *env, t_process *proc)
 			env->map[pc_rotate(proc->pc, 4)] >= 1 &&
 			env->map[pc_rotate(proc->pc, 4)] <= 16)
 		{
-			value = proc->reg[(int)env->map[pc_rotate(proc->pc, 2)] - 1] 
+			value = proc->reg[(int)env->map[pc_rotate(proc->pc, 2)] - 1]
 				- proc->reg[(int)env->map[pc_rotate(proc->pc, 3)] - 1];
 			proc->reg[(int)env->map[pc_rotate(proc->pc, 4)] - 1] = value;
 			proc->pc = pc_rotate(proc->pc, 5);
