@@ -14,10 +14,11 @@
 
 static int	calc(t_struct *env, t_process *proc, int val, int i)
 {
-	unsigned int	reg2;
-	unsigned int	reg3;
-	unsigned int	dir;
+	int	reg2;
+	int	reg3;
+	int	dir;
 	char			ocodage;
+	int res;
 
 	ocodage = env->map[pc_rotate(proc->pc, 1)];
 	if ((ocodage & 0x30) == 0x10)
@@ -26,7 +27,8 @@ static int	calc(t_struct *env, t_process *proc, int val, int i)
 			(reg3 = env->map[pc_rotate(proc->pc, i + 1)]) < 1 ||
 			reg2 > 16 || reg3 > 16)
 			return (0);
-		proc->reg[reg3 - 1] = get_four_octet(env, pc_rotate(proc->pc, (proc->reg[reg2 - 1] + val) % IDX_MOD));
+		res = (proc->reg[reg2 - 1] + val) % IDX_MOD;
+		proc->reg[reg3 - 1] = get_four_octet(env, pc_rotate(proc->pc, res));
 		if (proc->reg[reg3 - 1] == 0)
 			proc->carry = (proc->carry == 1 ? 0 : 1);
 		proc->pc = pc_rotate(proc->pc, i + 2);
@@ -36,7 +38,8 @@ static int	calc(t_struct *env, t_process *proc, int val, int i)
 		if ((reg3 = env->map[pc_rotate(proc->pc, i + 2)]) < 1 || reg3 > 16)
 			return (0);
 		dir = sti_calc(env, proc, i);
-		proc->reg[reg3 - 1] = get_four_octet(env, pc_rotate(proc->pc, (dir + val) % IDX_MOD));
+		res = (dir + val) % IDX_MOD;
+		proc->reg[reg3 - 1] = get_four_octet(env, pc_rotate(proc->pc, res));
 		proc->pc = pc_rotate(proc->pc, i + 3);
 		if (proc->reg[reg3 - 1] == 0)
 			proc->carry = (proc->carry == 1 ? 0 : 1);
@@ -47,9 +50,9 @@ static int	calc(t_struct *env, t_process *proc, int val, int i)
 void		cw_ldi(t_struct *env, t_process *proc)
 {
 	char			ocodage;
-	unsigned int	id;
-	unsigned int	val;
-	unsigned int	reg1;
+	int	id;
+	int	val;
+	int	reg1;
 
 	ocodage = env->map[pc_rotate(proc->pc, 1)];
 	if (ocodage == (char)0x54 || ocodage == (char)0x64 || ocodage == (char)0x94 ||

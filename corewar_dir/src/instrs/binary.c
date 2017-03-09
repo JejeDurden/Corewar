@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 12:55:02 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/08 14:40:49 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 22:22:10 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 
-int				binary_args(t_struct *env, t_process *proc, unsigned int *tab,
+int				binary_args(t_struct *env, t_process *proc, int *tab,
 				int a)
 {
 	int ascii;
@@ -37,7 +37,7 @@ int				binary_args(t_struct *env, t_process *proc, unsigned int *tab,
 
 void			cw_and(t_struct *env, t_process *proc)
 {
-	unsigned int tab[2];
+	int tab[2];
 
 	if (binary_args(env, proc, tab, 0) < 0)
 	{
@@ -50,7 +50,7 @@ void			cw_and(t_struct *env, t_process *proc)
 
 void			cw_or(t_struct *env, t_process *proc)
 {
-	unsigned int tab[2];
+	int tab[2];
 
 	if (binary_args(env, proc, tab, 1) < 0)
 	{
@@ -63,7 +63,7 @@ void			cw_or(t_struct *env, t_process *proc)
 
 void			cw_xor(t_struct *env, t_process *proc)
 {
-	unsigned int tab[2];
+	int tab[2];
 
 	if (binary_args(env, proc, tab, 2) < 0)
 	{

@@ -16,9 +16,9 @@
 
 static int	calc(t_struct *env, t_process *proc, int val, int i)
 {
-	unsigned int	reg2;
-	unsigned int	reg3;
-	unsigned int	dir;
+	int	reg2;
+	int	reg3;
+	int	dir;
 	char			ocodage;
 
 	ocodage = env->map[pc_rotate(proc->pc, 1)];
@@ -49,9 +49,9 @@ static int	calc(t_struct *env, t_process *proc, int val, int i)
 void		cw_lldi(t_struct *env, t_process *proc)
 {
 	char			ocodage;
-	unsigned int	id;
-	unsigned int	val;
-	unsigned int	reg1;
+	int	id;
+	int	val;
+	int	reg1;
 
 	ocodage = env->map[pc_rotate(proc->pc, 1)];
 	if (ocodage == (char)0x54 || ocodage == (char)0x64 || ocodage == (char)0x94 ||

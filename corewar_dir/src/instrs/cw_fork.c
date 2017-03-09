@@ -19,7 +19,7 @@ void	cw_fork(t_struct *env, t_process *proc)
 	int			i;
 
 	i = -1;
-	live = sti_calc(env, proc, 1);
+	live = sti_calc(env, proc, 1) % IDX_MOD;
 	new = new_process(proc);
 	new->pc = pc_rotate(proc->pc, live);
 	proc->pc = pc_rotate(proc->pc, 3);
