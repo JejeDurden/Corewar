@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/08 14:18:01 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/08 22:31:44 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef	struct			s_process
 {	
 	int					pc;
 	int					champ;
-	unsigned int		reg[REG_NUMBER];
+	int		reg[REG_NUMBER];
 	int					nb_live;
 	int					carry;
 	int					verif;
@@ -128,32 +128,31 @@ void			del_process(t_process **l_proc, t_process *maillon);
 int				cycle_to_die(t_struct *env, t_game *game);
 int				check_proc_live(t_struct *env);
 int				pc_rotate(int pc, int i);
-void			tab_op(t_process *proc, unsigned int *tab, int a, int i);
-int				binary_args(t_struct *env, t_process *proc, unsigned int *tab,
+void			tab_op(t_process *proc, int *tab, int a, int i);
+int				binary_args(t_struct *env, t_process *proc, int *tab,
 				int a);
 int				binary_args_ind_dir(t_struct *env,
-				t_process *proc, unsigned int *tab, int a);
+				t_process *proc, int *tab, int a);
 int				binary_args_reg_dir(t_struct *env,
-				t_process *proc, unsigned int *tab, int a);
+				t_process *proc, int *tab, int a);
 int				binary_args_reg_ind(t_struct *env,
-				t_process *proc, unsigned int *tab, int a);
+				t_process *proc, int *tab, int a);
 int				binary_args_indirect(t_struct *env, t_process *proc,
-				unsigned int *tab , int a);
+				int *tab , int a);
 int				binary_args_direct(t_struct *env, t_process *proc,
-				unsigned int *tab , int a);
+				int *tab , int a);
 int				binary_args_reg(t_struct *env, t_process *proc,
-				unsigned int *tab , int a);
+				int *tab , int a);
 int				search_champ_id(t_struct *env, t_process *proc);
-void			put_octet(t_struct *env, int start, int nb, unsigned int value);
-void			write_params(t_struct *env, t_process *proc, unsigned int dest,
-				int i);
+void			put_octet(t_struct *env, int start, int nb, int value);
+void			write_params(t_struct *env, t_process *proc, int dest, int i);
 int				sti_no_register(t_struct *env, t_process *proc, int ascii);
-unsigned int	sti_calc(t_struct *env, t_process *proc, int i);
+int				sti_calc(t_struct *env, t_process *proc, int i);
 int				reg_parameters(t_struct *env, t_process *proc, int ascii);
 int				two_registers(t_struct *env, t_process *proc, int i, int j);
 int				only_registers(t_struct *env, t_process *proc, int i, int j);
-unsigned int	get_four_octet(t_struct *env, unsigned int dest);
-unsigned int	get_indirect(t_struct *env, unsigned int dest);
+int				get_four_octet(t_struct *env, int dest);
+int				get_indirect(t_struct *env, int dest);
 void			change_map_colors(t_struct *env, int dest, int champ, int size);
 
 

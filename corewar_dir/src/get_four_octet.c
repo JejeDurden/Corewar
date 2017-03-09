@@ -6,15 +6,15 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 18:05:16 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/06 19:12:41 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/09 11:33:32 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-unsigned int		get_four_octet(t_struct *env, unsigned int dest)
+int		get_four_octet(t_struct *env, int dest)
 {
-	unsigned int i;
+	int i;
 
 	i = dest;
 	dest = char_to_int(env->map[pc_rotate(i, 0)]) << 24;
