@@ -14,8 +14,8 @@
 
 static void	ld_dir(t_struct *env, t_process *proc)
 {
-	unsigned int	value;
-	unsigned int	reg;
+	int	value;
+	int	reg;
 
 	value = get_four_octet(env, proc->pc + 2);
 	reg = env->map[pc_rotate(proc->pc, 6)];
@@ -32,9 +32,9 @@ static void	ld_dir(t_struct *env, t_process *proc)
 
 static void	ld_ind(t_struct *env, t_process *proc)
 {
-	unsigned int	value;
-	unsigned int	nvalue;
-	unsigned int	reg;
+	int	value;
+	int	nvalue;
+	int	reg;
 
 	value = sti_calc(env, proc, 2);
 	nvalue = get_four_octet(env, proc->pc + value);
