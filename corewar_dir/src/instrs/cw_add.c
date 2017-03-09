@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 16:50:24 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/08 14:37:47 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/09 20:12:42 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	cw_add(t_struct *env, t_process *proc)
 {
-	unsigned int value;
+	int value;
 
 	if (env->map[pc_rotate(proc->pc, 1)] == (char)0x54)
 	{
@@ -29,8 +29,7 @@ void	cw_add(t_struct *env, t_process *proc)
 				+ proc->reg[(int)env->map[pc_rotate(proc->pc, 3)] - 1];
 			proc->reg[(int)env->map[pc_rotate(proc->pc, 4)] - 1] = value;
 			proc->pc = pc_rotate(proc->pc, 5);
-			if (value == 0)
-				proc->carry = (proc->carry == 1) ? 0 : 1;
+			proc->carry = (value == 0) ? 1 : 0;
 		}
 		else
 			proc->pc = pc_rotate(proc->pc, 1);

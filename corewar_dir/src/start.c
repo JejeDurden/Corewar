@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/08 08:35:45 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/09 19:03:24 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static	int		proc_exec(t_process *proc, t_struct *env)
 	}
 	else
 	{
+		proc->action = 0;
 		proc->check = char_to_int(env->map[proc->pc]);
 		if (proc->check == 0 || proc->check > 16)
 		{
@@ -52,7 +53,7 @@ static void		proc_get(t_info *champ, t_struct *env)
 	t_process	*proc;
 
 	proc = champ->l_proc;
-	while (proc)
+	while (proc != NULL)
 	{
 		proc_exec(proc, env);
 		proc = proc->next;
@@ -87,7 +88,10 @@ int				start_game(t_struct *env)
 			env->dump--;
 	}
 	if (env->graphic == 1)
+	{
+		wgetch(env->main);
 		ncur_free(env);
+	}
 	ft_printf("le joueur %d(%s) a gagné\n", env->champ[env->last_champ].number,
 			env->champ[env->last_champ].name);
 	if (env->dump != -1)

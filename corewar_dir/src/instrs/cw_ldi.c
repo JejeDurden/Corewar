@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 19:18:11 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/08 14:43:41 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/09 17:56:27 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static int	calc(t_struct *env, t_process *proc, int val, int i)
 			return (0);
 		res = (proc->reg[reg2 - 1] + val) % IDX_MOD;
 		proc->reg[reg3 - 1] = get_four_octet(env, pc_rotate(proc->pc, res));
-		if (proc->reg[reg3 - 1] == 0)
-			proc->carry = (proc->carry == 1 ? 0 : 1);
 		proc->pc = pc_rotate(proc->pc, i + 2);
 	}
 	else
@@ -41,8 +39,6 @@ static int	calc(t_struct *env, t_process *proc, int val, int i)
 		res = (dir + val) % IDX_MOD;
 		proc->reg[reg3 - 1] = get_four_octet(env, pc_rotate(proc->pc, res));
 		proc->pc = pc_rotate(proc->pc, i + 3);
-		if (proc->reg[reg3 - 1] == 0)
-			proc->carry = (proc->carry == 1 ? 0 : 1);
 	}
 	return (1);
 }

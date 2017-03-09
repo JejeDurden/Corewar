@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 12:55:02 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/08 22:22:10 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/09 20:15:48 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,7 @@ void			cw_and(t_struct *env, t_process *proc)
 	int tab[2];
 
 	if (binary_args(env, proc, tab, 0) < 0)
-	{
-		if (proc->pc + 1 >= MEM_SIZE)
-			proc->pc = (proc->pc - MEM_SIZE) + 1;
-		else
-			proc->pc = pc_rotate(proc->pc, 1);
-	}
+		proc->pc = pc_rotate(proc->pc, 1);
 }
 
 void			cw_or(t_struct *env, t_process *proc)
@@ -53,12 +48,7 @@ void			cw_or(t_struct *env, t_process *proc)
 	int tab[2];
 
 	if (binary_args(env, proc, tab, 1) < 0)
-	{
-		if (proc->pc + 1 >= MEM_SIZE)
-			proc->pc = (proc->pc - MEM_SIZE) + 1;
-		else
-			proc->pc = pc_rotate(proc->pc, 1);
-	}
+		proc->pc = pc_rotate(proc->pc, 1);
 }
 
 void			cw_xor(t_struct *env, t_process *proc)
@@ -66,10 +56,5 @@ void			cw_xor(t_struct *env, t_process *proc)
 	int tab[2];
 
 	if (binary_args(env, proc, tab, 2) < 0)
-	{
-		if (proc->pc + 1 >= MEM_SIZE)
-			proc->pc = (proc->pc - MEM_SIZE) + 1;
-		else
 			proc->pc = pc_rotate(proc->pc, 1);
-	}
 }

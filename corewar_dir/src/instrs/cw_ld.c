@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 14:22:54 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/08 14:42:50 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/09 15:50:04 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ static void	ld_dir(t_struct *env, t_process *proc)
 		return ;
 	}
 	proc->reg[reg - 1] = value;
-	if (value == 0)
-		proc->carry = (proc->carry == 1) ? 0 : 1;
+	proc->carry = (value == 0) ? 1 : 0;
 	proc->pc = pc_rotate(proc->pc, 7);
 }
 
@@ -45,8 +44,7 @@ static void	ld_ind(t_struct *env, t_process *proc)
 		return ;
 	}
 	proc->reg[reg - 1] = nvalue;
-	if (nvalue == 0)
-		proc->carry = (proc->carry == 1) ? 0 : 1;
+	proc->carry = (nvalue == 0) ? 1 : 0;
 	proc->pc = pc_rotate(proc->pc, 5);
 }
 

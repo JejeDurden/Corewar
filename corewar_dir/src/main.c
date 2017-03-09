@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:48:53 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/08 08:36:37 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/09 21:13:45 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,19 @@ int			get_first_champ(t_struct *env, char **av)
 	if (ft_strcmp("-v", av[i]) == 0)
 	{
 		env->graphic = 1;
-		i++;
+		if (av[++i] == NULL)
+		{
+			ft_printf("Usage : %s\n", ERR_P);
+			return (-1);
+		}
 	}
 	if (ft_strcmp("-dump", av[i]) == 0)
 	{
-		i++;
+		if (av[++i] == NULL)
+		{
+			ft_printf("Usage : %s\n", ERR_P);
+			return (-1);
+		}
 		env->dump = ft_atol(av[i]);
 		if (ft_strlen(av[i]) > 11 || env->dump < 1 ||
 			env->dump > INT_MAX)
@@ -111,7 +119,11 @@ int			get_first_champ(t_struct *env, char **av)
 			ft_putstr_fd("Error: Dump number must be a positive INT\n", 2);
 			return (-1);
 		}
-		i++;
+		if (av[++i] == NULL)
+		{
+			ft_printf("Usage : %s\n", ERR_P);
+			return (-1);
+		}
 	}
 	return (i);
 }
@@ -130,7 +142,7 @@ int			main(int ac, char **av)
 	else
 	{
 		debut = get_first_champ(&env, av);
-		if (parsing(&env, ac, av, debut) == 0)
+		if (parsing(&env, ac, av, debut) == 0 || debut == -1)
 			return (1);
 		get_info(av, ac, debut, &env);
 		create_map(&env);

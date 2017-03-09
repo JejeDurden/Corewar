@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:57:55 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/08 22:29:10 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/09 20:27:00 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int					binary_args_indirect(t_struct *env, t_process *proc,
 	int i;
 
 	i = char_to_int(env->map[proc->pc + 6]);
-	if (i > 16)
+	if (i > 16 || i < 1)
 		return (-1);
 	to_register(env, proc, tab, 0);
 	tab_op(proc, tab, a, i);
@@ -59,8 +59,8 @@ int					binary_args_direct(t_struct *env, t_process *proc,
 {
 	int i;
 
-	i = char_to_int(env->map[proc->pc + 10]);
-	if (i > 16)
+	i = char_to_int(env->map[pc_rotate(proc->pc, 10)]);
+	if (i > 16 || i < 1)
 		return (-1);
 	to_register(env, proc, tab, 1);
 	tab_op(proc, tab, a, i);
@@ -73,8 +73,8 @@ int					binary_args_reg(t_struct *env, t_process *proc,
 {
 	int i;
 
-	i = char_to_int(env->map[proc->pc + 4]);
-	if (i > 16)
+	i = char_to_int(env->map[pc_rotate(proc->pc, 4)]);
+	if (i > 16 || i < 1)
 		return (-1);
 	to_register(env, proc, tab, 2);
 	tab_op(proc, tab, a, i);

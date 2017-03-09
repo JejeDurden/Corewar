@@ -6,13 +6,13 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:59:04 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/07 13:53:08 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/09 18:45:10 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static int	check_proc(t_struct *env, int i, int ret)
+static void		check_proc(t_struct *env, int i)
 {
 	t_process	*proc;
 	t_process	*tmp;
@@ -31,15 +31,12 @@ static int	check_proc(t_struct *env, int i, int ret)
 			}
 			else
 			{
-				if (proc->nb_live >= NBR_LIVE && proc->verif == 1)
-					ret = 1;
 				proc->verif = 1;
 				proc = proc->next;
 			}
 		}
 		i--;
 	}
-	return (ret);
 }
 
 int		cycle_to_die(t_struct *env, t_game *game)
@@ -48,14 +45,18 @@ int		cycle_to_die(t_struct *env, t_game *game)
 	int			i;
 
 	i = -1;
+	f_dec = 0;
 	if (game->cycle == game->ctd)
 	{
 		game->max_checks++;
 		game->cycle = 0;
-		f_dec = check_proc(env, env->nb_champ - 1, 0);
+		check_proc(env, env->nb_champ - 1);
 		while (++i < env->nb_champ)
+		{
+			f_dec += env->live_current[i];
 			env->live_current[i] = 0;
-		if (f_dec == 1 || game->max_checks == MAX_CHECKS)
+		}
+		if (f_dec >= NBR_LIVE || game->max_checks == MAX_CHECKS - 1)
 		{
 			game->max_checks = 0;
 			game->ctd -= CYCLE_DELTA;
