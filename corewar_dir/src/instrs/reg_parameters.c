@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 18:07:09 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/09 13:26:49 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/09 14:17:13 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int		two_registers(t_struct *env, t_process *proc, int i, int j)
 	else if (dest == 116)
 	{
 		dest = sti_calc(env, proc, 3) % IDX_MOD;
-		dest = get_indirect(env, dest);
-		dest = (dest + proc->reg[j - 1]) % IDX_MOD;
+		dest = get_indirect(env,pc_rotate(proc->pc, dest));
+		dest = (dest + (short)proc->reg[j - 1]) % IDX_MOD;
 	}
 	else
 		dest = (sti_calc(env, proc, 4) + proc->reg[j - 1]) % IDX_MOD;
