@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/08 22:31:44 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/10 16:02:39 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void					cw_lfork(t_struct *env, t_process *proc);
 void					cw_aff(t_struct *env, t_process *proc);
 int						char_to_int(char c);
 
-void					create_process(t_struct *env);
+t_process				*create_process(t_struct *env);
 t_process				*new_process(t_process *l_proc);
 void					del_process(t_process **l_proc, t_process *maillon);
 int						cycle_to_die(t_struct *env, t_game *game);
@@ -163,6 +163,7 @@ void					ncur_print(t_struct *env);
 void					ncur_free(t_struct *env);
 void					ncur_print_info(t_struct *env, t_game *game);
 void					ncur_print_score(t_struct *env);
+void					ncur_print_end(t_struct *env);
 int						ncur_print_pc(t_struct *env, int pos);
 void					del_lproc(t_struct *env);
 
