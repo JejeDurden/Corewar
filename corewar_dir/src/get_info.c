@@ -55,11 +55,7 @@ void		get_info(char **tab, int ac, int debut, t_struct *env)
 			ft_putstr_fd("Error: Fail to open the file.\n", 2);
 			exit(1);
 		}
-		if (get_champ_info(fd, &env->champ[i++]) == 0)
-		{
-			close(fd);
-			exit(1);
-		}
+		get_champ_info(fd, &env->champ[i++]);
 		if (close(fd) == -1)
 		{
 			ft_putstr_fd("Error: Fail to close the file.\n", 2);

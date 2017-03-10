@@ -19,7 +19,8 @@ int		search_champ_id(t_struct *env, t_process *proc)
 	i = 0;
 	while (i < env->nb_champ)
 	{
-		if (UINT_MAX - (unsigned int)env->champ[i].number + 1 == (unsigned int)proc->reg[0])
+		if (UINT_MAX - (unsigned int)env->champ[i].number + 1
+			== (unsigned int)proc->reg[0])
 			return (i);
 		i++;
 	}

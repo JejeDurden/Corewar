@@ -29,7 +29,7 @@ int		register_number(t_struct *env, char *line, char *tmp, int i)
 	while (line[j] && ft_isdigit(line[j]))
 		j++;
 	k = j;
-	if (j - i >= 3 ||  (j = ft_atoi(line + i)) > 16)
+	if (j - i >= 3 || (j = ft_atoi(line + i)) > 16)
 	{
 		ft_printf("%s : Invalid register\n", tmp);
 		free_struct(env);

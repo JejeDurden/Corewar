@@ -6,7 +6,7 @@
 #    By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 17:05:27 by jgoncalv          #+#    #+#              #
-#    Updated: 2017/03/09 18:00:22 by jdesmare         ###   ########.fr        #
+#    Updated: 2017/03/10 16:02:03 by jdesmare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRC_NAME = main.c\
 		   ncurses/ncur_print.c\
 		   ncurses/ncur_print_side.c\
 		   ncurses/ncur_print_pc.c\
+		   ncurses/ncur_print_end.c\
 		   search_champ_id.c\
 		   instrs/put_octet.c\
 		   write_params.c\
@@ -71,6 +72,7 @@ SRC_NAME = main.c\
 		   get_four_octet.c\
 		   get_indirect.c\
 		   instrs/sti_calc.c\
+		   del_lproc.c
 
 INC_LIB = -I$(LIB)/includes/
 

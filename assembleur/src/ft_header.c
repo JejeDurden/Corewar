@@ -15,7 +15,7 @@
 void			put_hex_in_char(t_struct *env, int nbr, int i, int dir)
 {
 	unsigned int nb;
-	
+
 	if (nbr >= 0)
 	{
 		while (nbr > 0)

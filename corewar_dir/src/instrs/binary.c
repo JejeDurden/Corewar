@@ -12,8 +12,6 @@
 
 #include "corewar.h"
 
-
-
 int				binary_args(t_struct *env, t_process *proc, int *tab,
 				int a)
 {
@@ -56,5 +54,5 @@ void			cw_xor(t_struct *env, t_process *proc)
 	int tab[2];
 
 	if (binary_args(env, proc, tab, 2) < 0)
-			proc->pc = pc_rotate(proc->pc, 1);
+		proc->pc = pc_rotate(proc->pc, 1);
 }

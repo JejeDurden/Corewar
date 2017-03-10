@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 10:40:08 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/08 08:44:31 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 15:24:29 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			ncur_print_score(t_struct *env)
 
 	i = 0;
 	wmove(env->score, 2, LINES_SCORE / 2 + 15);
-	ncur_print_side_title(env->score, "Last player to call live:", WHITE);
+	ncur_print_side_title(env->score, "Last player to call live", WHITE);
 	ncur_print_side_str(env->score, env->champ[env->last_champ].name, BLUE);
 	wprintw(env->score, "\n\n\n");
 	while (i < MAX_PLAYERS)

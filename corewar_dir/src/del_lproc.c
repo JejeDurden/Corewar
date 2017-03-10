@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tab_op.c                                           :+:      :+:    :+:   */
+/*   del_lproc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/03 14:08:22 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/10 16:24:08 by rghirell         ###   ########.fr       */
+/*   Created: 2017/03/10 15:53:11 by jgoncalv          #+#    #+#             */
+/*   Updated: 2017/03/10 16:25:37 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	tab_op(t_process *proc, int *tab, int a, int i)
+void	del_lproc(t_struct *env)
 {
-	if (a == 0)
-		proc->reg[i - 1] = tab[0] & tab[1];
-	else if (a == 1)
-		proc->reg[i - 1] = tab[0] | tab[1];
-	else
-		proc->reg[i - 1] = tab[0] ^ tab[1];
-	proc->carry = (proc->reg[i - 1] == 0) ? 1 : 0;
+	int			i;
+	t_process	*proc;
+	t_process	*tmp;
+
+	i = 0;
+	while (i < env->nb_champ)
+	{
+		proc = env->champ[i].l_proc;
+		while (proc)
+		{
+			tmp = proc;
+			proc = proc->next;
+			free(proc);
+		}
+		i++;
+	}
 }

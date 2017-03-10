@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:48:53 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/10 10:33:38 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 16:11:50 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,6 @@ int			main(int ac, char **av)
 	int			debut;
 
 	ft_bzero(&env, sizeof(env));
-	env.graphic = 0;
 	if (ac > 16)
 		ft_putstr_fd("Error: Too many args.\n", 2);
 	else if (ac < 2)
@@ -155,9 +154,13 @@ int			main(int ac, char **av)
 			return (1);
 		get_info(av, ac, debut, &env);
 		create_map(&env);
-		create_process(&env);
+		if (create_process(&env) == NULL)
+		{
+			ft_putstr_fd("Error: Malloc Failed.\n", 2);
+			return (1);
+		}
 		start_game(&env);
-		//free all;
+		del_lproc(&env);
 	}
 	return (0);
 }

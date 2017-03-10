@@ -67,7 +67,6 @@ int				parse_line(t_struct *env)
 	int i;
 
 	i = 0;
-	//ft_printf("%s\n", env->check[env->j]);
 	if (env->name == 0 || env->comment == 0)
 		return (get_header(env, env->check[env->j]));
 	if (env->check[env->j][0] == '#' || env->check[env->j][0] == ';')

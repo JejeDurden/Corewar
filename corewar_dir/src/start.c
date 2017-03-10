@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/09 19:03:24 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 15:12:24 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int				start_game(t_struct *env)
 	}
 	if (env->graphic == 1)
 	{
+		ncur_print_end(env);
 		wgetch(env->main);
 		ncur_free(env);
 	}

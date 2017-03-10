@@ -25,9 +25,9 @@ void	cw_add(t_struct *env, t_process *proc)
 			env->map[pc_rotate(proc->pc, 4)] >= 1 &&
 			env->map[pc_rotate(proc->pc, 4)] <= 16)
 		{
-			value = proc->reg[char_to_int(env->map[pc_rotate(proc->pc, 2)]) - 1]
-				+ proc->reg[char_to_int(env->map[pc_rotate(proc->pc, 3)]) - 1];
-			proc->reg[char_to_int(env->map[pc_rotate(proc->pc, 4)]) - 1] = value;
+			value = proc->reg[(int)env->map[pc_rotate(proc->pc, 2)] - 1]
+				+ proc->reg[(int)env->map[pc_rotate(proc->pc, 3)] - 1];
+			proc->reg[(int)env->map[pc_rotate(proc->pc, 4)] - 1] = value;
 			proc->pc = pc_rotate(proc->pc, 5);
 			proc->carry = (value == 0) ? 1 : 0;
 		}

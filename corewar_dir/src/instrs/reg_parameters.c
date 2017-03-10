@@ -21,7 +21,7 @@ int		only_registers(t_struct *env, t_process *proc, int i, int j)
 	k = char_to_int(env->map[proc->pc + 3]);
 	if (k > 16 || k < 1 || j < 1 || j > 16)
 		return (-1);
-	dest = (proc->reg[k - 1]  + proc->reg[j - 1]) % IDX_MOD;
+	dest = (proc->reg[k - 1] + proc->reg[j - 1]) % IDX_MOD;
 	write_params(env, proc, dest, i);
 	proc->pc = pc_rotate(proc->pc, 5);
 	return (1);
@@ -29,7 +29,7 @@ int		only_registers(t_struct *env, t_process *proc, int i, int j)
 
 int		two_registers(t_struct *env, t_process *proc, int i, int j)
 {
-	int  dest;
+	int	dest;
 
 	dest = char_to_int(env->map[proc->pc + 1]);
 	if (dest == 100)
@@ -37,7 +37,7 @@ int		two_registers(t_struct *env, t_process *proc, int i, int j)
 	else if (dest == 116)
 	{
 		dest = sti_calc(env, proc, 3) % IDX_MOD;
-		dest = get_indirect(env,pc_rotate(proc->pc, dest));
+		dest = get_indirect(env, pc_rotate(proc->pc, dest));
 		dest = (dest + proc->reg[j - 1]) % IDX_MOD;
 	}
 	else
