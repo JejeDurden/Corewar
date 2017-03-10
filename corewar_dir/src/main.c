@@ -157,7 +157,7 @@ int			main(int ac, char **av)
 		create_map(&env);
 		create_process(&env);
 		start_game(&env);
-		//free all;
+		del_lproc(&env);
 	}
 	return (0);
 }

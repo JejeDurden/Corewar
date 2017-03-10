@@ -71,6 +71,7 @@ SRC_NAME = main.c\
 		   get_four_octet.c\
 		   get_indirect.c\
 		   instrs/sti_calc.c\
+		   del_lproc.c
 
 INC_LIB = -I$(LIB)/includes/
 

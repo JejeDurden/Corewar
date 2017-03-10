@@ -164,5 +164,6 @@ void					ncur_free(t_struct *env);
 void					ncur_print_info(t_struct *env, t_game *game);
 void					ncur_print_score(t_struct *env);
 int						ncur_print_pc(t_struct *env, int pos);
+void					del_lproc(t_struct *env);
 
 #endif
