@@ -64,7 +64,8 @@ static void	first_param(t_struct *env, t_process *proc)
 	}
 	else if ((ocodage & 0xc0) == 0xc0)
 	{
-		if (calc(env, proc, get_four_octet(env, pc_rotate(proc->pc, sti_calc(env, proc, 2) % IDX_MOD)), 4) == 0)
+		if (calc(env, proc, get_four_octet(env, pc_rotate(proc->pc,
+			sti_calc(env, proc, 2) % IDX_MOD)), 4) == 0)
 			proc->pc = pc_rotate(proc->pc, 1);
 	}
 }

@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-t_process		*create_process(t_struct *env)
+t_process	*create_process(t_struct *env)
 {
 	int			i;
 	int			div_mem_size;

@@ -17,7 +17,7 @@ static void	ld_dir(t_struct *env, t_process *proc)
 	int	value;
 	int	reg;
 
-	value = get_four_octet(env, proc->pc + 2);
+	value = get_four_octet(env, pc_rotate(proc->pc, 2));
 	reg = env->map[pc_rotate(proc->pc, 6)];
 	if (reg < 1 || reg > 16)
 	{
@@ -36,7 +36,7 @@ static void	ld_ind(t_struct *env, t_process *proc)
 	int	reg;
 
 	value = sti_calc(env, proc, 2) % IDX_MOD;
-	nvalue = get_four_octet(env, proc->pc + value);
+	nvalue = get_four_octet(env, pc_rotate(proc->pc, value));
 	reg = env->map[pc_rotate(proc->pc, 4)];
 	if (reg < 1 || reg > 16)
 	{
