@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 14:29:41 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/27 13:39:14 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/10 14:21:40 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ static	int		parse_last_param(t_struct *env, char *line, int i)
 	{
 		i = check_label(env, line, i);
 		env->oct_size += 2;
+	}
+	else
+	{
+		ft_printf("Stock index : Third parameter is invalid\n");
+		free_struct(env);
+		exit(1);
 	}
 	while (line[i] && ft_isdigit(line[i]))
 		i++;
