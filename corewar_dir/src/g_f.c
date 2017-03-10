@@ -13,7 +13,7 @@
 #include "corewar.h"
 
 void	(*g_f[16])(t_struct *, t_process *) =
-{ 
+{
 	cw_live,
 	cw_ld,
 	cw_st,

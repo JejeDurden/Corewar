@@ -14,9 +14,9 @@
 
 void		create_process(t_struct *env)
 {
-	int	i;
-	int	div_mem_size;
-	t_process *proc;
+	int			i;
+	int			div_mem_size;
+	t_process	*proc;
 
 	i = 0;
 	div_mem_size = MEM_SIZE / env->nb_champ;
@@ -48,7 +48,7 @@ t_process	*new_process(t_process *l_proc)
 	return (new);
 }
 
-void	del_process(t_process **l_proc, t_process *maillon)
+void		del_process(t_process **l_proc, t_process *maillon)
 {
 	t_process *tmp;
 

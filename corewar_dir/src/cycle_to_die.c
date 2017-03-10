@@ -16,7 +16,7 @@ static void		check_proc(t_struct *env, int i)
 {
 	t_process	*proc;
 	t_process	*tmp;
-	
+
 	while (i >= 0)
 	{
 		proc = env->champ[i].l_proc;
@@ -39,7 +39,7 @@ static void		check_proc(t_struct *env, int i)
 	}
 }
 
-int		cycle_to_die(t_struct *env, t_game *game)
+int				cycle_to_die(t_struct *env, t_game *game)
 {
 	int			f_dec;
 	int			i;
@@ -68,7 +68,7 @@ int		cycle_to_die(t_struct *env, t_game *game)
 	return (1);
 }
 
-int		check_proc_live(t_struct *env)
+int				check_proc_live(t_struct *env)
 {
 	int			i;
 	int			ret;

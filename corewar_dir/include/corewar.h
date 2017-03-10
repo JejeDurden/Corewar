@@ -34,10 +34,10 @@
 extern t_op				g_op_tab[];
 
 typedef	struct			s_process
-{	
+{
 	int					pc;
 	int					champ;
-	int		reg[REG_NUMBER];
+	int					reg[REG_NUMBER];
 	int					nb_live;
 	int					carry;
 	int					verif;
@@ -79,7 +79,7 @@ typedef struct			s_struct
 }						t_struct;
 
 typedef struct			s_game
-{	
+{
 	int					max_checks;
 	int					cycle_total;
 	int					cycle;
@@ -88,84 +88,81 @@ typedef struct			s_game
 
 extern void				(*g_f[])(t_struct *, t_process *);
 
-int				parser(int fd);
-char			*ft_read(int fd, int size);
-int				parser_prog(int fd, int size);
-void			get_info(char **tab, int ac, int debut, t_struct *env);
-int				create_map(t_struct *env);
-int				parse_champ_nb(char **av, int debut);
-int				get_champ_nb(t_struct *env, char **av, int debut, int i);
-int				set_champ_nb(t_struct *env, char **av, int debut, int n);
-int				get_first_champ(t_struct *env, char **av);
-void			write_map(t_struct *env);
-int				start_game(t_struct *env);
-void			cw_live(t_struct *env, t_process *proc);
-void			cw_ld(t_struct *env, t_process *proc);
-void			cw_ldi(t_struct *env, t_process *proc);
-void			cw_lld(t_struct *env, t_process *proc);
-void			cw_lldi(t_struct *env, t_process *proc);
-void			cw_st(t_struct *env, t_process *proc);
-void			cw_sti(t_struct *env, t_process *proc);
-void			cw_add(t_struct *env, t_process *proc);
-void			cw_sub(t_struct *env, t_process *proc);
-void			cw_and(t_struct *env, t_process *proc);
-void			cw_or(t_struct *env, t_process *proc);
-void			cw_xor(t_struct *env, t_process *proc);
-void			cw_zjmp(t_struct *env, t_process *proc);
-void			cw_fork(t_struct *env, t_process *proc);
-void			cw_lfork(t_struct *env, t_process *proc);
-void			cw_aff(t_struct *env, t_process *proc);
-int				char_to_int(char c);
+int						parser(int fd);
+char					*ft_read(int fd, int size);
+int						parser_prog(int fd, int size);
+void					get_info(char **tab, int ac, int debut, t_struct *env);
+int						create_map(t_struct *env);
+int						parse_champ_nb(char **av, int debut);
+int						get_champ_nb(t_struct *env, char **av,
+						int debut, int i);
+int						set_champ_nb(t_struct *env, char **av,
+						int debut, int n);
+int						get_first_champ(t_struct *env, char **av);
+void					write_map(t_struct *env);
+int						start_game(t_struct *env);
+void					cw_live(t_struct *env, t_process *proc);
+void					cw_ld(t_struct *env, t_process *proc);
+void					cw_ldi(t_struct *env, t_process *proc);
+void					cw_lld(t_struct *env, t_process *proc);
+void					cw_lldi(t_struct *env, t_process *proc);
+void					cw_st(t_struct *env, t_process *proc);
+void					cw_sti(t_struct *env, t_process *proc);
+void					cw_add(t_struct *env, t_process *proc);
+void					cw_sub(t_struct *env, t_process *proc);
+void					cw_and(t_struct *env, t_process *proc);
+void					cw_or(t_struct *env, t_process *proc);
+void					cw_xor(t_struct *env, t_process *proc);
+void					cw_zjmp(t_struct *env, t_process *proc);
+void					cw_fork(t_struct *env, t_process *proc);
+void					cw_lfork(t_struct *env, t_process *proc);
+void					cw_aff(t_struct *env, t_process *proc);
+int						char_to_int(char c);
 
+void					create_process(t_struct *env);
+t_process				*new_process(t_process *l_proc);
+void					del_process(t_process **l_proc, t_process *maillon);
+int						cycle_to_die(t_struct *env, t_game *game);
+int						check_proc_live(t_struct *env);
+int						pc_rotate(int pc, int i);
+void					tab_op(t_process *proc, int *tab, int a, int i);
+int						binary_args(t_struct *env, t_process *proc, int *tab,
+						int a);
+int						binary_args_ind_dir(t_struct *env,
+						t_process *proc, int *tab, int a);
+int						binary_args_reg_dir(t_struct *env,
+						t_process *proc, int *tab, int a);
+int						binary_args_reg_ind(t_struct *env,
+						t_process *proc, int *tab, int a);
+int						binary_args_indirect(t_struct *env, t_process *proc,
+						int *tab, int a);
+int						binary_args_direct(t_struct *env, t_process *proc,
+						int *tab, int a);
+int						binary_args_reg(t_struct *env, t_process *proc,
+						int *tab, int a);
+int						search_champ_id(t_struct *env, t_process *proc);
+void					put_octet(t_struct *env, int start, int nb, int value);
+void					write_params(t_struct *env, t_process *proc,
+						int dest, int i);
+int						sti_no_register(t_struct *env, t_process *proc,
+						int ascii);
+int						sti_calc(t_struct *env, t_process *proc, int i);
+int						reg_parameters(t_struct *env, t_process *proc,
+						int ascii);
+int						two_registers(t_struct *env, t_process *proc,
+						int i, int j);
+int						only_registers(t_struct *env, t_process *proc,
+						int i, int j);
+int						get_four_octet(t_struct *env, int dest);
+int						get_indirect(t_struct *env, int dest);
+void					change_map_colors(t_struct *env, int dest,
+						int champ, int size);
 
-/*
-** Mon mien
-*/
-
-void			create_process(t_struct *env);
-t_process		*new_process(t_process *l_proc);
-void			del_process(t_process **l_proc, t_process *maillon);
-int				cycle_to_die(t_struct *env, t_game *game);
-int				check_proc_live(t_struct *env);
-int				pc_rotate(int pc, int i);
-void			tab_op(t_process *proc, int *tab, int a, int i);
-int				binary_args(t_struct *env, t_process *proc, int *tab,
-				int a);
-int				binary_args_ind_dir(t_struct *env,
-				t_process *proc, int *tab, int a);
-int				binary_args_reg_dir(t_struct *env,
-				t_process *proc, int *tab, int a);
-int				binary_args_reg_ind(t_struct *env,
-				t_process *proc, int *tab, int a);
-int				binary_args_indirect(t_struct *env, t_process *proc,
-				int *tab , int a);
-int				binary_args_direct(t_struct *env, t_process *proc,
-				int *tab , int a);
-int				binary_args_reg(t_struct *env, t_process *proc,
-				int *tab , int a);
-int				search_champ_id(t_struct *env, t_process *proc);
-void			put_octet(t_struct *env, int start, int nb, int value);
-void			write_params(t_struct *env, t_process *proc, int dest, int i);
-int				sti_no_register(t_struct *env, t_process *proc, int ascii);
-int				sti_calc(t_struct *env, t_process *proc, int i);
-int				reg_parameters(t_struct *env, t_process *proc, int ascii);
-int				two_registers(t_struct *env, t_process *proc, int i, int j);
-int				only_registers(t_struct *env, t_process *proc, int i, int j);
-int				get_four_octet(t_struct *env, int dest);
-int				get_indirect(t_struct *env, int dest);
-void			change_map_colors(t_struct *env, int dest, int champ, int size);
-
-
-
-/*
-** Ncurses
-*/
-
-void				ncur_init(t_struct *env);
-void				ncur_print(t_struct *env);
-void				ncur_free(t_struct *env);
-void				ncur_print_info(t_struct *env, t_game *game);
-void				ncur_print_score(t_struct *env);
-int					ncur_print_pc(t_struct *env, int pos);
+void					ncur_init(t_struct *env);
+void					ncur_print(t_struct *env);
+void					ncur_free(t_struct *env);
+void					ncur_print_info(t_struct *env, t_game *game);
+void					ncur_print_score(t_struct *env);
+int						ncur_print_pc(t_struct *env, int pos);
 
 #endif

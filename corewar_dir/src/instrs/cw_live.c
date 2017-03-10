@@ -16,10 +16,8 @@ void			cw_live(t_struct *env, t_process *proc)
 {
 	unsigned int	live;
 	int				i;
-	int				flag;
 
 	i = 0;
-	flag = 0;
 	live = get_four_octet(env, proc->pc + 1);
 	while (i < env->nb_champ)
 	{
@@ -32,7 +30,6 @@ void			cw_live(t_struct *env, t_process *proc)
 			env->live[i]++;
 			env->live_current[i]++;
 			env->last_champ = i;
-			flag = 1;
 			proc->pc = pc_rotate(proc->pc, 5);
 			return ;
 		}
