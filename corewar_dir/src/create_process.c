@@ -6,13 +6,13 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 14:16:08 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/09 18:37:00 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 15:59:43 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void		create_process(t_struct *env)
+t_process		*create_process(t_struct *env)
 {
 	int			i;
 	int			div_mem_size;
@@ -23,6 +23,8 @@ void		create_process(t_struct *env)
 	while (i < env->nb_champ)
 	{
 		env->champ[i].l_proc = ft_memalloc(sizeof(t_process));
+		if (env->champ[i].l_proc == NULL)
+			return (NULL);
 		proc = env->champ[i].l_proc;
 		proc->pc = i * div_mem_size;
 		ft_bzero(proc->reg, REG_NUMBER);
@@ -34,6 +36,7 @@ void		create_process(t_struct *env)
 		i++;
 		env->nb_proc++;
 	}
+	return (env->champ[0].l_proc);
 }
 
 t_process	*new_process(t_process *l_proc)
@@ -41,6 +44,8 @@ t_process	*new_process(t_process *l_proc)
 	t_process *new;
 
 	new = ft_memalloc(sizeof(t_process));
+	if (new == NULL)
+		return (NULL);
 	while (l_proc && l_proc->next)
 		l_proc = l_proc->next;
 	l_proc->next = new;

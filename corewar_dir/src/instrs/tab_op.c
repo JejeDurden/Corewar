@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 14:08:22 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/10 11:53:14 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 16:24:08 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,5 @@ void	tab_op(t_process *proc, int *tab, int a, int i)
 		proc->reg[i - 1] = tab[0] | tab[1];
 	else
 		proc->reg[i - 1] = tab[0] ^ tab[1];
-	printf("value  == |%d|\n, 1 == |%d|\n", proc->reg[i - 1], proc->reg[0]);
 	proc->carry = (proc->reg[i - 1] == 0) ? 1 : 0;
 }
