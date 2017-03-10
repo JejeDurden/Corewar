@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 16:57:46 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/09 15:51:46 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 11:06:22 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	cw_sub(t_struct *env, t_process *proc)
 {
-	unsigned int value;
+	int value;
 
 	if (env->map[pc_rotate(proc->pc, 1)] == (char)0x54)
 	{

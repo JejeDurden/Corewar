@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 10:36:08 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/09 20:58:55 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 11:08:53 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void		to_register(t_struct *env, t_process *proc,
 	if (a == 0)
 	{
 		tab[0] = sti_calc(env, proc, 2);
-		tab[1] = char_to_int(env->map[pc_rotate(proc->pc, 4)]);
+		tab[1] = proc->reg[char_to_int(env->map[pc_rotate(proc->pc, 4)]) - 1];
 	}
 	else
 	{
-		tab[0] = char_to_int(env->map[pc_rotate(proc->pc, 2)]);
+		tab[0] = proc->reg[char_to_int(env->map[pc_rotate(proc->pc, 2)]) - 1];
 		tab[1] = sti_calc(env, proc, 3);
 	}
 }

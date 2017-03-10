@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 18:27:07 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/09 14:16:42 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/10 10:06:10 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		sti_no_register(t_struct *env, t_process *proc, int ascii)
 	int				dest2;
 
 	i = char_to_int(env->map[proc->pc + 2]);
-	if (i > 16)
+	if (i > 16 || i < 1)
 		return (-1);
 	if (ascii == 104)
 		dest = (sti_calc(env, proc, 3) + sti_calc(env, proc, 5)) % IDX_MOD;

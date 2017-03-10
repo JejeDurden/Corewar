@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:48:53 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/09 21:13:45 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 10:33:38 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,11 @@ int			parse_champ_nb(char **av, int debut)
 	j = -1;
 	if (ft_strcmp(av[debut], "-n") == 0)
 	{
-		debut++;
+		if (av[++debut] == NULL)
+		{
+			ft_printf("Usage : %s\n", ERR_P);
+			return (-1);
+		}
 		while (av[debut][++j] != '\0')
 		{
 			if (!ft_isdigit(av[debut][j]))
@@ -54,7 +58,12 @@ int			parse_champ_nb(char **av, int debut)
 			ft_putstr_fd("Error: Player number must be a positive INT\n", 2);
 			return (-1);
 		}
-		return (debut + 1);
+		if (av[++debut] == NULL)
+		{
+			ft_printf("Usage : %s\n", ERR_P);
+			return (-1);
+		}
+		return (debut);
 	}
 	return (debut);
 }
