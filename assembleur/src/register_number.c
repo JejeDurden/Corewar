@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 10:06:24 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/10 17:54:39 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/10 21:07:07 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		register_number(t_struct *env, char *line, char *tmp, int i)
 {
-	int j;
-	int k;
+	int		j;
+	int		k;
 
 	if (line[i] == 'r' && ft_isdigit(line[i + 1]))
 		i++;
@@ -29,7 +29,7 @@ int		register_number(t_struct *env, char *line, char *tmp, int i)
 	while (line[j] && ft_isdigit(line[j]))
 		j++;
 	k = j;
-	if (j - i >= 3 ||(j = ft_atoi(line + i)) > 16 ||
+	if (j - i >= 3 || (j = ft_atoi(line + i)) > 16 ||
 			(j = ft_atoi(line + i) == 0))
 	{
 		ft_printf("%s : Invalid register\n", tmp);

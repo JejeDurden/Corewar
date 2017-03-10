@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:07:22 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/10 15:12:24 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 21:21:09 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int				start_game(t_struct *env)
 	game.ctd = CYCLE_TO_DIE;
 	if (env->graphic == 1)
 		ncur_init(env);
-	while (cycle_to_die(env, &game) == 1 && env->dump != 0)
+	while (cycle_to_die(env, &game) == 1 && env->dump-- != 0)
 	{
 		i = -1;
 		proc_get(&env->champ[env->nb_champ - 1], env);
@@ -79,23 +79,13 @@ int				start_game(t_struct *env)
 			proc_get(&env->champ[i], env);
 		game.cycle++;
 		game.cycle_total++;
-		if (env->graphic == 1)
-		{
-			ncur_print_info(env, &game);
-			ncur_print_score(env);
-		}
-		if (env->dump > -1)
-			env->dump--;
+		ncur_start_graphic(env, &game);
 	}
 	if (env->graphic == 1)
-	{
 		ncur_print_end(env);
-		wgetch(env->main);
-		ncur_free(env);
-	}
 	ft_printf("le joueur %d(%s) a gagné\n", env->champ[env->last_champ].number,
 			env->champ[env->last_champ].name);
-	if (env->dump != -1)
+	if (env->dump > -2)
 		write_map(env);
 	return (1);
 }

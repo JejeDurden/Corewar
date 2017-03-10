@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 20:02:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/10 16:02:39 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 21:10:34 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef struct			s_game
 extern void				(*g_f[])(t_struct *, t_process *);
 
 int						parser(int fd);
+int						get_usage_error(char *val);
+int						get_int_error(int nb);
 char					*ft_read(int fd, int size);
 int						parser_prog(int fd, int size);
 void					get_info(char **tab, int ac, int debut, t_struct *env);
@@ -165,6 +167,7 @@ void					ncur_print_info(t_struct *env, t_game *game);
 void					ncur_print_score(t_struct *env);
 void					ncur_print_end(t_struct *env);
 int						ncur_print_pc(t_struct *env, int pos);
+void					ncur_start_graphic(t_struct *env, t_game *game);
 void					del_lproc(t_struct *env);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 14:54:15 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/10 11:07:18 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 21:10:58 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,13 @@ void			ncur_init(t_struct *env)
 	nodelay(stdscr, TRUE);
 	curs_set(0);
 	refresh();
+}
+
+void			ncur_start_graphic(t_struct *env, t_game *game)
+{
+	if (env->graphic == 1)
+	{
+		ncur_print_info(env, game);
+		ncur_print_score(env);
+	}
 }

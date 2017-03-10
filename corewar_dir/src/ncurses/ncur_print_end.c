@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 15:01:20 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/10 15:44:45 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 20:54:00 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,6 @@ void		ncur_print_end(t_struct *env)
 	wprintw(env->info, "Press any key to quit ");
 	wattroff(env->info, COLOR_PAIR(RED) | A_STANDOUT);
 	wrefresh(env->info);
+	wgetch(env->main);
+	ncur_free(env);
 }

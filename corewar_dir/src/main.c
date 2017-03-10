@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:48:53 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/10 16:15:39 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 21:14:05 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,12 @@ int			parse_champ_nb(char **av, int debut)
 	j = -1;
 	if (ft_strcmp(av[debut], "-n") == 0)
 	{
-		if (av[++debut] == NULL)
-		{
-			ft_printf("Usage : %s\n", ERR_P);
+		if (get_usage_error(av[++debut]) == -1)
 			return (-1);
-		}
 		while (av[debut][++j] != '\0')
 		{
-			if (!ft_isdigit(av[debut][j]))
-			{
-				ft_putstr_fd("Error: Player number must be a positive INT\n",
-						2);
+			if (get_int_error(ft_isdigit(av[debut][j])) == -1)
 				return (-1);
-			}
 		}
 		if (ft_strlen(av[debut]) > 11 || ft_atol(av[debut]) < 1 ||
 			ft_atol(av[debut]) > INT_MAX)
@@ -58,12 +51,8 @@ int			parse_champ_nb(char **av, int debut)
 			ft_putstr_fd("Error: Player number must be a positive INT\n", 2);
 			return (-1);
 		}
-		if (av[++debut] == NULL)
-		{
-			ft_printf("Usage : %s\n", ERR_P);
+		if (get_usage_error(av[++debut]) == -1)
 			return (-1);
-		}
-		return (debut);
 	}
 	return (debut);
 }
@@ -74,8 +63,6 @@ static int	parsing(t_struct *env, int ac, char **av, int debut)
 	int		i;
 
 	i = -1;
-	if (debut < 0)
-		return (0);
 	while (debut < ac)
 	{
 		if (++i > 3)
@@ -108,19 +95,13 @@ int			get_first_champ(t_struct *env, char **av)
 	if (ft_strcmp("-v", av[i]) == 0)
 	{
 		env->graphic = 1;
-		if (av[++i] == NULL)
-		{
-			ft_printf("Usage : %s\n", ERR_P);
+		if (get_usage_error(av[++i]) == -1)
 			return (-1);
-		}
 	}
 	if (ft_strcmp("-dump", av[i]) == 0)
 	{
-		if (av[++i] == NULL)
-		{
-			ft_printf("Usage : %s\n", ERR_P);
+		if (get_usage_error(av[++i]) == -1)
 			return (-1);
-		}
 		env->dump = ft_atol(av[i]);
 		if (ft_strlen(av[i]) > 11 || env->dump < 1 ||
 			env->dump > INT_MAX)
@@ -128,11 +109,8 @@ int			get_first_champ(t_struct *env, char **av)
 			ft_putstr_fd("Error: Dump number must be a positive INT\n", 2);
 			return (-1);
 		}
-		if (av[++i] == NULL)
-		{
-			ft_printf("Usage : %s\n", ERR_P);
+		if (get_usage_error(av[++i]) == -1)
 			return (-1);
-		}
 	}
 	return (i);
 }
@@ -149,8 +127,9 @@ int			main(int ac, char **av)
 		ft_printf("Usage : %s\n", ERR_P);
 	else
 	{
-		debut = get_first_champ(&env, av);
-		if (parsing(&env, ac, av, debut) == 0 || debut == -1)
+		if ((debut = get_first_champ(&env, av)) == -1)
+			return (1);
+		if (parsing(&env, ac, av, debut) == 0)
 			return (1);
 		get_info(av, ac, debut, &env);
 		create_map(&env);

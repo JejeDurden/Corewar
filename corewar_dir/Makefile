@@ -6,7 +6,7 @@
 #    By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 17:05:27 by jgoncalv          #+#    #+#              #
-#    Updated: 2017/03/10 16:02:03 by jdesmare         ###   ########.fr        #
+#    Updated: 2017/03/10 20:51:09 by jdesmare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ LDLIBS = -lft
 SRC_PATH = src
 
 SRC_NAME = main.c\
+		   errors.c\
 		   parser.c\
 		   ft_read.c\
 		   parser_prog.c\
