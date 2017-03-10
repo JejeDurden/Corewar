@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 09:59:56 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/09 20:58:13 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 15:52:49 by rghirell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ static void		to_register(t_struct *env, t_process *proc,
 {
 	if (a == 0)
 	{
-		tab[0] = sti_calc(env, proc, 2);
+		tab[0] = sti_calc(env, proc, 2) % IDX_MOD;
+		tab[0] = get_four_octet(env, pc_rotate(proc->pc, tab[0]));
 		tab[1] = get_four_octet(env, pc_rotate(proc->pc, 4));
 	}
 	else
 	{
 		tab[0] = get_four_octet(env, pc_rotate(proc->pc, 2));
-		tab[1] = sti_calc(env, proc, 6);
+		tab[1] = sti_calc(env, proc, 6) % IDX_MOD;
+		tab[1] = get_four_octet(env, pc_rotate(proc->pc, tab[1]));
 	}
 }
 
