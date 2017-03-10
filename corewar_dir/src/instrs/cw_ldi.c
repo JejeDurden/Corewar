@@ -54,12 +54,12 @@ static void	first_param(t_struct *env, t_process *proc)
 			proc->pc = pc_rotate(proc->pc, 1);
 			return ;
 		}
-		if (calc(env, proc, proc->reg[reg1 - 1] % IDX_MOD, 3) == 0)
+		if (calc(env, proc, proc->reg[reg1 - 1], 3) == 0)
 			proc->pc = pc_rotate(proc->pc, 1);
 	}
 	else if ((ocodage & 0xc0) == 0x80)
 	{
-		if (calc(env, proc, sti_calc(env, proc, 2) % IDX_MOD, 4) == 0)
+		if (calc(env, proc, sti_calc(env, proc, 2), 4) == 0)
 			proc->pc = pc_rotate(proc->pc, 1);
 	}
 	else if ((ocodage & 0xc0) == 0xc0)
