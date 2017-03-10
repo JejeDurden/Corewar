@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:48:53 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/10 16:06:53 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 16:11:50 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,10 +154,10 @@ int			main(int ac, char **av)
 			return (1);
 		get_info(av, ac, debut, &env);
 		create_map(&env);
-		if (create_process(&env) == NULL);
+		if (create_process(&env) == NULL)
 		{
 			ft_putstr_fd("Error: Malloc Failed.\n", 2);
-			return (1)
+			return (1);
 		}
 		start_game(&env);
 		del_lproc(&env);
