@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 15:53:11 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/10 16:25:37 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/10 19:59:26 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	del_lproc(t_struct *env)
 		{
 			tmp = proc;
 			proc = proc->next;
-			free(proc);
+			free(tmp);
 		}
 		i++;
 	}
