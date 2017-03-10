@@ -6,22 +6,11 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:24:29 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/09 17:56:06 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 13:51:26 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-static void		self_live(t_struct *env, t_process *proc)
-{
-	if (env->graphic == 0)
-		ft_printf("Un processus dit que le joueur %s est en vie\n",
-					env->champ[proc->champ].name);
-	proc->nb_live++;
-	env->live[proc->champ]++;
-	env->live_current[proc->champ]++;
-	env->last_champ = proc->champ;
-}
 
 void			cw_live(t_struct *env, t_process *proc)
 {
@@ -44,11 +33,11 @@ void			cw_live(t_struct *env, t_process *proc)
 			env->live_current[i]++;
 			env->last_champ = i;
 			flag = 1;
-			break ;
+			proc->pc = pc_rotate(proc->pc, 5);
+			return ;
 		}
 		i++;
 	}
-	if (flag == 0)
-		self_live(env, proc);
-	proc->pc = pc_rotate(proc->pc, 5);
+	proc->nb_live++;
+	proc->pc = pc_rotate(proc->pc, 1);
 }

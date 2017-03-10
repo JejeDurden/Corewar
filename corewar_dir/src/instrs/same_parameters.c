@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:57:55 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/10 11:01:32 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 11:21:12 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,18 @@ static void			to_register(t_struct *env,
 {
 	if (a == 0)
 	{
-		tab[0] = char_to_int(env->map[pc_rotate(proc->pc, 2)]) << 8;
-		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc, 3)]);
-		tab[1] = char_to_int(env->map[pc_rotate(proc->pc, 4)]) << 8;
-		tab[1] = tab[1] | char_to_int(env->map[pc_rotate(proc->pc, 5)]);
+		tab[0] = sti_calc(env, proc, 2);
+		tab[0] = sti_calc(env, proc, 4);
 	}
 	else if (a == 1)
 	{
-		tab[0] = char_to_int(env->map[pc_rotate(proc->pc, 2)]) << 24;
-		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc, 3)]) << 16;
-		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc, 4)]) << 8;
-		tab[0] = tab[0] | char_to_int(env->map[pc_rotate(proc->pc, 5)]);
-		tab[1] = char_to_int(env->map[pc_rotate(proc->pc, 6)]) << 24;
-		tab[1] = tab[1] | char_to_int(env->map[pc_rotate(proc->pc, 7)]) << 16;
-		tab[1] = tab[1] | char_to_int(env->map[pc_rotate(proc->pc, 8)]) << 8;
-		tab[1] = tab[1] | char_to_int(env->map[pc_rotate(proc->pc, 9)]);
+		tab[0] = get_four_octet(env, 2);
+		tab[1] = get_four_octet(env, 6);
 	}
 	else if (a == 2)
 	{
-		tab[0] = proc->reg[char_to_int(env->map[pc_rotate(proc->pc, 2)])];
-		tab[1] = proc->reg[char_to_int(env->map[pc_rotate(proc->pc, 3)])];
+		tab[0] = proc->reg[char_to_int(env->map[pc_rotate(proc->pc, 2)]) - 1];
+		tab[1] = proc->reg[char_to_int(env->map[pc_rotate(proc->pc, 3)]) - 1];
 	}
 }
 

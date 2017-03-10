@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 19:18:11 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/09 17:56:27 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/10 14:05:39 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static int	calc(t_struct *env, t_process *proc, int val, int i)
 {
-	int	reg2;
-	int	reg3;
-	int	dir;
-	char			ocodage;
-	int res;
+	int		reg2;
+	int		reg3;
+	int		dir;
+	char	ocodage;
+	int		res;
 
 	ocodage = env->map[pc_rotate(proc->pc, 1)];
 	if ((ocodage & 0x30) == 0x10)
@@ -45,10 +45,10 @@ static int	calc(t_struct *env, t_process *proc, int val, int i)
 
 void		cw_ldi(t_struct *env, t_process *proc)
 {
-	char			ocodage;
-	int	id;
-	int	val;
-	int	reg1;
+	char	ocodage;
+	int		id;
+	int		val;
+	int		reg1;
 
 	ocodage = env->map[pc_rotate(proc->pc, 1)];
 	if (ocodage == (char)0x54 || ocodage == (char)0x64 || ocodage == (char)0x94 ||
@@ -61,13 +61,13 @@ void		cw_ldi(t_struct *env, t_process *proc)
 				proc->pc = pc_rotate(proc->pc, 1);
 				return ;
 			}
-			val = proc->reg[reg1 - 1];
+			val = proc->reg[reg1 - 1] % IDX_MOD;
 			if (calc(env, proc, val, 3) == 0)
 				proc->pc = pc_rotate(proc->pc, 1);
 		}
 		else if ((ocodage & 0xc0) == 0x80)
 		{
-			val = sti_calc(env, proc, 2);
+			val = sti_calc(env, proc, 2) % IDX_MOD;
 			if (calc(env, proc, val, 4) == 0)
 				proc->pc = pc_rotate(proc->pc, 1);
 		}
