@@ -6,7 +6,7 @@
 /*   By: jdesmare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/04 14:54:15 by jdesmare          #+#    #+#             */
-/*   Updated: 2017/03/11 09:51:41 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/11 09:55:20 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void			ncur_free(t_struct *env)
 void			ncur_init(t_struct *env)
 {
 	initscr();
-	signal (SIGWINCH, NULL);
+	signal(SIGWINCH, NULL);
 	env->usleep = 0;
 	env->main_border = subwin(stdscr, LINES, COLS_MAIN, 0, 0);
 	env->info_border = subwin(stdscr, LINES_INFO, COLS_INFO, 0, COLS_MAIN);
