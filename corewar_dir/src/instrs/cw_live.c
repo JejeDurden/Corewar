@@ -6,7 +6,7 @@
 /*   By: jgoncalv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:24:29 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/03/10 13:51:26 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/11 10:12:41 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void			cw_live(t_struct *env, t_process *proc)
 		i++;
 	}
 	proc->nb_live++;
-	proc->pc = pc_rotate(proc->pc, 1);
+	proc->pc = pc_rotate(proc->pc, 5);
 }
