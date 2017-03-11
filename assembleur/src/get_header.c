@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 14:33:39 by rghirell          #+#    #+#             */
-/*   Updated: 2017/02/25 17:38:45 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/11 09:35:02 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static	int		get_comment(t_struct *env, char *line)
 		i++;
 	if (line[i] != '"')
 	{
-		ft_putstr("Bad comment format");
+		ft_putstr_fd("Bad comment format\n", 2);
 		free_struct(env);
 		exit(1);
 	}
@@ -31,8 +31,8 @@ static	int		get_comment(t_struct *env, char *line)
 		j++;
 	if (j > 2048 || line[i] != '"')
 	{
-		(j > 2048) ? ft_printf("Comment has too many characters")
-			: ft_printf("Bad comment format");
+		(j > 2048) ? ft_printf("Comment has too many characters\n")
+			: ft_printf("Bad comment format\n");
 		free_struct(env);
 		exit(1);
 	}
@@ -50,7 +50,7 @@ static	int		get_name(t_struct *env, char *line)
 		i++;
 	if (line[i] != '"')
 	{
-		ft_putstr("Bad name format");
+		ft_putstr_fd("Bad name format\n", 2);
 		free_struct(env);
 		exit(1);
 	}
@@ -60,8 +60,8 @@ static	int		get_name(t_struct *env, char *line)
 	if (j > 128 || line[i] != '"')
 	{
 		free_struct(env);
-		(j > 128) ? ft_printf("Name has too many characters")
-			: ft_printf("Bad name format");
+		(j > 128) ? ft_printf("Name has too many characters\n")
+			: ft_printf("Bad name format\n");
 		exit(1);
 	}
 	env->name = 1;
@@ -80,7 +80,7 @@ int				get_header(t_struct *env, char *line)
 	if (line[i] != '.')
 	{
 		free_struct(env);
-		ft_printf("Bad header format");
+		ft_printf("Bad header format\n");
 		exit(1);
 	}
 	if (ft_strncmp(line + i + 1, "name", 4) == 0 && env->name == 0)
@@ -88,6 +88,6 @@ int				get_header(t_struct *env, char *line)
 	if (ft_strncmp(line + i + 1, "comment", 7) == 0 && env->comment == 0)
 		return (get_comment(env, line + i + 8));
 	free_struct(env);
-	ft_printf("Bad header format");
+	ft_printf("Bad header format\n");
 	exit(1);
 }

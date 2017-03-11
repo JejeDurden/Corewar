@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 14:29:41 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/10 14:21:40 by jdesmare         ###   ########.fr       */
+/*   Updated: 2017/03/11 09:35:53 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int				instruction_stock_index(t_struct *env, char *line)
 		i++;
 	if (line[i] != 'r')
 	{
-		ft_putstr("Stock index : First parameter has to be a register");
+		ft_putstr("Stock index : First parameter has to be a register\n");
 		free_struct(env);
 		exit(1);
 	}

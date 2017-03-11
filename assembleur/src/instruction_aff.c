@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 15:25:14 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/06 13:17:44 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/11 09:35:15 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			instruction_aff(t_struct *env, char *line)
 		i++;
 	if (line[i] != 'r')
 	{
-		ft_putstr("Aff : Parameter has to be a register");
+		ft_putstr("Aff : Parameter has to be a register\n");
 		free_struct(env);
 		exit(1);
 	}

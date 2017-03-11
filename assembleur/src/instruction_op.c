@@ -6,7 +6,7 @@
 /*   By: rghirell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 11:03:43 by rghirell          #+#    #+#             */
-/*   Updated: 2017/03/06 13:24:26 by rghirell         ###   ########.fr       */
+/*   Updated: 2017/03/11 09:35:43 by jdesmare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int				instruction_op(t_struct *env, char *line)
 		i++;
 	if (line[i] != 'r')
 	{
-		ft_putstr("Operator : First parameter has to be a register");
+		ft_putstr("Operator : First parameter has to be a register\n");
 		free_struct(env);
 		exit(1);
 	}
